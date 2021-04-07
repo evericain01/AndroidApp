@@ -19,61 +19,32 @@ public class ApiHandler {
     }
 
     /**
+     * Will generate an un-parsed JSON list of questions to be used.
      *
      * @param amount The number of questions to be given.
      * @param category The category to be given. ( can an empty string )
      * @param difficulty How hard the questions will be. ( Easy, Medium, and Hard )
      *
-     * @return The generated the questions.
+     * @return A generated list of questions in un-parsed JSON.
      */
     public String generateQuestions(int amount, int category, String difficulty) {
         String url = "";
-        String questions = "";
 
         // If a category is not given
-        if (category == -1 && difficulty == "") {
+        if (category == -1 && difficulty.equals("")) {
             url = "https://opentdb.com/api.php?amount=" + amount + "&token=" + token;
             // If a category is given
-        } else if (category != -1 && difficulty == "") {
+        } else if (category != -1 && difficulty.equals("")) {
             url = "https://opentdb.com/api.php?amount=" + amount + "category=" + category + "&token=" + token;
-        } else if (category == -1 && difficulty != "") {
+            // If neither a category or difficulty is given.
+        } else if (category == -1 && !difficulty.equals("")) {
             url = "https://opentdb.com/api.php?amount=" + amount + "&difficulty=" + difficulty + "&token=" + token;
+            // If all the params are given.
         } else {
             url = "https://opentdb.com/api.php?amount=" + amount + "category=" + category + "&difficulty=" + difficulty + "&token=" + token;
         }
 
-        URL url2;
-
-        try {
-            String jsonQuestions = null;
-            System.out.println(url);
-            url2 = new URL(url);
-            HttpsURLConnection con = (HttpsURLConnection) url2.openConnection();
-            // Setting properties for the request.
-            con.setRequestMethod("GET");
-            con.setRequestProperty("Content-Type", "application/json");
-            con.setRequestProperty("charset", "utf-8");
-            // Create the connection.
-            con.connect();
-            // If the response is successful.
-            if (con.getResponseCode() == HttpsURLConnection.HTTP_OK) {
-                // Gets the JSON data as a InputStream and converts it into a string.
-                InputStream inStream = con.getInputStream();
-                jsonQuestions = streamToString(inStream);
-                // Closes the connection.
-                con.disconnect();
-                return jsonQuestions;
-            } else {
-                System.out.println("failed to get questions");
-            }
-
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return "false";
+        return getJSONString(url);
     }
 
     /**
@@ -84,14 +55,33 @@ public class ApiHandler {
     private String generateToken() {
         String token = "";
 
-        String https_url = "https://opentdb.com/api_token.php?command=request";
+        String url = "https://opentdb.com/api_token.php?command=request";
+        return getTokenString(getJSONString(url));
+    }
 
+    /**
+     * Carves out the token data from the JSON data.
+     *
+     * @param jsonData JSON data from the API token call.
+     * @return The token for the session.
+     */
+    private String getTokenString(String jsonData) {
+        return jsonData.substring(jsonData.lastIndexOf(',') + 10, jsonData.length() - 2);
+    }
+
+    /**
+     * Gets a JSON request from a given URL.
+     *
+     * @param urlString URL to request from.
+     * @return Un-parsed JSON data.
+     */
+    private String getJSONString(String urlString) {
         URL url;
-
         try {
+            // String to store JSON data down the line
             String json = null;
 
-            url = new URL(https_url);
+            url = new URL(urlString);
             HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
             // Setting properties for the request.
             con.setRequestMethod("GET");
@@ -107,9 +97,9 @@ public class ApiHandler {
                 // Closes the connection.
                 con.disconnect();
                 // Returns the carved out token from the JSON data.
-                return getTokenString(json);
+                return json;
             } else {
-                System.out.println("failed to get token");
+               return "Failed to make the connection";
             }
 
         } catch (MalformedURLException e) {
@@ -118,17 +108,7 @@ public class ApiHandler {
             e.printStackTrace();
         }
 
-        return "false";
-    }
-
-    /**
-     * Carves out the token data from the JSON data.
-     *
-     * @param jsonData JSON data from the API token call.
-     * @return The token for the session.
-     */
-    private String getTokenString(String jsonData) {
-        return jsonData.substring(jsonData.lastIndexOf(',') + 10, jsonData.length() - 2);
+        return "Failed to make a connection";
     }
 
     /**
