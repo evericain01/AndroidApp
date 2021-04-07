@@ -10,26 +10,70 @@ import javax.net.ssl.HttpsURLConnection;
 
 public class ApiHandler {
 
+    private String token = null;
+
+    public ApiHandler() {
+        if (token == null) {
+            token = generateToken();
+        }
+    }
+
     /**
      *
      * @param amount The number of questions to be given.
-     * @param category The category to be given. (can an empty string)
-     * @param difficulty How hard the questions will be. ( Easy, Medium and Hard)
-     * @param token Token for the session.
-     * @return The generated URL for the question set.
+     * @param category The category to be given. ( can an empty string )
+     * @param difficulty How hard the questions will be. ( Easy, Medium, and Hard )
+     *
+     * @return The generated the questions.
      */
-    public String createApiUrl(int amount, String category, String difficulty, String token) {
+    public String generateQuestions(int amount, int category, String difficulty) {
         String url = "";
+        String questions = "";
 
         // If a category is not given
-        if (category == "") {
-            url = "https://opentdb.com/api.php?amount=" + amount + "&difficulty=" + difficulty + "&token=" + token;
+        if (category == -1 && difficulty == "") {
+            url = "https://opentdb.com/api.php?amount=" + amount + "&token=" + token;
             // If a category is given
+        } else if (category != -1 && difficulty == "") {
+            url = "https://opentdb.com/api.php?amount=" + amount + "category=" + category + "&token=" + token;
+        } else if (category == -1 && difficulty != "") {
+            url = "https://opentdb.com/api.php?amount=" + amount + "&difficulty=" + difficulty + "&token=" + token;
         } else {
             url = "https://opentdb.com/api.php?amount=" + amount + "category=" + category + "&difficulty=" + difficulty + "&token=" + token;
         }
 
-        return url;
+        URL url2;
+
+        try {
+            String jsonQuestions = null;
+            System.out.println(url);
+            url2 = new URL(url);
+            HttpsURLConnection con = (HttpsURLConnection) url2.openConnection();
+            // Setting properties for the request.
+            con.setRequestMethod("GET");
+            con.setRequestProperty("Content-Type", "application/json");
+            con.setRequestProperty("charset", "utf-8");
+            // Create the connection.
+            con.connect();
+            // If the response is successful.
+            if (con.getResponseCode() == HttpsURLConnection.HTTP_OK) {
+                // Gets the JSON data as a InputStream and converts it into a string.
+                InputStream inStream = con.getInputStream();
+                jsonQuestions = streamToString(inStream);
+                // Closes the connection.
+                con.disconnect();
+                return jsonQuestions;
+            } else {
+                System.out.println("failed to get questions");
+            }
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return "false";
     }
 
     /**
@@ -37,7 +81,7 @@ public class ApiHandler {
      *
      * @return The session token.
      */
-    public static String generateToken() {
+    private String generateToken() {
         String token = "";
 
         String https_url = "https://opentdb.com/api_token.php?command=request";
@@ -83,7 +127,7 @@ public class ApiHandler {
      * @param jsonData JSON data from the API token call.
      * @return The token for the session.
      */
-    private static String getTokenString(String jsonData) {
+    private String getTokenString(String jsonData) {
         return jsonData.substring(jsonData.lastIndexOf(',') + 10, jsonData.length() - 2);
     }
 
@@ -93,7 +137,7 @@ public class ApiHandler {
      * @param inputStream InputStream to be converted to string.
      * @return String.
      */
-    private static String streamToString(InputStream inputStream) {
+    private String streamToString(InputStream inputStream) {
         String text = new Scanner(inputStream, "UTF-8").useDelimiter("\\Z").next();
         return text;
     }
