@@ -1,5 +1,9 @@
 package com.example.quizapp;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -27,7 +31,7 @@ public class ApiHandler {
      *
      * @return A generated list of questions in un-parsed JSON.
      */
-    public String generateQuestions(int amount, int category, String difficulty) {
+    public JSONArray generateQuestionsArray(int amount, int category, String difficulty) {
         String url = "";
 
         // If a category is not given
@@ -44,8 +48,20 @@ public class ApiHandler {
             url = "https://opentdb.com/api.php?amount=" + amount + "category=" + category + "&difficulty=" + difficulty + "&token=" + token;
         }
 
-        return getJSONString(url);
+        return parseJSONArray(getJSONString(url), "results");
     }
+
+    private String parseJSON(String jsonString) {
+        try {
+            JSONObject obj = new JSONObject(jsonString);
+            return obj.getString("token");
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return "Failed to parse json";
+    }
+
 
     /**
      * Generates and returns a token for the session.
@@ -56,17 +72,7 @@ public class ApiHandler {
         String token = "";
 
         String url = "https://opentdb.com/api_token.php?command=request";
-        return getTokenString(getJSONString(url));
-    }
-
-    /**
-     * Carves out the token data from the JSON data.
-     *
-     * @param jsonData JSON data from the API token call.
-     * @return The token for the session.
-     */
-    private String getTokenString(String jsonData) {
-        return jsonData.substring(jsonData.lastIndexOf(',') + 10, jsonData.length() - 2);
+        return parseJSONString(getJSONString(url), "token");
     }
 
     /**
@@ -108,7 +114,7 @@ public class ApiHandler {
             e.printStackTrace();
         }
 
-        return "Failed to make a connection";
+        return "Something failed in the try catch";
     }
 
     /**
@@ -120,5 +126,44 @@ public class ApiHandler {
     private String streamToString(InputStream inputStream) {
         String text = new Scanner(inputStream, "UTF-8").useDelimiter("\\Z").next();
         return text;
+    }
+
+    /**
+     * Takes in a un-parsed JSON String, with a code to parse the string into the code desired.
+     *
+     * @param jsonString Un-parsed JSON String.
+     * @param code String to be obtained from the JSON string.
+     *
+     * @return Parsed JSON String.
+     */
+    private String parseJSONString(String jsonString, String code) {
+        try {
+            JSONObject obj = new JSONObject(jsonString);
+            return obj.getString(code);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return "Failed to parse json";
+    }
+
+    /**
+     * Takes in a un-parsed JSON Array, with a code to parse the array into the code desired.
+     *
+     * @param jsonArray Un-parsed JSON Array.
+     * @param code Array to be obtained from the JSON Array.
+     *
+     * @return Parsed JSON Array.
+     */
+    private JSONArray parseJSONArray(String jsonArray, String code) {
+        try {
+            JSONObject obj = new JSONObject(jsonArray);
+            // Returns a JSON array.
+            return obj.getJSONArray(code);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
