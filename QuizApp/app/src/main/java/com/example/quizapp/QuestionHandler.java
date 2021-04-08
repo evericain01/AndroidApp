@@ -8,9 +8,10 @@ import java.util.ArrayList;
 public class QuestionHandler extends ApiHandler {
 
     private JSONArray originalJsonArr = null;
+    private int amount;
     private ArrayList<String> questions;
     private ArrayList<String> answers;
-    private ArrayList<String> incorrectAnswers;
+    private ArrayList<JSONArray> incorrectAnswers;
 
     /**
      *
@@ -21,6 +22,7 @@ public class QuestionHandler extends ApiHandler {
             amount = 50;
         }
 
+        this.amount = amount;
         originalJsonArr = generateQuestionsArray(amount, -1, "", "");
 
         try {
@@ -42,6 +44,7 @@ public class QuestionHandler extends ApiHandler {
             amount = 50;
         }
 
+        this.amount = amount;
         originalJsonArr = generateQuestionsArray(amount, category, "", "");
 
         try {
@@ -64,6 +67,7 @@ public class QuestionHandler extends ApiHandler {
             amount = 50;
         }
 
+        this.amount = amount;
         originalJsonArr = generateQuestionsArray(amount, category, difficulty, "");
 
         try {
@@ -87,6 +91,7 @@ public class QuestionHandler extends ApiHandler {
             amount = 50;
         }
 
+        this.amount = amount;
         originalJsonArr = generateQuestionsArray(amount, category, difficulty, type);
 
         try {
@@ -122,11 +127,11 @@ public class QuestionHandler extends ApiHandler {
      * @return ArrayList<String> of all the questions.
      * @throws JSONException If JSON fails to parse
      */
-    protected ArrayList<String> getIncorrectAnswers(JSONArray jsonArray) throws JSONException {
-        ArrayList<String> incorrectArr = new ArrayList<>();
+    protected ArrayList<JSONArray> getIncorrectAnswers(JSONArray jsonArray) throws JSONException {
+        ArrayList<JSONArray> incorrectArr = new ArrayList<>();
 
         for (int i = 0; i < jsonArray.length(); i++) {
-            incorrectArr.add(jsonArray.getJSONObject(i).getString("incorrect_answers"));
+            incorrectArr.add(jsonArray.getJSONObject(i).getJSONArray("incorrect_answers"));
         }
 
         return incorrectArr;
@@ -157,7 +162,11 @@ public class QuestionHandler extends ApiHandler {
         return answers;
     }
 
-    public ArrayList<String> getIncorrectAnswers() {
+    public ArrayList<JSONArray> getIncorrectAnswers() {
         return incorrectAnswers;
+    }
+
+    public int getAmount() {
+        return amount;
     }
 }
