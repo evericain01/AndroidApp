@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/container"
+    android:background="#92BEFF"
+    android:gravity="center_horizontal">
+
+    <LinearLayout
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/createProfileTitleText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingTop="20dp"
+            android:paddingBottom="100dp"
+            android:text="Create Your Profile"
+            android:textSize="35dp" />
+
+        <TextView
+            android:id="@+id/firstNameLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Enter First Name:"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/firstNameEditText"
+            android:layout_width="190dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="15dp"
+            android:background="#ffffff"
+            android:hint="First Name"
+            android:paddingLeft="2dp" />
+
+        <TextView
+            android:id="@+id/lastNameLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Enter Last Name:"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/lastNameEditText"
+            android:layout_width="190dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:background="#ffffff"
+            android:hint="Last Name" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/createProfileButton"
+        android:layout_width="190dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#4753FC"
+        android:textColor="#ffffff"
+        android:text="CREATE PROFILE"/>
+
+</LinearLayout>

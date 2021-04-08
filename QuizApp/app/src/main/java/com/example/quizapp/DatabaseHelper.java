@@ -87,9 +87,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return exists;
     }
 
-
-    // for hashing password
-
     public static final String md5(final String s) {
         final String MD5 = "MD5";
         try {
