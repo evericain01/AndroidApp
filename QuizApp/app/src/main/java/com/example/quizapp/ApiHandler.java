@@ -28,40 +28,34 @@ public class ApiHandler {
      * @param amount The number of questions to be given.
      * @param category The category to be given. ( can an empty string )
      * @param difficulty How hard the questions will be. ( Easy, Medium, and Hard )
+     * @param type Whether the question is true or false, or multiple choice.
      *
      * @return A generated list of questions in un-parsed JSON.
      */
-    public JSONArray generateQuestionsArray(int amount, int category, String difficulty) {
+    protected JSONArray generateQuestionsArray(int amount, int category, String difficulty, String type) {
         String url = "";
 
         // If a category is not given
-        if (category == -1 && difficulty.equals("")) {
+        if (category == -1 && difficulty.equals("") && type.equals("")) {
             url = "https://opentdb.com/api.php?amount=" + amount + "&token=" + token;
-            // If a category is given
-        } else if (category != -1 && difficulty.equals("")) {
-            url = "https://opentdb.com/api.php?amount=" + amount + "category=" + category + "&token=" + token;
-            // If neither a category or difficulty is given.
-        } else if (category == -1 && !difficulty.equals("")) {
+        } else if (category != -1 && difficulty.equals("") && type.equals("")) {
+            url = "https://opentdb.com/api.php?amount=" + amount + "&category=" + category + "&token=" + token;
+        } else if (category == -1 && !difficulty.equals("") && type.equals("")) {
             url = "https://opentdb.com/api.php?amount=" + amount + "&difficulty=" + difficulty + "&token=" + token;
-            // If all the params are given.
+        } else if (category == -1 && difficulty.equals("") && !type.equals("")) {
+            url = "https://opentdb.com/api.php?amount=" + amount + "&type=" + type + "&token=" + token;
+        } else if (category != -1 && !difficulty.equals("") && type.equals("")) {
+            url = "https://opentdb.com/api.php?amount=" + amount + "&category=" + category + "&difficulty" + difficulty + "&token=" + token;
+        } else if (category == -1 && !difficulty.equals("") && !type.equals("")) {
+            url = "https://opentdb.com/api.php?amount=" + amount + "&difficulty" + difficulty + "&type=" + type + "&token=" + token;
+        } else if (category != -1 && difficulty.equals("") && !type.equals("")) {
+            url = "https://opentdb.com/api.php?amount=" + amount + "&category" + category + "&type=" + type + "&token=" + token;
         } else {
-            url = "https://opentdb.com/api.php?amount=" + amount + "category=" + category + "&difficulty=" + difficulty + "&token=" + token;
+            url = "https://opentdb.com/api.php?amount=" + amount + "&category=" + category + "&difficulty=" + difficulty + "&type" + type + "&token=" + token;
         }
 
         return parseJSONArray(getJSONString(url), "results");
     }
-
-    private String parseJSON(String jsonString) {
-        try {
-            JSONObject obj = new JSONObject(jsonString);
-            return obj.getString("token");
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return "Failed to parse json";
-    }
-
 
     /**
      * Generates and returns a token for the session.
