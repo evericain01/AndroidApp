@@ -28,7 +28,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String SQL_CREATE_TABLE_USER = "CREATE TABLE " + USER_TABLE + "("
             + COL_USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + COL_USERNAME + " TEXT NOT NULL, "
+            + COL_USERNAME + " TEXT NOT NULL UNIQUE, "
             + COL_PASSWORD + " TEXT NOT NULL "
             + ");";
 
@@ -62,7 +62,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public long addUser(String username, String password){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-//        password = md5(password);
+        password = md5(password);
         contentValues.put("username", username);
         contentValues.put("password", password);
         long result = db.insert("user",null, contentValues);
@@ -72,6 +72,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public boolean checkLogin(String username, String password) {
         SQLiteDatabase db = getReadableDatabase();
+        password = md5(password);
         String[] selectionArgs = { username, password };
         String[] columns = { COL_USER_ID };
         String selection = COL_USERNAME + "=?" + " AND " + COL_PASSWORD + "=?";
@@ -89,27 +90,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     // for hashing password
 
-//    public static final String md5(final String s) {
-//        final String MD5 = "MD5";
-//        try {
-//            // Create MD5 Hash
-//            MessageDigest digest = java.security.MessageDigest.getInstance(MD5);
-//            digest.update(s.getBytes());
-//            byte messageDigest[] = digest.digest();
-//
-//            // Create Hex String
-//            StringBuilder hexString = new StringBuilder();
-//            for (byte aMessageDigest : messageDigest) {
-//                String h = Integer.toHexString(0xFF & aMessageDigest);
-//                while (h.length() < 2)
-//                    h = "0" + h;
-//                hexString.append(h);
-//            }
-//            return hexString.toString();
-//        } catch (NoSuchAlgorithmException e) {
-//            e.printStackTrace();
-//        }
-//        return "";
-//    }
+    public static final String md5(final String s) {
+        final String MD5 = "MD5";
+        try {
+            // Create MD5 Hash
+            MessageDigest digest = java.security.MessageDigest.getInstance(MD5);
+            digest.update(s.getBytes());
+            byte messageDigest[] = digest.digest();
+
+            // Create Hex String
+            StringBuilder hexString = new StringBuilder();
+            for (byte aMessageDigest : messageDigest) {
+                String h = Integer.toHexString(0xFF & aMessageDigest);
+                while (h.length() < 2)
+                    h = "0" + h;
+                hexString.append(h);
+            }
+            return hexString.toString();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
 
 }
