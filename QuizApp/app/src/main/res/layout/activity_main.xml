@@ -16,14 +16,22 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/quizTitleText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:paddingTop="20dp"
-            android:paddingBottom="120dp"
+            android:paddingBottom="100dp"
             android:text="Knowledge+"
             android:textSize="35dp" />
+
+        <TextView
+            android:id="@+id/usernameLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Enter Username:"
+            android:textSize="20sp" />
 
         <EditText
             android:id="@+id/usernameEditText"
@@ -31,16 +39,27 @@
             android:layout_height="40dp"
             android:layout_marginTop="10dp"
             android:paddingLeft="2dp"
+            android:layout_marginBottom="15dp"
             android:background="#ffffff"
             android:hint="Username"/>
+
+        <TextView
+            android:id="@+id/passwordLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Enter Password:"
+            android:textSize="20sp" />
 
         <EditText
             android:id="@+id/passwordEditText"
             android:layout_width="190dp"
             android:layout_height="40dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="5dp"
             android:background="#ffffff"
-            android:hint="Password"/>
+            android:hint="Password"
+            android:inputType="textPassword" />
+
     </LinearLayout>
 
     <Button
@@ -61,11 +80,11 @@
         <TextView
             android:id="@+id/registerTextView"
             android:layout_width="wrap_content"
-            android:layout_height="35dp"
+            android:layout_height="match_parent"
             android:paddingLeft="10dp"
-            android:textStyle="bold"
+            android:text="Register Here!"
             android:textColor="#068A18"
-            android:text="Register Here!"/>
+            android:textStyle="bold" />
 
     </LinearLayout>
 </LinearLayout>
