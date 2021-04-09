@@ -34,7 +34,7 @@ public class HomePageActivity extends AppCompatActivity {
         }
 
 //        String currentUserID = db.getCurrentUserID();
-//        welcomeTitle.setText("Welcome, " + db.getFistAndLastName(currentUserID));
+        welcomeTitle.setText("Welcome, " + db.getFistAndLastName(currentUserID));
 //        Toast.makeText(HomePageActivity.this, currentUserID, Toast.LENGTH_SHORT).show();
     }
 }

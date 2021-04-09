@@ -131,36 +131,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return "";
     }
 
-//    public String getCurrentUserID(String username, String password)
-//    {
-//        String userId = "";
-//        SQLiteDatabase db = this.getReadableDatabase();
-//
-//        Cursor mCursor = db.rawQuery("SELECT user_id FROM user WHERE username=? AND password=?", new String[]{username,password});
-//        if (mCursor != null && mCursor.moveToFirst()) {
-//            if(mCursor.getCount() > 0)
-//            {
-//                 userId = mCursor.getString(0);
-//            }
-//        }
-//        return userId;
-//    }
 
-    public String getCurrentUserID() {
-        String userID = "";
+    public String getCurrentUserID(String username) {
+        SQLiteDatabase db = getReadableDatabase();
 
-        Cursor cursor = this.getReadableDatabase().query(
-                USER_TABLE, new String[] { COL_USER_ID },
-                null, null, null, null, null);
-        if (cursor.moveToFirst()) {
-            do {
-                userID = cursor.getString(0);
-            } while (cursor.moveToNext());
-        }
-        cursor.close();
+        String query = "SELECT user_id FROM user WHERE username = ?";
+        String[] parameters = new String[] { username };
+        Cursor cursor = db.rawQuery(query, parameters);
 
-        return userID;
+        if (cursor.moveToFirst())
+            return cursor.getString(0);
+        else
+            return null;
     }
+
 
     public String getFistAndLastName(String userID) {
         String result = "";

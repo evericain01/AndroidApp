@@ -47,7 +47,7 @@ public class RegistrationActivity extends AppCompatActivity {
                             Toast.makeText(RegistrationActivity.this, "Successfully Registered!", Toast.LENGTH_SHORT).show();
                             Intent profileCreation = new Intent(RegistrationActivity.this, ProfileCreationActivity.class);
                             // getting current user id from user table
-                            String currentUserID = db.getCurrentUserID();
+                            String currentUserID = db.getCurrentUserID(username);
                             profileCreation.putExtra("USER_ID", currentUserID);
 
                             startActivity(profileCreation);
