@@ -66,9 +66,9 @@ public class LoginActivity extends AppCompatActivity {
                 {
                     Intent categoryIntent = new Intent(LoginActivity.this, HomePageActivity.class);
                     // getting current user id from user table
-                    String currentUserID = db.getCurrentUserID();
+                    String currentUserID = db.getCurrentUserID(username);
                     categoryIntent.putExtra("USER_ID", currentUserID);
-                    Toast.makeText(LoginActivity.this,currentUserID,Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(LoginActivity.this,currentUserID,Toast.LENGTH_SHORT).show();
                     startActivity(categoryIntent);
                 }
                 else
