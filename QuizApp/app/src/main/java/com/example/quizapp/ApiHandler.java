@@ -15,6 +15,7 @@ import javax.net.ssl.HttpsURLConnection;
 public class ApiHandler {
 
     private String token = null;
+    private String responseCode;
 
     public ApiHandler() {
         if (token == null) {
@@ -45,16 +46,32 @@ public class ApiHandler {
         } else if (category == -1 && difficulty.equals("") && !type.equals("")) {
             url = "https://opentdb.com/api.php?amount=" + amount + "&type=" + type + "&token=" + token;
         } else if (category != -1 && !difficulty.equals("") && type.equals("")) {
-            url = "https://opentdb.com/api.php?amount=" + amount + "&category=" + category + "&difficulty" + difficulty + "&token=" + token;
+            url = "https://opentdb.com/api.php?amount=" + amount + "&category=" + category + "&difficulty=" + difficulty + "&token=" + token;
         } else if (category == -1 && !difficulty.equals("") && !type.equals("")) {
-            url = "https://opentdb.com/api.php?amount=" + amount + "&difficulty" + difficulty + "&type=" + type + "&token=" + token;
+            url = "https://opentdb.com/api.php?amount=" + amount + "&difficulty=" + difficulty + "&type=" + type + "&token=" + token;
         } else if (category != -1 && difficulty.equals("") && !type.equals("")) {
-            url = "https://opentdb.com/api.php?amount=" + amount + "&category" + category + "&type=" + type + "&token=" + token;
+            url = "https://opentdb.com/api.php?amount=" + amount + "&category=" + category + "&type=" + type + "&token=" + token;
         } else {
-            url = "https://opentdb.com/api.php?amount=" + amount + "&category=" + category + "&difficulty=" + difficulty + "&type" + type + "&token=" + token;
+            url = "https://opentdb.com/api.php?amount=" + amount + "&category=" + category + "&difficulty=" + difficulty + "&type=" + type + "&token=" + token;
         }
 
-        return parseJSONArray(getJSONString(url), "results");
+        String jsonString = getJSONString(url);
+        responseCode = getResponseCodeFromJsonString(jsonString);
+//        System.out.println("Response Code: " + responseCode);
+        if (responseCode.equals("4")) {
+            // Reset the session token.
+            getJSONString("https://opentdb.com/api_token.php?command=reset&token=" + token);
+        }
+
+        return getResults(jsonString);
+    }
+
+    private String getResponseCodeFromJsonString(String jsonString) {
+        return parseJSONString(jsonString, "response_code");
+    }
+
+    private JSONArray getResults(String jsonString) {
+        return parseJSONArray(jsonString, "results");
     }
 
     /**
@@ -160,4 +177,6 @@ public class ApiHandler {
         }
         return null;
     }
+
+    public String getResponseCode() { return responseCode; }
 }
