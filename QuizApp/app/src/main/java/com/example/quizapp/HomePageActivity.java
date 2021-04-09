@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,7 +26,6 @@ public class HomePageActivity extends AppCompatActivity {
         viewCategories = findViewById(R.id.viewCategoriesButton);
         viewQueue = findViewById(R.id.viewQueueButton);
 
-
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         String currentUserID = "";
@@ -33,8 +33,15 @@ public class HomePageActivity extends AppCompatActivity {
             currentUserID = (String) bundle.get("USER_ID");
         }
 
-//        String currentUserID = db.getCurrentUserID();
         welcomeTitle.setText("Welcome, " + db.getFistAndLastName(currentUserID));
-//        Toast.makeText(HomePageActivity.this, currentUserID, Toast.LENGTH_SHORT).show();
+
+        viewCategories.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent chooseCategoryIntent = new Intent(HomePageActivity.this, ChooseCategoryActivity.class);
+                startActivity(chooseCategoryIntent);
+            }
+        });
+
     }
 }
