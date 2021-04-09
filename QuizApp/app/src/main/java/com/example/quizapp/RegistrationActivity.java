@@ -41,12 +41,14 @@ public class RegistrationActivity extends AppCompatActivity {
                     Toast.makeText(RegistrationActivity.this, "Please make sure all fields are filled.", Toast.LENGTH_SHORT).show();
                 } else {
                     if (password.equals(confirmPassword)) {
-                        long columnNum = db.addUser(username, password);
+                        boolean columnNum = db.addUser(username, password);
 
-                        if (columnNum > 0) {
+                        if (columnNum == true) {
                             Toast.makeText(RegistrationActivity.this, "Successfully Registered!", Toast.LENGTH_SHORT).show();
-                            Intent backToLogin = new Intent(RegistrationActivity.this, LoginActivity.class);
-                            startActivity(backToLogin);
+                            Intent profileCreation = new Intent(RegistrationActivity.this, ProfileCreationActivity.class);
+                            String currentUserID = db.getCurrentUserID();
+                            profileCreation.putExtra("USER_ID", currentUserID);
+                            startActivity(profileCreation);
                         } else {
                             Toast.makeText(RegistrationActivity.this, "Something went wrong with the registration.", Toast.LENGTH_SHORT).show();
                         }

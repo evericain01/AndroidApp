@@ -2,9 +2,11 @@ package com.example.quizapp;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.preference.PreferenceManager;
 
 import androidx.annotation.Nullable;
 
@@ -37,7 +39,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + COL_USER_ID_FK + " INTEGER NOT NULL, "
             + COL_FIRST_NAME + " TEXT NOT NULL, "
             + COL_LAST_NAME + " TEXT NOT NULL, "
-            + COL_EXPERIENCE_POINTS + " INTEGER, "
+            + COL_EXPERIENCE_POINTS + " INTEGER DEFAULT 0, "
             + "FOREIGN KEY (user_id) REFERENCES " + USER_TABLE + " (user_id) "
             + ");";
 
@@ -59,15 +61,33 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public long addUser(String username, String password){
+    public boolean addUser(String username, String password){
         SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
+        ContentValues values = new ContentValues();
         password = md5(password);
-        contentValues.put("username", username);
-        contentValues.put("password", password);
-        long result = db.insert("user",null, contentValues);
-        db.close();
-        return result;
+        values.put("username", username);
+        values.put("password", password);
+
+        long result = db.insert("user",null, values);
+        if (result == -1)
+            return false;
+        else
+            return true;
+    }
+
+    public boolean addProfile(String userID, String firstName, String lastName) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put("user_id", userID);
+        values.put("first_name", firstName);
+        values.put("last_name", lastName);
+
+        long result = db.insert("profile",null, values);
+        if (result == -1)
+            return false;
+        else
+            return true;
     }
 
     public boolean checkLogin(String username, String password) {
@@ -79,7 +99,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor = db.query(USER_TABLE, columns, selection, selectionArgs, null, null, null);
 
         boolean exists;
-        exists = cursor.getCount() > 0;
+        exists = cursor.getCount() != -1;
 
         db.close();
         cursor.close();
@@ -109,5 +129,35 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return "";
     }
+
+    public String getCurrentUserID() {
+        String userID = "";
+        Cursor cursor = this.getReadableDatabase().query(
+                USER_TABLE, new String[] { COL_USER_ID },
+                null, null, null, null, null);
+        if (cursor.moveToFirst()) {
+            do {
+                userID = cursor.getString(0);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+
+        return userID;
+    }
+
+
+    // for testing purposes:
+
+//    public Cursor viewAllUsers() {
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        Cursor result = db.rawQuery("select * from " + USER_TABLE, null);
+//        return result;
+//    }
+//
+//    public Cursor viewAllProfiles() {
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        Cursor result = db.rawQuery("select * from " + PROFILE_TABLE, null);
+//        return result;
+//    }
 
 }
