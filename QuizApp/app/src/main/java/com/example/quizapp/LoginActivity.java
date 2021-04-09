@@ -29,26 +29,21 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void run() {
                 try {
-                    QuestionHandler temp = new QuestionHandler(5);
+                    QuestionHandler temp = new QuestionHandler(20, 8, "", "boolean");
+//                    temp.generateQuestions();
+//                    forLoopHelper(temp);
 
-                    for (int i = 0; i < temp.getAmount(); i++ ){
-                        System.out.println("Question: " + temp.getQuestions().get(i));
-                        System.out.println("Choices: ");
-                        System.out.println(temp.getAnswers().get(i));
-                        for (int j = 0; j < temp.getIncorrectAnswers().get(i).length(); j++) {
-                            try {
-                                System.out.println(temp.getIncorrectAnswers().get(i).getString(j));
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                        System.out.println("");
-                    }
+                    temp.setType("boolean");
+                    temp.setDifficulty("easy");
+                    temp.generateQuestions();
+                    forLoopHelper(temp);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         }).start();
+
+
 
         db = new DatabaseHelper(this);
         usernameInput = findViewById(R.id.usernameEditText);
@@ -85,6 +80,23 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(registeringIntent);
             }
         });
+    }
+
+    public void forLoopHelper(QuestionHandler handler) {
+        for (int i = 0; i < handler.getAmount(); i++ ){
+            System.out.println("Question: " + handler.getQuestions().get(i));
+            System.out.println("Difficulty: " + handler.getDifficultyArr().get(i));
+            System.out.println("Choices: ");
+            System.out.println(handler.getAnswers().get(i));
+            for (int j = 0; j < handler.getIncorrectAnswers().get(i).length(); j++) {
+                try {
+                    System.out.println(handler.getIncorrectAnswers().get(i).getString(j));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            System.out.println("");
+        }
     }
 
 }
