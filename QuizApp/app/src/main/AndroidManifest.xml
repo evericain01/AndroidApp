@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.QuizApp">
-        <activity android:name=".ProfileCreationActivity"></activity>
+        <activity android:name=".HomePageActivity"></activity>
+        <activity android:name=".ProfileCreationActivity" />
         <activity android:name=".ChooseCategoryActivity" />
         <activity android:name=".RegistrationActivity" />
         <activity android:name=".LoginActivity">

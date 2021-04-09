@@ -46,7 +46,7 @@ public class ProfileCreationActivity extends AppCompatActivity {
 
                 if (result) {
                     Toast.makeText(ProfileCreationActivity.this, "Profile Created.", Toast.LENGTH_SHORT).show();
-                    Intent categoryIntent = new Intent(ProfileCreationActivity.this, ChooseCategoryActivity.class);
+                    Intent categoryIntent = new Intent(ProfileCreationActivity.this, HomePageActivity.class);
                     startActivity(categoryIntent);
                 } else {
                     Toast.makeText(ProfileCreationActivity.this, "Profile was not Created.", Toast.LENGTH_SHORT).show();

@@ -23,7 +23,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
 
         new Thread(new Runnable() {
             @Override
@@ -64,7 +64,11 @@ public class LoginActivity extends AppCompatActivity {
                 boolean result = db.checkLogin(username, password);
                 if(result)
                 {
-                    Intent categoryIntent = new Intent(LoginActivity.this, ChooseCategoryActivity.class);
+                    Intent categoryIntent = new Intent(LoginActivity.this, HomePageActivity.class);
+                    // getting current user id from user table
+                    String currentUserID = db.getCurrentUserID();
+                    categoryIntent.putExtra("USER_ID", currentUserID);
+                    Toast.makeText(LoginActivity.this,currentUserID,Toast.LENGTH_SHORT).show();
                     startActivity(categoryIntent);
                 }
                 else

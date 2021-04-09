@@ -16,6 +16,7 @@ import java.security.NoSuchAlgorithmException;
 public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME ="QuizAppDB.db";
     public static final int DATABASE_VERSION = 1;
+
     public static final String USER_TABLE = "user";
     public static final String COL_USER_ID = "user_id";
     public static final String COL_USERNAME = "username";
@@ -99,7 +100,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor = db.query(USER_TABLE, columns, selection, selectionArgs, null, null, null);
 
         boolean exists;
-        exists = cursor.getCount() != -1;
+        exists = cursor.getCount() > 0;
 
         db.close();
         cursor.close();
@@ -130,8 +131,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return "";
     }
 
+//    public String getCurrentUserID(String username, String password)
+//    {
+//        String userId = "";
+//        SQLiteDatabase db = this.getReadableDatabase();
+//
+//        Cursor mCursor = db.rawQuery("SELECT user_id FROM user WHERE username=? AND password=?", new String[]{username,password});
+//        if (mCursor != null && mCursor.moveToFirst()) {
+//            if(mCursor.getCount() > 0)
+//            {
+//                 userId = mCursor.getString(0);
+//            }
+//        }
+//        return userId;
+//    }
+
     public String getCurrentUserID() {
         String userID = "";
+
         Cursor cursor = this.getReadableDatabase().query(
                 USER_TABLE, new String[] { COL_USER_ID },
                 null, null, null, null, null);
@@ -143,6 +160,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
 
         return userID;
+    }
+
+    public String getFistAndLastName(String userID) {
+        String result = "";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM profile WHERE user_id=" + userID, null);
+        if (cursor.moveToFirst()) {
+            result = cursor.getString(cursor.getColumnIndex("first_name"));
+            result += " ";
+            result += cursor.getString(cursor.getColumnIndex("last_name"));
+        }
+        cursor.close();
+        db.close();
+        return result;
     }
 
 

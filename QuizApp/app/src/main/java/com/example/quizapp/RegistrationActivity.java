@@ -43,11 +43,13 @@ public class RegistrationActivity extends AppCompatActivity {
                     if (password.equals(confirmPassword)) {
                         boolean columnNum = db.addUser(username, password);
 
-                        if (columnNum == true) {
+                        if (columnNum) {
                             Toast.makeText(RegistrationActivity.this, "Successfully Registered!", Toast.LENGTH_SHORT).show();
                             Intent profileCreation = new Intent(RegistrationActivity.this, ProfileCreationActivity.class);
+                            // getting current user id from user table
                             String currentUserID = db.getCurrentUserID();
                             profileCreation.putExtra("USER_ID", currentUserID);
+
                             startActivity(profileCreation);
                         } else {
                             Toast.makeText(RegistrationActivity.this, "Something went wrong with the registration.", Toast.LENGTH_SHORT).show();
