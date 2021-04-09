@@ -46,77 +46,12 @@ public class ProfileCreationActivity extends AppCompatActivity {
 
                 if (result) {
                     Toast.makeText(ProfileCreationActivity.this, "Profile Created.", Toast.LENGTH_SHORT).show();
-                    Intent categoryIntent = new Intent(ProfileCreationActivity.this, HomePageActivity.class);
-                    startActivity(categoryIntent);
+                    Intent loginIntent = new Intent(ProfileCreationActivity.this, LoginActivity.class);
+                    startActivity(loginIntent);
                 } else {
                     Toast.makeText(ProfileCreationActivity.this, "Profile was not Created.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-
-
-        // for testing purposes:
-
-//        viewUSERS.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Cursor result = db.viewAllUsers();
-//                if(result.getCount() == 0) {
-//                    showMessage("error", "Nothing found");
-//                    return;
-//                }
-//
-//                StringBuffer buffer = new StringBuffer();
-//
-//                while(result.moveToNext()) {
-//                    buffer.append("ID " + result.getString(0) + "\n");
-//                    buffer.append("user " + result.getString(1) + "\n");
-//                    buffer.append("pass " + result.getString(2) + "\n \n");
-//
-//                }
-//                showMessage("Data", buffer.toString());
-//            }
-//        });
-//
-
-        // for testing purposes:
-
-//        viewPROFILE.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Cursor result = db.viewAllProfiles();
-//                if(result.getCount() == 0) {
-//                    showMessage("error", "Nothing found");
-//                    return;
-//                }
-//
-//                StringBuffer buffer = new StringBuffer();
-//
-//                while(result.moveToNext()) {
-//                    buffer.append("ProfileID " + result.getString(0) + "\n");
-//                    buffer.append("UserID " + result.getString(1) + "\n");
-//                    buffer.append("Firstname " + result.getString(2) + "\n");
-//                    buffer.append("LastName " + result.getString(3) + "\n");
-//                    buffer.append("EXP " + result.getString(4) + "\n \n");
-//
-//                }
-//                showMessage("Data", buffer.toString());
-//            }
-//        });
-//
-//
-//    }
-//
-//
-        // for testing purposes:
-
-//    private void showMessage(String title, String message) {
-//
-//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//        builder.setCancelable(true);
-//        builder.setTitle(title);
-//        builder.setMessage(message);
-//        builder.show();
-//    }
     }
 }

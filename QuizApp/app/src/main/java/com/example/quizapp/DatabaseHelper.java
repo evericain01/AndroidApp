@@ -160,19 +160,4 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return result;
     }
 
-
-    // for testing purposes:
-
-//    public Cursor viewAllUsers() {
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        Cursor result = db.rawQuery("select * from " + USER_TABLE, null);
-//        return result;
-//    }
-//
-//    public Cursor viewAllProfiles() {
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        Cursor result = db.rawQuery("select * from " + PROFILE_TABLE, null);
-//        return result;
-//    }
-
 }

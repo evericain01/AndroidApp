@@ -19,7 +19,6 @@ public class LoginActivity extends AppCompatActivity {
     TextView registerHereText;
     DatabaseHelper db;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,12 +43,12 @@ public class LoginActivity extends AppCompatActivity {
         }).start();
 
 
-
         db = new DatabaseHelper(this);
         usernameInput = findViewById(R.id.usernameEditText);
         passwordInput = findViewById(R.id.passwordEditText);
         loginButton = findViewById(R.id.loginButton);
         registerHereText = findViewById(R.id.registerTextView);
+
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
