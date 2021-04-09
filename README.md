@@ -2,4 +2,4 @@
 
 TODO:
 
-Sometimes the app crashes after registration.
+Sometimes the app crashes after profile creation*.
