@@ -1,3 +1,30 @@
 <resources>
     <string name="app_name">QuizApp</string>
+
+    <string-array name="categories">
+        <item>General Knowledge</item>
+        <item>Books</item>
+        <item>Films</item>
+        <item>Music</item>
+        <item>Musical and Theatres</item>
+        <item>Television</item>
+        <item>Video Games</item>
+        <item>Board Games</item>
+        <item>Science and Nature</item>
+        <item>Computers</item>
+        <item>Math</item>
+        <item>Mythology</item>
+        <item>Sports</item>
+        <item>Geography</item>
+        <item>History</item>
+        <item>Politics</item>
+        <item>Art</item>
+        <item>Celebrities</item>
+        <item>Animals</item>
+        <item>Vehicles</item>
+        <item>Comics</item>
+        <item>Gadgets</item>
+        <item>Japanese Anime and Manga</item>
+        <item>Cartoons and Animations</item>
+    </string-array>
 </resources>
