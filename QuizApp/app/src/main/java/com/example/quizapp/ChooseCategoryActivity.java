@@ -45,14 +45,13 @@ public class ChooseCategoryActivity extends AppCompatActivity implements Adapter
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        categoryNum = i + 9;
-        challenge = adapterView.getItemAtPosition(i).toString().toLowerCase();
         try {
             String temp = adapterView.getItemAtPosition(i).toString();
             totalQuestions = Integer.parseInt(temp);
         }
         catch (NumberFormatException e) {
-
+            categoryNum = i + 9;
+            challenge = adapterView.getItemAtPosition(i).toString().toLowerCase();
         }
         System.out.println(challenge);
     }
