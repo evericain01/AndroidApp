@@ -131,7 +131,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return "";
     }
 
-
     public String getCurrentUserID(String username) {
         SQLiteDatabase db = getReadableDatabase();
 
@@ -145,8 +144,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return null;
     }
 
-
-    public String getFistAndLastName(String userID) {
+    public String getFirstAndLastName(String userID) {
         String result = "";
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM profile WHERE user_id=" + userID, null);
@@ -154,6 +152,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             result = cursor.getString(cursor.getColumnIndex("first_name"));
             result += " ";
             result += cursor.getString(cursor.getColumnIndex("last_name"));
+        }
+        cursor.close();
+        db.close();
+        return result;
+    }
+
+    public String getExperiencePoints(String userID) {
+        String result = "";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM profile WHERE user_id=" + userID, null);
+        if (cursor.moveToFirst()) {
+            result = cursor.getString(cursor.getColumnIndex("experience_points"));
         }
         cursor.close();
         db.close();

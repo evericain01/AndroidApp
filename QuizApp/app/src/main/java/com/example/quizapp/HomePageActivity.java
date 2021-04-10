@@ -7,14 +7,18 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.google.android.material.progressindicator.LinearProgressIndicator;
 
 public class HomePageActivity extends AppCompatActivity {
 
     DatabaseHelper db;
     TextView welcomeTitle;
+    TextView levelText;
+    TextView expText;
     Button viewCategories;
     Button viewQueue;
+    LinearProgressIndicator progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,8 +27,11 @@ public class HomePageActivity extends AppCompatActivity {
         db = new DatabaseHelper(this);
 
         welcomeTitle = findViewById(R.id.homePageTitleText);
+        levelText = findViewById(R.id.levelText);
+        expText = findViewById(R.id.expText);
         viewCategories = findViewById(R.id.viewCategoriesButton);
         viewQueue = findViewById(R.id.viewQueueButton);
+        progressBar = findViewById(R.id.progressBar);
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
@@ -33,7 +40,15 @@ public class HomePageActivity extends AppCompatActivity {
             currentUserID = (String) bundle.get("USER_ID");
         }
 
-        welcomeTitle.setText("Welcome, " + db.getFistAndLastName(currentUserID));
+        // setting First and Last name of current user
+        welcomeTitle.setText("Welcome, " + db.getFirstAndLastName(currentUserID));
+
+        // gets the total experience points of the current user
+        expText.setText(db.getExperiencePoints(currentUserID) + ": EXP");
+
+        // sets the value of the progress bar
+        progressBar.setProgressCompat(10, true);
+
 
         viewCategories.setOnClickListener(new View.OnClickListener() {
             @Override

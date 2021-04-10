@@ -20,7 +20,9 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:paddingTop="20dp"
-            android:paddingBottom="100dp"
+            android:paddingBottom="70dp"
+            android:textStyle="bold"
+            android:fontFamily="@font/abel_font"
             android:text="Create Your Profile"
             android:textSize="35dp" />
 
@@ -28,6 +30,7 @@
             android:id="@+id/firstNameLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/abel_font"
             android:gravity="center"
             android:text="Enter First Name:"
             android:textSize="20sp" />
@@ -39,6 +42,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="15dp"
             android:background="#ffffff"
+            android:fontFamily="@font/abel_font"
             android:hint="First Name"
             android:paddingLeft="2dp" />
 
@@ -47,6 +51,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:fontFamily="@font/abel_font"
             android:text="Enter Last Name:"
             android:textSize="20sp" />
 
@@ -55,6 +60,7 @@
             android:layout_width="190dp"
             android:layout_height="40dp"
             android:layout_marginTop="5dp"
+            android:fontFamily="@font/abel_font"
             android:background="#ffffff"
             android:hint="Last Name" />
 
@@ -62,11 +68,12 @@
 
     <Button
         android:id="@+id/createProfileButton"
-        android:layout_width="190dp"
-        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:backgroundTint="#4753FC"
-        android:textColor="#ffffff"
-        android:text="CREATE PROFILE"/>
+        android:fontFamily="@font/abel_font"
+        android:text="CREATE PROFILE"
+        android:textColor="#ffffff" />
 
 </LinearLayout>
