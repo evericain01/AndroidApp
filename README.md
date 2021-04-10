@@ -1,5 +1,5 @@
 # AndroidApp
 
-TODO:
+Bugs:
 
-Sometimes the app crashes after profile creation*.
+
