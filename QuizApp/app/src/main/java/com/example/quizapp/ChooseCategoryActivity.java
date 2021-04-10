@@ -49,10 +49,12 @@ public class ChooseCategoryActivity extends AppCompatActivity implements Adapter
         challenge = adapterView.getItemAtPosition(i).toString().toLowerCase();
         try {
             String temp = adapterView.getItemAtPosition(i).toString();
-            totalQuestions = Integer.parseInt(temp);
+            if (temp.matches("[0-9]+")) {
+                totalQuestions = Integer.parseInt(temp);
+            }
         }
         catch (NumberFormatException e) {
-
+            System.err.println("Could not parse" + e);
         }
         System.out.println(challenge);
     }
