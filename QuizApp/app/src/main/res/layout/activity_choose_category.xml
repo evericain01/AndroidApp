@@ -25,18 +25,17 @@
         android:id="@+id/chooseCategory"
         android:layout_width="291dp"
         android:layout_height="25dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="8dp"
         android:fontFamily="@font/abel_font"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/chooseCategoryTitleText" />
 
-
     <TextView
         android:id="@+id/chooseDifficultyTitleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="24dp"
         android:fontFamily="@font/abel_font"
         android:gravity="center"
         android:text="Choose difficlty"
@@ -60,7 +59,7 @@
         android:id="@+id/chooseTypeTitleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="24dp"
         android:fontFamily="@font/abel_font"
         android:gravity="center"
         android:text="Choose type"
@@ -84,13 +83,14 @@
         android:id="@+id/chooseAmountTitleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/abel_font"
         android:gravity="center"
         android:text="Choose amount"
         android:textSize="40sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/chooseType" />
 

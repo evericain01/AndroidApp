@@ -30,11 +30,11 @@ public class ChooseCategoryActivity extends AppCompatActivity implements Adapter
         difficulty.setAdapter(difficultyAdapter);
         difficulty.setOnItemSelectedListener(this);
 
-//        Spinner type = findViewById(R.id.chooseType);
-//        ArrayAdapter<CharSequence> typeAdapter = ArrayAdapter.createFromResource(this, R.array.type, android.R.layout.simple_spinner_item);
-//        typeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        type.setAdapter(typeAdapter);
-//        type.setOnItemSelectedListener(this);
+        Spinner type = findViewById(R.id.chooseType);
+        ArrayAdapter<CharSequence> typeAdapter = ArrayAdapter.createFromResource(this, R.array.type, android.R.layout.simple_spinner_item);
+        typeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        type.setAdapter(typeAdapter);
+        type.setOnItemSelectedListener(this);
 
         Spinner total = findViewById(R.id.chooseAmount);
         ArrayAdapter<CharSequence> totalAdapter = ArrayAdapter.createFromResource(this, R.array.amount, android.R.layout.simple_spinner_item);

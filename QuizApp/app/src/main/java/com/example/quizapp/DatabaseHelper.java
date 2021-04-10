@@ -170,4 +170,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return result;
     }
 
+    public boolean setExperiencePoints(String userID, String exp) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String strFilter = "user_id=" + userID;
+        ContentValues args = new ContentValues();
+        args.put(COL_EXPERIENCE_POINTS, exp);
+        db.update("profile", args, strFilter, null);
+        return true;
+    }
+
 }

@@ -43,12 +43,16 @@ public class HomePageActivity extends AppCompatActivity {
         // setting First and Last name of current user
         welcomeTitle.setText("Welcome, " + db.getFirstAndLastName(currentUserID));
 
-        // gets the total experience points of the current user
+        db.setExperiencePoints(currentUserID, "50");
+//        double level = .50 * Math.sqrt(Integer.parseInt(db.getExperiencePoints(currentUserID)));
+
+//        levelText.setText(String.valueOf(level));
+
+        // gets the total experience points of the current user (max 100)
         expText.setText(db.getExperiencePoints(currentUserID) + ": EXP");
 
-        // sets the value of the progress bar
+        // sets the value of the progress bar (progress bar can only take a max of 100)
         progressBar.setProgressCompat(10, true);
-
 
         viewCategories.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +61,16 @@ public class HomePageActivity extends AppCompatActivity {
                 startActivity(chooseCategoryIntent);
             }
         });
-
     }
+
+//    @Override
+//    public void calculateLevel(String userID, String currentExp, String level) {
+//        int level = 0;
+//        double maxXp = calcXpForLevel(0);
+//        do {
+//            maxXp += calcXpForLevel(++level);
+//        } while (maxXp < xp);
+//        return level;
+//
+//    }
 }
