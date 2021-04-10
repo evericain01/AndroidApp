@@ -47,9 +47,14 @@ public class ChooseCategoryActivity extends AppCompatActivity implements Adapter
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         categoryNum = i + 9;
         challenge = adapterView.getItemAtPosition(i).toString().toLowerCase();
-        String temp = adapterView.getItemAtPosition(i).toString();
-//        totalQuestions = Integer.parseInt(temp);
-        Toast.makeText(ChooseCategoryActivity.this, temp, Toast.LENGTH_SHORT).show();
+        try {
+            String temp = adapterView.getItemAtPosition(i).toString();
+            totalQuestions = Integer.parseInt(temp);
+        }
+        catch (NumberFormatException e) {
+
+        }
+        System.out.println(challenge);
     }
 
     @Override
