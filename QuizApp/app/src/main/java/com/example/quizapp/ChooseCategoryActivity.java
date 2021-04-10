@@ -7,9 +7,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 public class ChooseCategoryActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-    Integer category;
+    Integer categoryNum, totalQuestions;
+    String challenge;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,11 +23,33 @@ public class ChooseCategoryActivity extends AppCompatActivity implements Adapter
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         category.setAdapter(adapter);
         category.setOnItemSelectedListener(this);
+
+        Spinner difficulty = findViewById(R.id.chooseDifficulty);
+        ArrayAdapter<CharSequence> difficultyAdapter = ArrayAdapter.createFromResource(this, R.array.difficulties, android.R.layout.simple_spinner_item);
+        difficultyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        difficulty.setAdapter(difficultyAdapter);
+        difficulty.setOnItemSelectedListener(this);
+
+//        Spinner type = findViewById(R.id.chooseType);
+//        ArrayAdapter<CharSequence> typeAdapter = ArrayAdapter.createFromResource(this, R.array.type, android.R.layout.simple_spinner_item);
+//        typeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        type.setAdapter(typeAdapter);
+//        type.setOnItemSelectedListener(this);
+
+        Spinner total = findViewById(R.id.chooseAmount);
+        ArrayAdapter<CharSequence> totalAdapter = ArrayAdapter.createFromResource(this, R.array.amount, android.R.layout.simple_spinner_item);
+        totalAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        total.setAdapter(totalAdapter);
+        total.setOnItemSelectedListener(this);
     }
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        category = i + 9;
+        categoryNum = i + 9;
+        challenge = adapterView.getItemAtPosition(i).toString().toLowerCase();
+        String temp = adapterView.getItemAtPosition(i).toString();
+//        totalQuestions = Integer.parseInt(temp);
+        Toast.makeText(ChooseCategoryActivity.this, temp, Toast.LENGTH_SHORT).show();
     }
 
     @Override
