@@ -6,10 +6,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-public class OptionsActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class ChooseCategoryActivity extends AppCompatActivity {
     Integer categoryNum, totalQuestions;
     String challenge;
 
@@ -18,49 +19,48 @@ public class OptionsActivity extends AppCompatActivity implements AdapterView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_category);
 
+
+        Button btn = findViewById(R.id.generate);
+
         Spinner category = findViewById(R.id.chooseCategory);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.categories, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         category.setAdapter(adapter);
-        category.setOnItemSelectedListener(this);
 
         Spinner difficulty = findViewById(R.id.chooseDifficulty);
         ArrayAdapter<CharSequence> difficultyAdapter = ArrayAdapter.createFromResource(this, R.array.difficulties, android.R.layout.simple_spinner_item);
         difficultyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         difficulty.setAdapter(difficultyAdapter);
-        difficulty.setOnItemSelectedListener(this);
 
         Spinner type = findViewById(R.id.chooseType);
         ArrayAdapter<CharSequence> typeAdapter = ArrayAdapter.createFromResource(this, R.array.type, android.R.layout.simple_spinner_item);
         typeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         type.setAdapter(typeAdapter);
-        type.setOnItemSelectedListener(this);
 
         Spinner total = findViewById(R.id.chooseAmount);
         ArrayAdapter<CharSequence> totalAdapter = ArrayAdapter.createFromResource(this, R.array.amount, android.R.layout.simple_spinner_item);
         totalAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         total.setAdapter(totalAdapter);
-        total.setOnItemSelectedListener(this);
-    }
 
-    @Override
-    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        categoryNum = i + 9;
-        challenge = adapterView.getItemAtPosition(i).toString().toLowerCase();
-        try {
-            String temp = adapterView.getItemAtPosition(i).toString();
-            if (temp.matches("[0-9]+")) {
-                totalQuestions = Integer.parseInt(temp);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int chosenCategory = category.getSelectedItemPosition() + 9;
+                String chosenDifficulty = difficulty.getSelectedItem().toString().toLowerCase();
+                String chosenType = type.getSelectedItem().toString();
+                if (chosenType.equals("True or False")) {
+                    chosenType = "boolean";
+                }
+                else {
+                    chosenType = "multiple";
+                }
+                int amountOfQuestions = Integer.parseInt(total.getSelectedItem().toString());
+
+                QuestionHandler generator = new QuestionHandler(amountOfQuestions, chosenCategory, chosenDifficulty, chosenType);
+                generator.generateQuestions();
             }
-        }
-        catch (NumberFormatException e) {
-            System.err.println("Could not parse" + e);
-        }
-        System.out.println(challenge);
-    }
+        });
 
-    @Override
-    public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
 }

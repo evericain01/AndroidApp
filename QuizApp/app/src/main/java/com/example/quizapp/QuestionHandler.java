@@ -20,6 +20,9 @@ public class QuestionHandler extends ApiHandler {
 
 
     /**
+     * Generates questions in the private Data-Members that can be obtained from the getter methods
+     * for questions, answers, incorrectAnswers and difficultyArr.
+     *
      * @param amount     number of questions with a max of 50
      * @param category   category numbers from 9-27
      * @param difficulty easy, medium, hard
@@ -59,6 +62,12 @@ public class QuestionHandler extends ApiHandler {
         generateQuestions();
     }
 
+    /**
+     * Generates an array of questions and saves them to the private Data-Members saving the Questions,
+     * answers, incorrect answers and the difficulty of those questions.
+     *
+     * @return True if it successfully generated questions, false if it didn't generate any questions.
+     */
     protected boolean generateQuestions() {
         boolean flag = true;
         originalJsonArr = generateQuestionsArray(amount, category, difficulty, type);

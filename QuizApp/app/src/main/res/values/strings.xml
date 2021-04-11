@@ -36,7 +36,7 @@
     </string-array>
 
     <string-array name="type">
-        <item>True or false</item>
+        <item>True or False</item>
         <item>Multiple choice</item>
     </string-array>
 
