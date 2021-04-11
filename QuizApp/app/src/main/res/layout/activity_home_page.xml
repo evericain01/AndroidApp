@@ -10,10 +10,10 @@
         android:id="@+id/levelText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="116dp"
+        android:layout_marginTop="100dp"
+        android:fontFamily="@font/abel_font"
         android:text="Level: "
         android:textSize="20dp"
-        android:fontFamily="@font/abel_font"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -46,13 +46,14 @@
         app:trackThickness="9dp" />
 
     <Button
-        android:id="@+id/viewCategoriesButton"
+        android:id="@+id/viewOptionsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="212dp"
-        android:text="View Categories"
+        android:layout_marginTop="220dp"
         android:fontFamily="@font/abel_font"
+        android:text="PLAY!"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -60,22 +61,23 @@
         android:id="@+id/viewQueueButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="28dp"
         android:fontFamily="@font/abel_font"
         android:text="VIEW QUEUE"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewCategoriesButton" />
+        app:layout_constraintTop_toBottomOf="@+id/viewOptionsButton" />
 
     <TextView
         android:id="@+id/expText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="144dp"
+        android:layout_marginTop="140dp"
         android:fontFamily="@font/abel_font"
-        android:text=" :EXP"
+        android:text=" :EXP NEEDED"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.243"
+        app:layout_constraintHorizontal_bias="0.773"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

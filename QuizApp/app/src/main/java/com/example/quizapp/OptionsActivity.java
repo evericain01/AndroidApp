@@ -4,23 +4,21 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 public class OptionsActivity extends AppCompatActivity {
     Integer categoryNum, totalQuestions;
     String challenge;
+    Button startQuizButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_choose_category);
+        setContentView(R.layout.activity_options);
 
-
-        Button btn = findViewById(R.id.generate);
+        startQuizButton= findViewById(R.id.startQuizButton);
 
         Spinner category = findViewById(R.id.chooseCategory);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.categories, android.R.layout.simple_spinner_item);
@@ -42,7 +40,7 @@ public class OptionsActivity extends AppCompatActivity {
         totalAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         total.setAdapter(totalAdapter);
 
-        btn.setOnClickListener(new View.OnClickListener() {
+        startQuizButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int chosenCategory = category.getSelectedItemPosition() + 9;
