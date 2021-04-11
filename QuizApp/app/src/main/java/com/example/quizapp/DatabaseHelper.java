@@ -44,16 +44,33 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + "FOREIGN KEY (user_id) REFERENCES " + USER_TABLE + " (user_id) "
             + ");";
 
+    /**
+     * Constructor that takes in the current context.
+     *
+     * @param context The context.
+     */
     public DatabaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
+    /**
+     * Creates the user and profile table on create.
+     *
+     * @param db The database that will contain the user and profile tables.
+     */
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(SQL_CREATE_TABLE_USER);
         db.execSQL(SQL_CREATE_TABLE_PROFILE);
     }
 
+    /**
+     * Drops all tables of the current database.
+     *
+     * @param db The database.
+     * @param oldVersion Previous database.
+     * @param newVersion New datanase.
+     */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + USER_TABLE);
@@ -61,7 +78,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-
+    /**
+     * Adds a user into the database in the user table.
+     *
+     * @param username The desired username.
+     * @param password The desired password
+     * @return True (if added). False (if not added).
+     */
     public boolean addUser(String username, String password){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -76,6 +99,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return true;
     }
 
+    /**
+     * Adds a profile in the database in the profile table.
+     *
+     * @param userID The user ID.
+     * @param firstName The desired first name.
+     * @param lastName The desired last name.
+     * @return True (if added). False (if not added).
+     */
     public boolean addProfile(String userID, String firstName, String lastName) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -91,6 +122,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return true;
     }
 
+    /**
+     * Checks if the login is valid.
+     *
+     * @param username The username to be checked.
+     * @param password The password to be checked.
+     * @return True (if logged in). False (if not logged in).
+     */
     public boolean checkLogin(String username, String password) {
         SQLiteDatabase db = getReadableDatabase();
         password = md5(password);
@@ -108,12 +146,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return exists;
     }
 
-    public static final String md5(final String s) {
+    /**
+     * Generates a hashed password.
+     * @reference https://www.tutorialspoint.com/how-to-encrypt-password-and-store-in-android-sqlite
+     *
+     *
+     * @param password The desired password to hash.
+     * @return The password hash.
+     */
+    public static final String md5(final String password) {
         final String MD5 = "MD5";
         try {
             // Create MD5 Hash
             MessageDigest digest = java.security.MessageDigest.getInstance(MD5);
-            digest.update(s.getBytes());
+            digest.update(password.getBytes());
             byte messageDigest[] = digest.digest();
 
             // Create Hex String
@@ -131,6 +177,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return "";
     }
 
+    /**
+     * Gets the current user ID.
+     *
+     * @param username The username of the current user.
+     * @return The current user ID.
+     */
     public String getCurrentUserID(String username) {
         SQLiteDatabase db = getReadableDatabase();
 
@@ -144,6 +196,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return null;
     }
 
+    /**
+     * Gets the first and last name of the current user.
+     *
+     * @param userID The current user ID.
+     * @return The first and last name of the user.
+     */
     public String getFirstAndLastName(String userID) {
         String result = "";
         SQLiteDatabase db = this.getReadableDatabase();
@@ -158,6 +216,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return result;
     }
 
+    /**
+     * Gets the total experience points of the current user.
+     *
+     * @param userID The current user ID.
+     * @return The total experience points.
+     */
     public String getExperiencePoints(String userID) {
         String result = "";
         SQLiteDatabase db = this.getReadableDatabase();
@@ -170,6 +234,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return result;
     }
 
+    /**
+     * Sets the experience points of a user.
+     *
+     * @param userID The user.
+     * @param exp The desired experience points to be set.
+     * @return True.
+     */
     public boolean setExperiencePoints(String userID, String exp) {
         SQLiteDatabase db = this.getWritableDatabase();
         String strFilter = "user_id=" + userID;
