@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 public class Experience {
 
-    private final double LEVEL_MULTIPLIER = 0.1;
-    private final double EASY_MULTIPLIER = 1;
-    private final double MED_MULTIPLIER = 1.5;
-    private final double HARD_MULTIPLIER = 3;
-    private final int CORRECT_QUESTION_CONST = 30;
+    private static final double LEVEL_CONST = 0.1;
+    private static final double EASY_MULTIPLIER = 1;
+    private static final double MED_MULTIPLIER = 1.5;
+    private static final double HARD_MULTIPLIER = 3;
+    private static final int CORRECT_QUESTION_CONST = 30;
 
     /**
      * Calculates the experience based off of the difficulty given to the function.
@@ -16,7 +16,7 @@ public class Experience {
      * @param difficulty How hard a question was, easy, medium or hard.
      * @return Total experience a user gained.
      */
-    public double calculateExperience(ArrayList<String> difficulty) {
+    public static double calculateExperience(ArrayList<String> difficulty) {
         double totalExperienceGained = 0;
 
         for (int i = 0; i < difficulty.size() - 1; i++) {
@@ -44,7 +44,7 @@ public class Experience {
      * @param currentExperience The current experience that a user has.
      * @return An integer between 0 and 100 based off of how far into a level a user is.
      */
-    public int progressionRate(double currentExperience) {
+    public static int progressionRate(double currentExperience) {
         // Get the current level based on the current player experience.
         int currLevel =  calculateLevel(currentExperience);
 
@@ -70,7 +70,7 @@ public class Experience {
      * @param currentExperience The current experience that a user has.
      * @return The experience a user needs to obtain the next level.
      */
-    public double nextLevelXpNeeded(double currentExperience) {
+    public static double nextLevelXpNeeded(double currentExperience) {
         // Get the current level based on the current player experience.
         int currLevel =  calculateLevel(currentExperience);
 
@@ -91,8 +91,8 @@ public class Experience {
      * @param level Level's experience to be calculated.
      * @return The experience needed to obtain a specified level.
      */
-    private double calculateLevelExperience(int level) {
-        return (Math.pow(level, 2) / LEVEL_MULTIPLIER);
+    private static double calculateLevelExperience(int level) {
+        return (Math.pow(level, 2) / LEVEL_CONST);
     }
 
     /**
@@ -101,10 +101,10 @@ public class Experience {
      * @param currentExperience The current experience that a user has.
      * @return The level the user is at.
      */
-    private int calculateLevel(double currentExperience) {
+    private static int calculateLevel(double currentExperience) {
         int currLevel;
 
-        return (int)(LEVEL_MULTIPLIER * Math.sqrt(currentExperience));
+        return (int)(LEVEL_CONST * Math.sqrt(currentExperience));
     }
 
 }
