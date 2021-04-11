@@ -8,100 +8,130 @@
 
     <TextView
         android:id="@+id/chooseCategoryTitleText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:gravity="center"
-        android:text="Choose a Category"
-        android:textSize="40sp"
-        android:textStyle="bold"
+        android:layout_width="153dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="48dp"
         android:fontFamily="@font/abel_font"
+        android:gravity="center"
+        android:text="Choose a Category:"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
         android:id="@+id/chooseCategory"
-        android:layout_width="291dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="211dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="56dp"
+        android:textAlignment="textEnd"
         android:fontFamily="@font/abel_font"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.969"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chooseCategoryTitleText" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/chooseDifficultyTitleText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_width="141dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="112dp"
         android:fontFamily="@font/abel_font"
         android:gravity="center"
-        android:text="Choose difficlty"
-        android:textSize="40sp"
+        android:text="Choose Difficulty:"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.048"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chooseCategory" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
         android:id="@+id/chooseDifficulty"
-        android:layout_width="291dp"
-        android:layout_height="25dp"
+        android:layout_width="101dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="116dp"
         android:fontFamily="@font/abel_font"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.98"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chooseDifficultyTitleText" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/chooseTypeTitleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="176dp"
         android:fontFamily="@font/abel_font"
         android:gravity="center"
-        android:text="Choose type"
-        android:textSize="40sp"
+        android:text="Choose Type:"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.051"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chooseDifficulty" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
         android:id="@+id/chooseType"
-        android:layout_width="291dp"
-        android:layout_height="25dp"
+        android:layout_width="160dp"
+        android:layout_height="27dp"
+        android:layout_marginTop="172dp"
         android:fontFamily="@font/abel_font"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.525"
+        app:layout_constraintHorizontal_bias="0.976"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chooseTypeTitleText" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/chooseAmountTitleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="232dp"
         android:fontFamily="@font/abel_font"
         android:gravity="center"
-        android:text="Choose amount"
-        android:textSize="40sp"
+        android:text="Choose Amount of Questions:"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintHorizontal_bias="0.085"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chooseType" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
         android:id="@+id/chooseAmount"
-        android:layout_width="291dp"
-        android:layout_height="25dp"
+        android:layout_width="88dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="228dp"
         android:fontFamily="@font/abel_font"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.525"
+        app:layout_constraintHorizontal_bias="0.981"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chooseAmountTitleText" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="308dp"
+        android:fontFamily="@font/abel_font"
+        android:text="Add Quiz to Queue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="372dp"
+        android:fontFamily="@font/abel_font"
+        android:text="Start Quiz"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

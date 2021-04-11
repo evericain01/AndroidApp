@@ -57,7 +57,7 @@ public class HomePageActivity extends AppCompatActivity {
         viewCategories.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent chooseCategoryIntent = new Intent(HomePageActivity.this, ChooseCategoryActivity.class);
+                Intent chooseCategoryIntent = new Intent(HomePageActivity.this, OptionsActivity.class);
                 startActivity(chooseCategoryIntent);
             }
         });

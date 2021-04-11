@@ -9,7 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-public class ChooseCategoryActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class OptionsActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     Integer categoryNum, totalQuestions;
     String challenge;
 
