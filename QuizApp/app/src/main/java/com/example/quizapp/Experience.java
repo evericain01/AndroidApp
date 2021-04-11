@@ -101,7 +101,7 @@ public class Experience {
      * @param currentExperience The current experience that a user has.
      * @return The level the user is at.
      */
-    private static int calculateLevel(double currentExperience) {
+    public static int calculateLevel(double currentExperience) {
         int currLevel;
 
         return (int)(LEVEL_CONST * Math.sqrt(currentExperience));
