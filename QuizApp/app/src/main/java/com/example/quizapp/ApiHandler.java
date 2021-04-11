@@ -33,7 +33,7 @@ public class ApiHandler {
      *
      * @return A generated list of questions in un-parsed JSON.
      */
-    protected JSONArray generateQuestionsArray(int amount, int category, String difficulty, String type) {
+    public JSONArray generateQuestionsArray(int amount, int category, String difficulty, String type) {
         String url = "";
 
         // If a category is not given

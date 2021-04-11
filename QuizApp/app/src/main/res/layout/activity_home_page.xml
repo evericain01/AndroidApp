@@ -46,11 +46,11 @@
         app:trackThickness="9dp" />
 
     <Button
-        android:id="@+id/viewCategoriesButton"
+        android:id="@+id/playButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="212dp"
-        android:text="View Categories"
+        android:text="Play!"
         android:fontFamily="@font/abel_font"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -65,7 +65,7 @@
         android:text="VIEW QUEUE"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewCategoriesButton" />
+        app:layout_constraintTop_toBottomOf="@+id/playButton" />
 
     <TextView
         android:id="@+id/expText"
