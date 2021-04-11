@@ -57,7 +57,7 @@ public class ChooseCategoryActivity extends AppCompatActivity {
                 int amountOfQuestions = Integer.parseInt(total.getSelectedItem().toString());
 
                 QuestionHandler generator = new QuestionHandler(amountOfQuestions, chosenCategory, chosenDifficulty, chosenType);
-
+                generator.generateQuestions();
             }
         });
 
