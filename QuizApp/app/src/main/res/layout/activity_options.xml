@@ -124,6 +124,10 @@
 
     <Button
 <<<<<<< HEAD:QuizApp/app/src/main/res/layout/activity_options.xml
+<<<<<<< HEAD:QuizApp/app/src/main/res/layout/activity_options.xml
+=======
+        android:id="@+id/button2"
+>>>>>>> parent of 943012e (Extended the length of the choose difficulty drop-down.):QuizApp/app/src/main/res/layout/activity_choose_category.xml
 =======
         android:id="@+id/button2"
 >>>>>>> parent of 943012e (Extended the length of the choose difficulty drop-down.):QuizApp/app/src/main/res/layout/activity_choose_category.xml
