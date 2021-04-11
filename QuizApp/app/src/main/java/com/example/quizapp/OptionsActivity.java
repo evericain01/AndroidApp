@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-public class ChooseCategoryActivity extends AppCompatActivity {
+public class OptionsActivity extends AppCompatActivity {
     Integer categoryNum, totalQuestions;
     String challenge;
 
