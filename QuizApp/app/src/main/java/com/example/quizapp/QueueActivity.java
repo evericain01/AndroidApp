@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,12 +19,16 @@ public class QueueActivity extends AppCompatActivity {
     SwipeAdapter swipeAdapter;
     List<QuestionHandler> quizzes = new ArrayList<>();
 
+    TextView queueNumber;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_queue);
 
         db = new DatabaseHelper(this);
+
+        queueNumber = findViewById(R.id.queueNumberText);
 
         recyclerView = findViewById(R.id.swipeRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -42,6 +47,19 @@ public class QueueActivity extends AppCompatActivity {
                         currentUserID = (String) bundle.get("USER_ID");
                     }
                     quizzes = db.convertQueueTableToList(currentUserID);
+//
+//                    int count = 0;
+//                    for (int i = 0; i < quizzes.size(); i++) {
+//                        count++;
+//                        queueNumber.setText(String.valueOf(count));
+//                    }
+
+//                    queueNumber.setText(""+ quizzes.size());
+
+//                    queueNumber.setText(swipeAdapter.getItemCount());
+
+                    System.out.println(quizzes.size());
+
                     runOnUiThread(new Runnable() {
                         public void run() {
                             swipeAdapter.setData(quizzes);

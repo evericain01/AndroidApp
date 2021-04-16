@@ -56,7 +56,7 @@ public class SwipeAdapter extends RecyclerView.Adapter<SwipeAdapter.SwipeViewHol
         viewBinderHelper.closeLayout(String.valueOf(questionHandlerList.get(position).getAmount()));
 
         holder.bindData(questionHandlerList.get(position));
-
+        holder.queueNumber.setText(Integer.toString(position + 1));
     }
 
     @Override
