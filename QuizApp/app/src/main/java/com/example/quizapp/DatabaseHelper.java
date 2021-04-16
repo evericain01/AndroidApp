@@ -2,20 +2,22 @@ package com.example.quizapp;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.preference.PreferenceManager;
+import android.inputmethodservice.Keyboard;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME ="QuizAppDB.db";
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 7;
 
     public static final String USER_TABLE = "user";
     public static final String COL_USER_ID = "user_id";
@@ -24,10 +26,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String PROFILE_TABLE = "profile";
     public static final String COL_PROFILE_ID = "profile_id";
-    public static final String COL_USER_ID_FK = "user_id";
+    public static final String COL_USER_ID_PROFILE = "user_id";
     public static final String COL_FIRST_NAME = "first_name";
     public static final String COL_LAST_NAME = "last_name";
+    public static final String COL_QUEUE_LIST = "queue_list";
     public static final String COL_EXPERIENCE_POINTS = "experience_points";
+
+    public static final String QUEUE_LIST_TABLE = "queue_list";
+    public static final String COL_QUEUE_LIST_ID = "queue_list_id";
+    public static final String COL_USER_ID_QUEUE_LIST = "user_id";
+    public static final String COL_AMOUNT = "amount";
+    public static final String COL_CATEGORY = "category";
+    public static final String COL_DIFFICULTY = "difficulty";
+    public static final String COL_TYPE = "type";
 
     public static final String SQL_CREATE_TABLE_USER = "CREATE TABLE " + USER_TABLE + "("
             + COL_USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
@@ -37,12 +48,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String SQL_CREATE_TABLE_PROFILE = "CREATE TABLE " + PROFILE_TABLE + "("
             + COL_PROFILE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + COL_USER_ID_FK + " INTEGER NOT NULL, "
+            + COL_USER_ID_PROFILE + " INTEGER NOT NULL, "
             + COL_FIRST_NAME + " TEXT NOT NULL, "
             + COL_LAST_NAME + " TEXT NOT NULL, "
+            + COL_QUEUE_LIST + " TEXT, "
             + COL_EXPERIENCE_POINTS + " INTEGER DEFAULT 0, "
             + "FOREIGN KEY (user_id) REFERENCES " + USER_TABLE + " (user_id) "
             + ");";
+
+    public static final String SQL_CREATE_TABLE_QUEUE_LIST = "CREATE TABLE " + QUEUE_LIST_TABLE + "("
+            + COL_QUEUE_LIST_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + COL_USER_ID_QUEUE_LIST + " INTEGER NOT NULL, "
+            + COL_AMOUNT + " INTEGER, "
+            + COL_CATEGORY + " INTEGER, "
+            + COL_DIFFICULTY + " TEXT, "
+            + COL_TYPE + " TEXT, "
+            + "FOREIGN KEY (user_id) REFERENCES " + USER_TABLE + " (user_id) "
+            + ");";
+
+
+    private static final String TAG = "HomePageActivity";
 
     /**
      * Constructor that takes in the current context.
@@ -62,6 +87,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(SQL_CREATE_TABLE_USER);
         db.execSQL(SQL_CREATE_TABLE_PROFILE);
+        db.execSQL(SQL_CREATE_TABLE_QUEUE_LIST);
     }
 
     /**
@@ -69,14 +95,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      *
      * @param db The database.
      * @param oldVersion Previous database.
-     * @param newVersion New datanase.
+     * @param newVersion New database.
      */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + USER_TABLE);
         db.execSQL("DROP TABLE IF EXISTS " + PROFILE_TABLE);
+        db.execSQL("DROP TABLE IF EXISTS " + QUEUE_LIST_TABLE);
         onCreate(db);
     }
+
 
     /**
      * Adds a user into the database in the user table.
@@ -116,10 +144,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put("last_name", lastName);
 
         long result = db.insert("profile",null, values);
-        if (result == -1)
-            return false;
-        else
-            return true;
+        return result != -1;
     }
 
     /**
@@ -250,4 +275,77 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return true;
     }
 
+    /**
+     *
+     * @param userID
+     * @param amount
+     * @param category
+     * @param difficulty
+     * @param type
+     * @return
+     */
+    public boolean addQuizToQueue(String userID, int amount, int category, String difficulty, String type) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put("difficulty", difficulty);
+        values.put("amount", amount);
+        values.put("category", category);
+        values.put("type", type);
+        values.put("user_id", userID);
+
+        long result = db.insert("queue_list", null, values);
+        return result != -1;
+    }
+
+
+    /**
+     * Converts a user's queue table into a List of type QuestionHandler.
+     *
+     * @param userID The desired user queue table to be converted.
+     * @return A List.
+     */
+    public List<QuestionHandler> convertQueueTableToList(String userID) {
+        List<QuestionHandler> list = new ArrayList<QuestionHandler>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM queue_list WHERE user_id=" + userID, null);
+        if (cursor != null && cursor.moveToFirst()) {
+            int amount = cursor.getColumnIndex(COL_AMOUNT);
+            int category = cursor.getColumnIndex(COL_CATEGORY);
+            int difficulty = cursor.getColumnIndex(COL_DIFFICULTY);
+            int type = cursor.getColumnIndex(COL_TYPE);
+
+            do {
+                int thisAmount = cursor.getInt(amount);
+                int thisCategory = cursor.getInt(category);
+                String thisDifficulty = cursor.getString(difficulty);
+                String thisType = cursor.getString(type);
+                QuestionHandler data = new QuestionHandler(thisAmount, thisCategory, thisDifficulty, thisType);
+                list.add(data);
+            } while (cursor.moveToNext());
+            cursor.close();
+
+        }
+
+        return list;
+    }
+
+    public Cursor viewAll() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor result = db.rawQuery("select * from " + QUEUE_LIST_TABLE, null);
+        return result;
+    }
+//
+//    public String getExperiencePoints(String userID) {
+//        String result = "";
+//        SQLiteDatabase db = this.getReadableDatabase();
+//        Cursor cursor = db.rawQuery("SELECT * FROM profile WHERE user_id=" + userID, null);
+//        if (cursor.moveToFirst()) {
+//            result = cursor.getString(cursor.getColumnIndex("experience_points"));
+//        }
+//        cursor.close();
+//        db.close();
+//        return result;
+//    }
 }

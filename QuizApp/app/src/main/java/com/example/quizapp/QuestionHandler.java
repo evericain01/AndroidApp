@@ -62,6 +62,7 @@ public class QuestionHandler extends ApiHandler {
         generateQuestions();
     }
 
+
     /**
      * Generates an array of questions and saves them to the private Data-Members saving the Questions,
      * answers, incorrect answers and the difficulty of those questions.

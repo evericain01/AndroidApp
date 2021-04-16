@@ -2,15 +2,16 @@ package com.example.quizapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 public class OptionsActivity extends AppCompatActivity {
-    Integer categoryNum, totalQuestions;
-    String challenge;
+    DatabaseHelper db;
     Button startQuiz;
     Button addToQueue;
 
@@ -19,7 +20,9 @@ public class OptionsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_options);
 
-        startQuiz = findViewById(R.id.startQuizButtn);
+        db = new DatabaseHelper(this);
+        startQuiz = findViewById(R.id.startQuizButton);
+        addToQueue = findViewById(R.id.addToQueueButton);
 
         Spinner category = findViewById(R.id.chooseCategory);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.categories, android.R.layout.simple_spinner_item);
@@ -41,6 +44,14 @@ public class OptionsActivity extends AppCompatActivity {
         totalAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         total.setAdapter(totalAdapter);
 
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        String currentUserID = "";
+        if (bundle != null) {
+            currentUserID = (String) bundle.get("USER_ID");
+        }
+
+
         startQuiz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -60,6 +71,33 @@ public class OptionsActivity extends AppCompatActivity {
             }
         });
 
+        addToQueue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                int chosenCategory = category.getSelectedItemPosition() + 9;
+                String chosenDifficulty = difficulty.getSelectedItem().toString().toLowerCase();
+                String chosenType = type.getSelectedItem().toString();
+                if (chosenType.equals("True or False")) {
+                    chosenType = "boolean";
+                }
+                else {
+                    chosenType = "multiple";
+                }
+                int amountOfQuestions = Integer.parseInt(total.getSelectedItem().toString());
+
+                // Getting current user id
+                Intent intent = getIntent();
+                Bundle bundle = intent.getExtras();
+                String currentUserID = "";
+                if (bundle != null) {
+                    currentUserID = (String) bundle.get("USER_ID");
+                }
+
+                // Storing this quiz into the current user's QUEUE LIST.
+                db.addQuizToQueue(currentUserID, amountOfQuestions, chosenCategory, chosenDifficulty, chosenType);
+            }
+        });
 
     }
 }
