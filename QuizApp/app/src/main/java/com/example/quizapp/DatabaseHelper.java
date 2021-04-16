@@ -276,13 +276,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     /**
+     * Adds a quiz into the queue_list table.
      *
-     * @param userID
-     * @param amount
-     * @param category
-     * @param difficulty
-     * @param type
-     * @return
+     * @param userID The desired user ID.
+     * @param amount The amount.
+     * @param category The category.
+     * @param difficulty The difficulty.
+     * @param type The type.
+     * @return True (if added). False (if not added).
      */
     public boolean addQuizToQueue(String userID, int amount, int category, String difficulty, String type) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -327,15 +328,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             cursor.close();
 
         }
-
         return list;
     }
 
-    public Cursor viewAll() {
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor result = db.rawQuery("select * from " + QUEUE_LIST_TABLE, null);
-        return result;
-    }
 //
 //    public String getExperiencePoints(String userID) {
 //        String result = "";

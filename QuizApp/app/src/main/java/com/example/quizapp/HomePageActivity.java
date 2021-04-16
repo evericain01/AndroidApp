@@ -25,9 +25,6 @@ public class HomePageActivity extends AppCompatActivity {
     Button viewQueue;
     LinearProgressIndicator progressBar;
 
-
-    Button viewAll;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,39 +44,6 @@ public class HomePageActivity extends AppCompatActivity {
         if (bundle != null) {
             currentUserID = (String) bundle.get("USER_ID");
         }
-
-//        System.out.println(currentUserID);
-//        Toast.makeText(HomePageActivity.this,currentUserID,Toast.LENGTH_SHORT).show();
-//        List<QuestionHandler> currentUserQueueList = db.convertQueueTableToList(currentUserID);
-//        System.out.println(currentUserQueueList);
-
-        viewAll = findViewById(R.id.viewAllButton);
-
-        viewAll.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Cursor result = db.viewAll();
-                if(result.getCount() == 0) {
-                    showMessage("error", "Nothing found");
-                    return;
-                }
-
-                StringBuffer buffer = new StringBuffer();
-
-                while(result.moveToNext()) {
-                    buffer.append("ID " + result.getString(0) + "\n");
-                    buffer.append("User_ID " + result.getString(1) + "\n");
-                    buffer.append("Amount " + result.getString(2) + "\n");
-                    buffer.append("Category " + result.getString(3) + "\n");
-                    buffer.append("Difficulty " + result.getString(4) + "\n");
-                    buffer.append("Type " + result.getString(5) + "\n");
-
-                }
-                showMessage("Data", buffer.toString());
-            }
-        });
-
-
 
 
         // setting First and Last name of current user
@@ -108,10 +72,6 @@ public class HomePageActivity extends AppCompatActivity {
 
         // sets the value of the progress bar (progress bar can only take a max of 100)
         progressBar.setProgressCompat(barProgression, true);
-
-
-
-
 
         optionsButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -146,17 +106,5 @@ public class HomePageActivity extends AppCompatActivity {
                 startActivity(goToQueue);
             }
         });
-    }
-
-
-
-
-    private void showMessage(String title, String message) {
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setCancelable(true);
-        builder.setTitle(title);
-        builder.setMessage(message);
-        builder.show();
     }
 }

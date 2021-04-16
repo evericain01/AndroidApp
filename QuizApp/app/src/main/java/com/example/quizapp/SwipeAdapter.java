@@ -25,7 +25,6 @@ public class SwipeAdapter extends RecyclerView.Adapter<SwipeAdapter.SwipeViewHol
     private List<QuestionHandler> questionHandlerList;
     private final ViewBinderHelper viewBinderHelper = new ViewBinderHelper();
 
-
     public SwipeAdapter(Context context, List<QuestionHandler> questionHandlerList) {
         this.context = context;
         this.questionHandlerList = questionHandlerList;
@@ -57,6 +56,7 @@ public class SwipeAdapter extends RecyclerView.Adapter<SwipeAdapter.SwipeViewHol
         viewBinderHelper.closeLayout(String.valueOf(questionHandlerList.get(position).getAmount()));
 
         holder.bindData(questionHandlerList.get(position));
+
     }
 
     @Override
@@ -81,6 +81,8 @@ public class SwipeAdapter extends RecyclerView.Adapter<SwipeAdapter.SwipeViewHol
             difficulty = ItemView.findViewById(R.id.difficultyText);
             type = ItemView.findViewById(R.id.typeText);
             amount = ItemView.findViewById(R.id.amountText);
+            play = ItemView.findViewById(R.id.queuePlayButton);
+            delete = ItemView.findViewById(R.id.queueDeleteButton);
             swipeLayout = ItemView.findViewById(R.id.swipeLayout);
 
             play.setOnClickListener(new View.OnClickListener() {
@@ -100,10 +102,10 @@ public class SwipeAdapter extends RecyclerView.Adapter<SwipeAdapter.SwipeViewHol
         }
 
         void bindData(QuestionHandler questionHandler) {
-            category.setText(questionHandler.getCategory());
-            difficulty.setText(questionHandler.getDifficulty());
-            type.setText(questionHandler.getType());
-            amount.setText(questionHandler.getAmount());
+            category.setText(String.valueOf(questionHandler.getCategory()));
+            difficulty.setText(String.valueOf(questionHandler.getDifficulty()));
+            type.setText(String.valueOf(questionHandler.getType()));
+            amount.setText(String.valueOf(questionHandler.getAmount()));
         }
 
     }
