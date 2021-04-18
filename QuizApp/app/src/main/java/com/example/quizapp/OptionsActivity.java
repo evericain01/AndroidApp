@@ -62,6 +62,13 @@ public class OptionsActivity extends AppCompatActivity {
 
                 QuestionHandler generator = new QuestionHandler(amountOfQuestions, chosenCategory, chosenDifficulty, chosenType);
                 generator.generateQuestions();
+
+                if (chosenType.equals("True or False")) {
+                    
+                }
+                else {
+                }
+
             }
         });
 
