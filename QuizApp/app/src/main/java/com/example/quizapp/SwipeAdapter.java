@@ -22,11 +22,12 @@ import com.chauthai.swipereveallayout.ViewBinderHelper;
 import java.util.List;
 
 public class SwipeAdapter extends RecyclerView.Adapter<SwipeAdapter.SwipeViewHolder>{
+    //List<QuestionHandler>
 
     private final DatabaseHelper db;
     private final Context context;
     private final ViewBinderHelper viewBinderHelper = new ViewBinderHelper();
-    private List<QuestionHandler> questionHandlerList;
+    private  List<QuestionHandler> questionHandlerList;
 
     public SwipeAdapter(Context context, List<QuestionHandler> questionHandlerList) {
         this.context = context;
@@ -118,6 +119,7 @@ public class SwipeAdapter extends RecyclerView.Adapter<SwipeAdapter.SwipeViewHol
 
         void bindData(QuestionHandler questionHandler) {
             id.setText(String.valueOf(questionHandler.getId()));
+            System.out.println(id);
             category.setText(String.valueOf(questionHandler.getCategory()));
             difficulty.setText(String.valueOf(questionHandler.getDifficulty()));
             type.setText(String.valueOf(questionHandler.getType()));
