@@ -66,7 +66,6 @@ public class OptionsActivity extends AppCompatActivity {
         addToQueue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 int chosenCategory = category.getSelectedItemPosition() + 9;
                 String chosenDifficulty = difficulty.getSelectedItem().toString().toLowerCase();
                 String chosenType = type.getSelectedItem().toString();
@@ -88,6 +87,7 @@ public class OptionsActivity extends AppCompatActivity {
 
                 // Storing this quiz into the current user's QUEUE LIST.
                 db.addQuizToQueue(currentUserID, amountOfQuestions, chosenCategory, chosenDifficulty, chosenType);
+                Toast.makeText(OptionsActivity.this, "Quiz Added To Queue.", Toast.LENGTH_SHORT).show();
             }
         });
 

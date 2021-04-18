@@ -50,8 +50,6 @@ public class SwipeAdapter extends RecyclerView.Adapter<SwipeAdapter.SwipeViewHol
     public void onBindViewHolder(@NonNull SwipeViewHolder holder, int position) {
         viewBinderHelper.setOpenOnlyOne(true);
 
-        viewBinderHelper.bind(holder.swipeLayout, String.valueOf(questionHandlerList.get(position).getId()));
-        viewBinderHelper.closeLayout(String.valueOf(questionHandlerList.get(position).getId()));
         viewBinderHelper.bind(holder.swipeLayout, String.valueOf(questionHandlerList.get(position).getCategory()));
         viewBinderHelper.closeLayout(String.valueOf(questionHandlerList.get(position).getCategory()));
         viewBinderHelper.bind(holder.swipeLayout, String.valueOf(questionHandlerList.get(position).getDifficulty()));
@@ -64,7 +62,7 @@ public class SwipeAdapter extends RecyclerView.Adapter<SwipeAdapter.SwipeViewHol
         holder.bindData(questionHandlerList.get(position));
 
         db.updatePositionOnRecycler(String.valueOf(questionHandlerList.get(position).getId()), (position + 1));
-        holder.queueNumber.setText(Integer.toString(position + 1));
+        holder.queueNumber.setText("#" + (position + 1));
     }
 
     @Override
@@ -97,6 +95,10 @@ public class SwipeAdapter extends RecyclerView.Adapter<SwipeAdapter.SwipeViewHol
             play.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+//                    db.deleteQuiz(String.valueOf(id.getText()));
+//                    questionHandlerList.remove(getAdapterPosition());
+//                    notifyItemRemoved(getAdapterPosition());
+//                    notifyItemRangeChanged(getAdapterPosition(), questionHandlerList.size());
                     Toast.makeText(context, "Started Quiz", Toast.LENGTH_SHORT).show();
                 }
             });
@@ -108,7 +110,7 @@ public class SwipeAdapter extends RecyclerView.Adapter<SwipeAdapter.SwipeViewHol
                     questionHandlerList.remove(getAdapterPosition());
                     notifyItemRemoved(getAdapterPosition());
                     notifyItemRangeChanged(getAdapterPosition(), questionHandlerList.size());
-
+                    Toast.makeText(v.getContext(), "Quiz Deleted.", Toast.LENGTH_SHORT).show();
                 }
             });
 

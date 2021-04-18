@@ -12,7 +12,6 @@ public class QuestionHandler extends ApiHandler {
     private int category;
     private String difficulty;
     private String type;
-
     private int id;
 
     private ArrayList<String> questions;
