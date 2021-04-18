@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/container"
-    android:background="#92BEFF"
+    android:background="#1E1BEA"
     android:gravity="center_horizontal">
 
     <LinearLayout
@@ -21,6 +21,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:paddingTop="20dp"
+            android:textColor="#70D0FB"
             android:textStyle="bold"
             android:fontFamily="@font/abel_font"
             android:paddingBottom="70dp"
@@ -31,6 +32,7 @@
             android:id="@+id/usernameLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="#70BEFB"
             android:gravity="center"
             android:fontFamily="@font/abel_font"
             android:text="Enter Username:"
@@ -40,18 +42,19 @@
             android:id="@+id/usernameEditText"
             android:layout_width="190dp"
             android:layout_height="40dp"
+            android:paddingStart="3dp"
             android:layout_marginTop="10dp"
-            android:paddingLeft="2dp"
+            android:background="@drawable/rounded_edittext"
             android:fontFamily="@font/abel_font"
             android:layout_marginBottom="15dp"
-            android:background="#ffffff"
-            android:hint="Username"/>
+            android:hint=" Username"/>
 
         <TextView
             android:id="@+id/passwordLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/abel_font"
+            android:textColor="#70BEFB"
             android:gravity="center"
             android:text="Enter Password:"
             android:textSize="20sp" />
@@ -62,8 +65,9 @@
             android:layout_height="40dp"
             android:layout_marginTop="5dp"
             android:fontFamily="@font/abel_font"
-            android:background="#ffffff"
-            android:hint="Password"
+            android:background="@drawable/rounded_edittext"
+            android:paddingStart="3dp"
+            android:hint=" Password"
             android:inputType="textPassword" />
 
     </LinearLayout>
@@ -92,7 +96,7 @@
             android:paddingLeft="2dp"
             android:fontFamily="@font/abel_font"
             android:text="Register Here!"
-            android:textColor="#068A18"
+            android:textColor="#95FB70"
             android:textStyle="bold" />
 
     </LinearLayout>

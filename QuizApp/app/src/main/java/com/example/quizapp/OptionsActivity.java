@@ -14,6 +14,7 @@ public class OptionsActivity extends AppCompatActivity {
     DatabaseHelper db;
     Button startQuiz;
     Button addToQueue;
+    Button viewQueue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +24,7 @@ public class OptionsActivity extends AppCompatActivity {
         db = new DatabaseHelper(this);
         startQuiz = findViewById(R.id.startQuizButton);
         addToQueue = findViewById(R.id.addToQueueButton);
+        viewQueue = findViewById(R.id.viewQueueButtonFromOptions);
 
         Spinner category = findViewById(R.id.chooseCategory);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.categories, android.R.layout.simple_spinner_item);
@@ -88,6 +90,21 @@ public class OptionsActivity extends AppCompatActivity {
                 // Storing this quiz into the current user's QUEUE LIST.
                 db.addQuizToQueue(currentUserID, amountOfQuestions, chosenCategory, chosenDifficulty, chosenType);
                 Toast.makeText(OptionsActivity.this, "Quiz Added To Queue.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        viewQueue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = getIntent();
+                Bundle bundle = intent.getExtras();
+                String currentUserID = "";
+                if (bundle != null) {
+                    currentUserID = (String) bundle.get("USER_ID");
+                }
+                Intent goToViewQueue = new Intent(OptionsActivity.this, QueueActivity.class);
+                goToViewQueue.putExtra("USER_ID", currentUserID);
+                startActivity(goToViewQueue);
             }
         });
 
