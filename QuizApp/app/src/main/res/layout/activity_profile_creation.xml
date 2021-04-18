@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/container"
-    android:background="#92BEFF"
+    android:background="#1E1BEA"
     android:gravity="center_horizontal">
 
     <LinearLayout
@@ -21,6 +21,7 @@
             android:gravity="center"
             android:paddingTop="20dp"
             android:paddingBottom="70dp"
+            android:textColor="#70D0FB"
             android:textStyle="bold"
             android:fontFamily="@font/abel_font"
             android:text="Create Your Profile"
@@ -32,6 +33,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/abel_font"
             android:gravity="center"
+            android:textColor="#70BEFB"
             android:text="Enter First Name:"
             android:textSize="20sp" />
 
@@ -41,9 +43,10 @@
             android:layout_height="40dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="15dp"
-            android:background="#ffffff"
             android:fontFamily="@font/abel_font"
-            android:hint="First Name"
+            android:background="@drawable/rounded_edittext"
+            android:paddingStart="3dp"
+            android:hint=" First Name"
             android:paddingLeft="2dp" />
 
         <TextView
@@ -51,6 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:textColor="#70BEFB"
             android:fontFamily="@font/abel_font"
             android:text="Enter Last Name:"
             android:textSize="20sp" />
@@ -60,9 +64,10 @@
             android:layout_width="190dp"
             android:layout_height="40dp"
             android:layout_marginTop="5dp"
+            android:background="@drawable/rounded_edittext"
             android:fontFamily="@font/abel_font"
-            android:background="#ffffff"
-            android:hint="Last Name" />
+            android:paddingStart="3dp"
+            android:hint=" Last Name" />
 
     </LinearLayout>
 

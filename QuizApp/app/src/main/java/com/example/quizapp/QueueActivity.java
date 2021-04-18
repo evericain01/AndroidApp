@@ -51,12 +51,6 @@ public class QueueActivity extends AppCompatActivity {
                     }
                     quizzes = db.convertQueueTableToList(currentUserID);
 
-//                    for(int i=0;i<quizzes.size();i++){
-//                        System.out.println(quizzes.get(i));
-//                    }
-
-//                    System.out.println(quizzes.size());
-
                     runOnUiThread(new Runnable() {
                         public void run() {
                             swipeAdapter.setData(quizzes);

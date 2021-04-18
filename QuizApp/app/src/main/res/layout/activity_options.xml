@@ -4,20 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#92BEFF">
+    android:background="#1E1BEA">
 
     <TextView
         android:id="@+id/chooseCategoryTitleText"
-        android:layout_width="153dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="48dp"
+        android:layout_width="152dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="112dp"
         android:fontFamily="@font/abel_font"
         android:gravity="center"
         android:text="Choose a Category:"
+        android:textColor="#70BEFB"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintHorizontal_bias="0.061"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,26 +26,27 @@
         android:id="@+id/chooseCategory"
         android:layout_width="211dp"
         android:layout_height="26dp"
-        android:layout_marginTop="56dp"
-        android:textAlignment="textEnd"
+        android:layout_marginTop="112dp"
         android:fontFamily="@font/abel_font"
+        android:textAlignment="textEnd"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.969"
+        app:layout_constraintHorizontal_bias="0.975"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/chooseDifficultyTitleText"
-        android:layout_width="141dp"
-        android:layout_height="32dp"
-        android:layout_marginTop="112dp"
+        android:layout_width="136dp"
+        android:layout_height="27dp"
+        android:layout_marginTop="164dp"
         android:fontFamily="@font/abel_font"
         android:gravity="center"
         android:text="Choose Difficulty:"
+        android:textColor="#70BEFB"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.048"
+        app:layout_constraintHorizontal_bias="0.059"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -52,10 +54,10 @@
         android:id="@+id/chooseDifficulty"
         android:layout_width="139dp"
         android:layout_height="27dp"
-        android:layout_marginTop="116dp"
+        android:layout_marginTop="164dp"
         android:fontFamily="@font/abel_font"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.98"
+        app:layout_constraintHorizontal_bias="0.981"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -63,10 +65,11 @@
         android:id="@+id/chooseTypeTitleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="176dp"
+        android:layout_marginTop="212dp"
         android:fontFamily="@font/abel_font"
         android:gravity="center"
         android:text="Choose Type:"
+        android:textColor="#70BEFB"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -78,10 +81,10 @@
         android:id="@+id/chooseType"
         android:layout_width="160dp"
         android:layout_height="27dp"
-        android:layout_marginTop="172dp"
+        android:layout_marginTop="212dp"
         android:fontFamily="@font/abel_font"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.976"
+        app:layout_constraintHorizontal_bias="0.98"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -89,10 +92,11 @@
         android:id="@+id/chooseAmountTitleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="232dp"
+        android:layout_marginTop="252dp"
         android:fontFamily="@font/abel_font"
         android:gravity="center"
         android:text="Choose Amount of Questions:"
+        android:textColor="#70BEFB"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -104,32 +108,32 @@
         android:id="@+id/chooseAmount"
         android:layout_width="88dp"
         android:layout_height="29dp"
-        android:layout_marginTop="228dp"
+        android:layout_marginTop="252dp"
         android:fontFamily="@font/abel_font"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.981"
+        app:layout_constraintHorizontal_bias="0.984"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/addToQueueButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="444dp"
+        android:layout_width="132dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="436dp"
         android:fontFamily="@font/abel_font"
         android:text="Add Quiz to Queue"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.051"
+        app:layout_constraintHorizontal_bias="0.096"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.button.MaterialButton
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/startQuizButton"
         android:layout_width="241dp"
         android:layout_height="61dp"
         android:layout_marginTop="332dp"
+        android:backgroundTint="@color/teal_200"
         android:fontFamily="@font/abel_font"
-        android:background="#7BEF1F"
         android:text="Start Quiz"
         android:textSize="30dp"
         android:textStyle="bold"
@@ -138,16 +142,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/viewQueueButtonFromOptions"
-        android:layout_width="126dp"
-        android:layout_height="50dp"
+        android:layout_width="128dp"
+        android:layout_height="47dp"
         android:layout_marginTop="436dp"
         android:fontFamily="@font/abel_font"
         android:text="View Queue"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.943"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/customizeQuizTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/abel_font"
+        android:text="Customize Your Quiz"
+        android:textColor="#70D0FB"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

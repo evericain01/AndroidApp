@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/container"
-    android:background="#92BEFF"
+    android:background="#1E1BEA"
     android:gravity="center_horizontal">
 
     <LinearLayout
@@ -20,6 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:textColor="#70D0FB"
             android:paddingTop="20dp"
             android:paddingBottom="55dp"
             android:textStyle="bold"
@@ -31,9 +32,10 @@
             android:id="@+id/usernameLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:fontFamily="@font/abel_font"
+            android:gravity="center"
             android:text="Enter a Username:"
+            android:textColor="#70BEFB"
             android:textSize="20sp" />
 
         <EditText
@@ -42,10 +44,10 @@
             android:layout_height="40dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="10dp"
+            android:background="@drawable/rounded_edittext"
             android:fontFamily="@font/abel_font"
-            android:paddingLeft="2dp"
-            android:background="#ffffff"
-            android:hint="Username"/>
+            android:hint=" Username"
+            android:paddingStart="3dp" />
 
         <TextView
             android:id="@+id/passwordLabel"
@@ -53,7 +55,8 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/abel_font"
             android:gravity="center"
-            android:text="Enter a Password:"
+            android:textColor="#70BEFB"
+            android:text=" Enter a Password:"
             android:textSize="20sp" />
 
         <EditText
@@ -61,10 +64,11 @@
             android:layout_width="190dp"
             android:layout_height="40dp"
             android:layout_marginTop="5dp"
+            android:background="@drawable/rounded_edittext"
             android:fontFamily="@font/abel_font"
-            android:background="#ffffff"
-            android:inputType="textPassword"
-            android:hint="Password" />
+            android:paddingStart="3dp"
+            android:hint=" Password"
+            android:inputType="textPassword" />
 
         <TextView
             android:id="@+id/reTypePasswordLabel"
@@ -72,6 +76,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_marginTop="10dp"
+            android:textColor="#70BEFB"
             android:fontFamily="@font/abel_font"
             android:text="Retype your Password:"
             android:textSize="20sp" />
@@ -81,8 +86,9 @@
             android:layout_width="190dp"
             android:layout_height="40dp"
             android:layout_marginTop="5dp"
-            android:background="#ffffff"
+            android:background="@drawable/rounded_edittext"
             android:fontFamily="@font/abel_font"
+            android:paddingStart="3dp"
             android:inputType="textPassword"
             android:hint="Password" />
     </LinearLayout>
@@ -106,7 +112,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="35dp"
-            android:textColor="#294EA2"
+            android:textColor="#70FBED"
             android:fontFamily="@font/abel_font"
             android:text="Already have an Account?"/>
         <TextView
@@ -116,7 +122,7 @@
             android:paddingLeft="10dp"
             android:text="Login Here!"
             android:fontFamily="@font/abel_font"
-            android:textColor="#068A18"
+            android:textColor="#9DFB70"
             android:textStyle="bold" />
 
     </LinearLayout>
