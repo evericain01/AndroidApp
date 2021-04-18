@@ -44,14 +44,6 @@ public class OptionsActivity extends AppCompatActivity {
         totalAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         total.setAdapter(totalAdapter);
 
-        Intent intent = getIntent();
-        Bundle bundle = intent.getExtras();
-        String currentUserID = "";
-        if (bundle != null) {
-            currentUserID = (String) bundle.get("USER_ID");
-        }
-
-
         startQuiz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

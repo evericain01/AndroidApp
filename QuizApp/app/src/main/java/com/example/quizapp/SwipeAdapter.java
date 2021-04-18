@@ -1,5 +1,6 @@
 package com.example.quizapp;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.view.menu.MenuView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,13 +23,15 @@ import java.util.List;
 
 public class SwipeAdapter extends RecyclerView.Adapter<SwipeAdapter.SwipeViewHolder> {
 
-    private Context context;
-    private List<QuestionHandler> questionHandlerList;
+    private final DatabaseHelper db;
+    private final Context context;
     private final ViewBinderHelper viewBinderHelper = new ViewBinderHelper();
+    private List<QuestionHandler> questionHandlerList;
 
     public SwipeAdapter(Context context, List<QuestionHandler> questionHandlerList) {
         this.context = context;
         this.questionHandlerList = questionHandlerList;
+        db = new DatabaseHelper(context);
     }
 
     public void setData(List<QuestionHandler> questionHandlerList) {
@@ -46,6 +50,8 @@ public class SwipeAdapter extends RecyclerView.Adapter<SwipeAdapter.SwipeViewHol
     public void onBindViewHolder(@NonNull SwipeViewHolder holder, int position) {
         viewBinderHelper.setOpenOnlyOne(true);
 
+        viewBinderHelper.bind(holder.swipeLayout, String.valueOf(questionHandlerList.get(position).getId()));
+        viewBinderHelper.closeLayout(String.valueOf(questionHandlerList.get(position).getId()));
         viewBinderHelper.bind(holder.swipeLayout, String.valueOf(questionHandlerList.get(position).getCategory()));
         viewBinderHelper.closeLayout(String.valueOf(questionHandlerList.get(position).getCategory()));
         viewBinderHelper.bind(holder.swipeLayout, String.valueOf(questionHandlerList.get(position).getDifficulty()));
@@ -56,14 +62,16 @@ public class SwipeAdapter extends RecyclerView.Adapter<SwipeAdapter.SwipeViewHol
         viewBinderHelper.closeLayout(String.valueOf(questionHandlerList.get(position).getAmount()));
 
         holder.bindData(questionHandlerList.get(position));
+
+        db.updatePositionOnRecycler(String.valueOf(questionHandlerList.get(position).getId()), (position + 1));
         holder.queueNumber.setText(Integer.toString(position + 1));
     }
 
     @Override
     public int getItemCount() { return questionHandlerList.size(); }
 
-
     public class SwipeViewHolder extends RecyclerView.ViewHolder {
+        TextView id;
         TextView queueNumber;
         TextView category;
         TextView difficulty;
@@ -73,9 +81,10 @@ public class SwipeAdapter extends RecyclerView.Adapter<SwipeAdapter.SwipeViewHol
         Button delete;
         SwipeRevealLayout swipeLayout;
 
-
         public SwipeViewHolder(@NonNull View ItemView) {
             super(ItemView);
+
+            id = ItemView.findViewById(R.id.idText);
             queueNumber = ItemView.findViewById(R.id.queueNumberText);
             category = ItemView.findViewById(R.id.categoryText);
             difficulty = ItemView.findViewById(R.id.difficultyText);
@@ -95,13 +104,18 @@ public class SwipeAdapter extends RecyclerView.Adapter<SwipeAdapter.SwipeViewHol
             delete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(context, "Deleted Quiz", Toast.LENGTH_SHORT).show();
+                    db.deleteQuiz(String.valueOf(id.getText()));
+                    questionHandlerList.remove(getAdapterPosition());
+                    notifyItemRemoved(getAdapterPosition());
+                    notifyItemRangeChanged(getAdapterPosition(), questionHandlerList.size());
+
                 }
             });
 
         }
 
         void bindData(QuestionHandler questionHandler) {
+            id.setText(String.valueOf(questionHandler.getId()));
             category.setText(String.valueOf(questionHandler.getCategory()));
             difficulty.setText(String.valueOf(questionHandler.getDifficulty()));
             type.setText(String.valueOf(questionHandler.getType()));

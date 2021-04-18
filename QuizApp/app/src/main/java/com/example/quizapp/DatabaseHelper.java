@@ -39,6 +39,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL_CATEGORY = "category";
     public static final String COL_DIFFICULTY = "difficulty";
     public static final String COL_TYPE = "type";
+    public static final String COL_POSITION_ON_RECYCLER = "position_on_recycler";
 
     public static final String SQL_CREATE_TABLE_USER = "CREATE TABLE " + USER_TABLE + "("
             + COL_USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
@@ -63,6 +64,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + COL_CATEGORY + " INTEGER, "
             + COL_DIFFICULTY + " TEXT, "
             + COL_TYPE + " TEXT, "
+            + COL_POSITION_ON_RECYCLER + " INTEGER, "
             + "FOREIGN KEY (user_id) REFERENCES " + USER_TABLE + " (user_id) "
             + ");";
 
@@ -299,12 +301,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return result != -1;
     }
 
-
     /**
-     * Converts a user's queue table into a List of type QuestionHandler.
+     * Converts the Queue List table into a List containing QuestionHandler objects.
      *
-     * @param userID The desired user queue table to be converted.
-     * @return A List.
+     * @param userID The desired user ID.
+     * @return A List containing QuestionHandler objects.
      */
     public List<QuestionHandler> convertQueueTableToList(String userID) {
         List<QuestionHandler> list = new ArrayList<QuestionHandler>();
@@ -312,23 +313,50 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM queue_list WHERE user_id=" + userID, null);
         if (cursor != null && cursor.moveToFirst()) {
+            int id = cursor.getColumnIndex(COL_QUEUE_LIST_ID);
             int amount = cursor.getColumnIndex(COL_AMOUNT);
             int category = cursor.getColumnIndex(COL_CATEGORY);
             int difficulty = cursor.getColumnIndex(COL_DIFFICULTY);
             int type = cursor.getColumnIndex(COL_TYPE);
 
             do {
+                int thisId = cursor.getInt(id);
                 int thisAmount = cursor.getInt(amount);
                 int thisCategory = cursor.getInt(category);
                 String thisDifficulty = cursor.getString(difficulty);
                 String thisType = cursor.getString(type);
-                QuestionHandler data = new QuestionHandler(thisAmount, thisCategory, thisDifficulty, thisType);
+                QuestionHandler data = new QuestionHandler(thisId, thisAmount, thisCategory, thisDifficulty, thisType);
                 list.add(data);
             } while (cursor.moveToNext());
             cursor.close();
 
         }
         return list;
+    }
+
+    /**
+     * Updates the position of the quiz record (object) from the table (List).
+     *
+     * @param id The desired user ID.
+     * @param positionOnRecyclerView The quiz's position in the recyclerView.
+     */
+    public void updatePositionOnRecycler(String id, int positionOnRecyclerView) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COL_POSITION_ON_RECYCLER, positionOnRecyclerView);
+
+        db.update(QUEUE_LIST_TABLE, values, "queue_list_id = ?", new String[]{id});
+    }
+
+
+    /**
+     * Deletes a quiz from the the user's queue.
+     *
+     * @param id The id of the quiz.
+     */
+    public void deleteQuiz(String id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(QUEUE_LIST_TABLE, "queue_list_id = ?", new String[]{id});
     }
 
 //

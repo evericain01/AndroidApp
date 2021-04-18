@@ -11,10 +11,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class QueueActivity extends AppCompatActivity {
-    DatabaseHelper db;
+    private DatabaseHelper db;
     RecyclerView recyclerView;
     SwipeAdapter swipeAdapter;
     List<QuestionHandler> quizzes = new ArrayList<>();
@@ -27,8 +28,10 @@ public class QueueActivity extends AppCompatActivity {
         setContentView(R.layout.activity_queue);
 
         db = new DatabaseHelper(this);
-
         queueNumber = findViewById(R.id.queueNumberText);
+
+//        String[] arr = getResources().getStringArray(R.array.categories);
+//        System.out.println(Arrays.toString(arr));
 
         recyclerView = findViewById(R.id.swipeRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -47,18 +50,12 @@ public class QueueActivity extends AppCompatActivity {
                         currentUserID = (String) bundle.get("USER_ID");
                     }
                     quizzes = db.convertQueueTableToList(currentUserID);
-//
-//                    int count = 0;
-//                    for (int i = 0; i < quizzes.size(); i++) {
-//                        count++;
-//                        queueNumber.setText(String.valueOf(count));
+
+//                    for(int i=0;i<quizzes.size();i++){
+//                        System.out.println(quizzes.get(i));
 //                    }
 
-//                    queueNumber.setText(""+ quizzes.size());
-
-//                    queueNumber.setText(swipeAdapter.getItemCount());
-
-                    System.out.println(quizzes.size());
+//                    System.out.println(quizzes.size());
 
                     runOnUiThread(new Runnable() {
                         public void run() {

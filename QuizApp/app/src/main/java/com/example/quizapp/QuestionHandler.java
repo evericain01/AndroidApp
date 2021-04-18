@@ -13,6 +13,8 @@ public class QuestionHandler extends ApiHandler {
     private String difficulty;
     private String type;
 
+    private int id;
+
     private ArrayList<String> questions;
     private ArrayList<String> answers;
     private ArrayList<String> difficultyArr;
@@ -29,6 +31,53 @@ public class QuestionHandler extends ApiHandler {
      * @param type       boolean or multiple
      */
     public QuestionHandler(int amount, int category, String difficulty, String type) {
+        if (amount >= 50) {
+            amount = 50;
+        } else {
+            this.amount = amount;
+        }
+
+        if (category < 9 || category > 32) {
+            this.category = -1;
+        } else {
+            this.category = category;
+        }
+
+        if (difficulty.equals("easy") && !difficulty.equals("medium") && !difficulty.equals("hard")) {
+            this.difficulty = "easy";
+        } else if (!difficulty.equals("easy") && difficulty.equals("medium") && !difficulty.equals("hard")){
+            this.difficulty = "medium";
+        } else if (!difficulty.equals("easy") && !difficulty.equals("medium") && difficulty.equals("hard")) {
+            this.difficulty = "hard";
+        } else {
+            this.difficulty = "";
+        }
+
+        if (type.equals("boolean") && !type.equals("multiple")) {
+            this.type = "boolean";
+        } else if (!type.equals("boolean") && type.equals("multiple")){
+            this.type = "multiple";
+        } else {
+            this.type = "";
+        }
+
+        generateQuestions();
+    }
+
+
+    /**
+     *  Generates questions in the private Data-Members (including an id of the quiz) that can be
+     *  obtained from the getter methods for questions, answers, incorrectAnswers and difficultyArr.
+     *
+     * @param id a unique id
+     * @param amount number of questions with a max of 50
+     * @param category category numbers from 9-27
+     * @param difficulty easy, medium, hard
+     * @param type boolean or multiple
+     */
+    public QuestionHandler(int id, int amount, int category, String difficulty, String type) {
+        this.id = id;
+
         if (amount >= 50) {
             amount = 50;
         } else {
@@ -163,6 +212,10 @@ public class QuestionHandler extends ApiHandler {
 
     public ArrayList<String> getDifficultyArr() {
         return difficultyArr;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public int getAmount() {
