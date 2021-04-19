@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/container"
-    android:background="#1E1BEA"
+    android:background="#065CAE"
     android:gravity="center_horizontal">
 
     <LinearLayout
@@ -18,21 +18,30 @@
         <TextView
             android:id="@+id/quizTitleText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:paddingTop="20dp"
-            android:textColor="#70D0FB"
-            android:textStyle="bold"
+            android:layout_height="75dp"
             android:fontFamily="@font/abel_font"
-            android:paddingBottom="70dp"
+            android:gravity="center"
+            android:shadowColor="#000000"
+            android:shadowRadius="40"
             android:text="Knowledge+"
-            android:textSize="50dp" />
+            android:textColor="#70D0FB"
+            android:textSize="50dp"
+            android:textStyle="bold" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imageView"
+            android:layout_width="195dp"
+            android:layout_height="174dp"
+            android:paddingBottom="15dp"
+            android:src="@drawable/knowledge_pic" />
 
         <TextView
             android:id="@+id/usernameLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#70BEFB"
+            android:shadowColor="#000000"
+            android:shadowRadius="20"
             android:gravity="center"
             android:fontFamily="@font/abel_font"
             android:text="Enter Username:"
@@ -54,9 +63,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/abel_font"
-            android:textColor="#70BEFB"
             android:gravity="center"
+            android:shadowColor="#000000"
+            android:shadowRadius="20"
             android:text="Enter Password:"
+            android:textColor="#70BEFB"
             android:textSize="20sp" />
 
         <EditText
@@ -69,6 +80,8 @@
             android:paddingStart="3dp"
             android:hint=" Password"
             android:inputType="textPassword" />
+
+
 
     </LinearLayout>
 
@@ -93,6 +106,8 @@
             android:id="@+id/registerTextView"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:shadowColor="#000000"
+            android:shadowRadius="8"
             android:paddingLeft="2dp"
             android:fontFamily="@font/abel_font"
             android:text="Register Here!"

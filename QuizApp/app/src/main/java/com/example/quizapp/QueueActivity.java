@@ -30,14 +30,16 @@ public class QueueActivity extends AppCompatActivity {
         db = new DatabaseHelper(this);
         queueNumber = findViewById(R.id.queueNumberText);
 
-//        String[] arr = getResources().getStringArray(R.array.categories);
-//        System.out.println(Arrays.toString(arr));
+        String[] arr = getResources().getStringArray(R.array.amount);
+        System.out.println(Arrays.toString(arr));
 
         recyclerView = findViewById(R.id.swipeRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayout.VERTICAL));
         swipeAdapter = new SwipeAdapter(this, quizzes);
         recyclerView.setAdapter(swipeAdapter);
+
+
 
         new Thread(new Runnable() {
             @Override
@@ -52,9 +54,7 @@ public class QueueActivity extends AppCompatActivity {
                     quizzes = db.convertQueueTableToList(currentUserID);
 
                     runOnUiThread(new Runnable() {
-                        public void run() {
-                            swipeAdapter.setData(quizzes);
-                        }
+                        public void run() { swipeAdapter.setData(quizzes); }
                     });
 
                 } catch (Exception e) {

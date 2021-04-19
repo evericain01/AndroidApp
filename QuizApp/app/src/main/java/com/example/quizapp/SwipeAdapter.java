@@ -97,7 +97,7 @@ public class SwipeAdapter extends RecyclerView.Adapter<SwipeAdapter.SwipeViewHol
                 @Override
                 public void onClick(View v) {
 //                    db.deleteQuiz(String.valueOf(id.getText()));
-//                    questionHandlerList.remove(getAdapterPosition());
+//                    questionHandlerList.remove(getAdapterPosition());ebra
 //                    notifyItemRemoved(getAdapterPosition());
 //                    notifyItemRangeChanged(getAdapterPosition(), questionHandlerList.size());
                     Toast.makeText(context, "Started Quiz", Toast.LENGTH_SHORT).show();
@@ -119,13 +119,118 @@ public class SwipeAdapter extends RecyclerView.Adapter<SwipeAdapter.SwipeViewHol
 
         void bindData(QuestionHandler questionHandler) {
             id.setText(String.valueOf(questionHandler.getId()));
-            System.out.println(id);
-            category.setText(String.valueOf(questionHandler.getCategory()));
-            difficulty.setText(String.valueOf(questionHandler.getDifficulty()));
-            type.setText(String.valueOf(questionHandler.getType()));
-            amount.setText(String.valueOf(questionHandler.getAmount()));
+            switch (String.valueOf(questionHandler.getCategory())) {
+                case "9":
+                    category.setText("Category: General Knowledge");
+                    break;
+                case "10":
+                    category.setText("Category: Books");
+                    break;
+                case "11":
+                    category.setText("Category: Films");
+                    break;
+                case "12":
+                    category.setText("Category: Music");
+                    break;
+                case "13":
+                    category.setText("Category: Musical and Theatres");
+                    break;
+                case "14":
+                    category.setText("Category: Television");
+                    break;
+                case "15":
+                    category.setText("Category: Video Games");
+                    break;
+                case "16":
+                    category.setText("Category: Board Games");
+                    break;
+                case "17":
+                    category.setText("Category: Science and Nature");
+                    break;
+                case "18":
+                    category.setText("Category: Computers");
+                    break;
+                case "19":
+                    category.setText("Category: Math");
+                    break;
+                case "20":
+                    category.setText("Category: Mythology");
+                    break;
+                case "21":
+                    category.setText("Category: Sports");
+                    break;
+                case "22":
+                    category.setText("Category: Geography");
+                    break;
+                case "23":
+                    category.setText("Category: Politics");
+                    break;
+                case "24":
+                    category.setText("Category: Art");
+                    break;
+                case "25":
+                    category.setText("Category: Celebrities");
+                    break;
+                case "27":
+                    category.setText("Category: Animals");
+                    break;
+                case "28":
+                    category.setText("Category: Vehicles");
+                    break;
+                case "29":
+                    category.setText("Category: Comics");
+                    break;
+                case "30":
+                    category.setText("Category: Gadgets");
+                    break;
+                case "31":
+                    category.setText("Category: Japanese Anime and Manga");
+                    break;
+                case "32":
+                    category.setText("Category: Cartoons and Animations");
+                    break;
+                default:
+            }
+            switch (String.valueOf(questionHandler.getDifficulty())) {
+                case "easy":
+                    difficulty.setText("Difficulty: Easy");
+                    break;
+                case "medium":
+                    difficulty.setText("Difficulty: Medium");
+                    break;
+                case "hard":
+                    difficulty.setText("Difficulty: Hard");
+                    break;
+                default:
+            }
+            switch (String.valueOf(questionHandler.getType())) {
+                case "boolean":
+                    type.setText("Type: True/False");
+                    break;
+                case "multiple":
+                    type.setText("Type: Multiple Choice");
+                    break;
+                default:
+            }
+            switch (String.valueOf(questionHandler.getAmount())) {
+                case "10":
+                    amount.setText("Amount of Questions: 10");
+                    break;
+                case "20":
+                    amount.setText("Amount of Questions: 20");
+                    break;
+                case "30":
+                    amount.setText("Amount of Questions: 30");
+                    break;
+                case "40":
+                    amount.setText("Amount of Questions: 40");
+                    break;
+                case "50":
+                    amount.setText("Amount of Questions: 50");
+                    break;
+                default:
+            }
         }
-
     }
 
 }

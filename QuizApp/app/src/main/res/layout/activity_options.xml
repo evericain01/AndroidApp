@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1E1BEA">
+    android:background="#065CAE">
 
     <TextView
         android:id="@+id/chooseCategoryTitleText"
@@ -13,6 +13,8 @@
         android:layout_marginTop="112dp"
         android:fontFamily="@font/abel_font"
         android:gravity="center"
+        android:shadowColor="#000000"
+        android:shadowRadius="10"
         android:text="Choose a Category:"
         android:textColor="#70BEFB"
         android:textSize="20sp"
@@ -42,6 +44,8 @@
         android:fontFamily="@font/abel_font"
         android:gravity="center"
         android:text="Choose Difficulty:"
+        android:shadowColor="#000000"
+        android:shadowRadius="10"
         android:textColor="#70BEFB"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -69,6 +73,8 @@
         android:fontFamily="@font/abel_font"
         android:gravity="center"
         android:text="Choose Type:"
+        android:shadowColor="#000000"
+        android:shadowRadius="10"
         android:textColor="#70BEFB"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -95,6 +101,8 @@
         android:layout_marginTop="252dp"
         android:fontFamily="@font/abel_font"
         android:gravity="center"
+        android:shadowColor="#000000"
+        android:shadowRadius="10"
         android:text="Choose Amount of Questions:"
         android:textColor="#70BEFB"
         android:textSize="20sp"
@@ -156,10 +164,12 @@
 
     <TextView
         android:id="@+id/customizeQuizTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="317dp"
+        android:layout_height="50dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/abel_font"
+        android:shadowColor="#000000"
+        android:shadowRadius="20"
         android:text="Customize Your Quiz"
         android:textColor="#70D0FB"
         android:textSize="40sp"

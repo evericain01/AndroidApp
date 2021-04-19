@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/container"
-    android:background="#1E1BEA"
+    android:background="#065CAE"
     android:gravity="center_horizontal">
 
     <LinearLayout
@@ -23,6 +23,8 @@
             android:textColor="#70D0FB"
             android:paddingTop="20dp"
             android:paddingBottom="55dp"
+            android:shadowColor="#000000"
+            android:shadowRadius="40"
             android:textStyle="bold"
             android:fontFamily="@font/abel_font"
             android:text="Register an Account"
@@ -34,6 +36,8 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/abel_font"
             android:gravity="center"
+            android:shadowColor="#000000"
+            android:shadowRadius="10"
             android:text="Enter a Username:"
             android:textColor="#70BEFB"
             android:textSize="20sp" />
@@ -56,6 +60,8 @@
             android:fontFamily="@font/abel_font"
             android:gravity="center"
             android:textColor="#70BEFB"
+            android:shadowColor="#000000"
+            android:shadowRadius="10"
             android:text=" Enter a Password:"
             android:textSize="20sp" />
 
@@ -77,6 +83,8 @@
             android:gravity="center"
             android:layout_marginTop="10dp"
             android:textColor="#70BEFB"
+            android:shadowColor="#000000"
+            android:shadowRadius="10"
             android:fontFamily="@font/abel_font"
             android:text="Retype your Password:"
             android:textSize="20sp" />
@@ -114,14 +122,19 @@
             android:layout_height="35dp"
             android:textColor="#70FBED"
             android:fontFamily="@font/abel_font"
+            android:shadowColor="#000000"
+            android:shadowRadius="10"
             android:text="Already have an Account?"/>
+
         <TextView
             android:id="@+id/loginTextView"
-            android:layout_width="wrap_content"
+            android:layout_width="82dp"
             android:layout_height="match_parent"
-            android:paddingLeft="10dp"
-            android:text="Login Here!"
             android:fontFamily="@font/abel_font"
+            android:paddingLeft="10dp"
+            android:shadowColor="#000000"
+            android:shadowRadius="10"
+            android:text="Login Here!"
             android:textColor="#9DFB70"
             android:textStyle="bold" />
 

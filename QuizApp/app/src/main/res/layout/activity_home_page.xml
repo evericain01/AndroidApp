@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1E1BEA">
+    android:background="#065CAE">
 
     <TextView
         android:id="@+id/levelText"
@@ -13,6 +13,8 @@
         android:layout_marginTop="136dp"
         android:fontFamily="@font/abel_font"
         android:text="Level: "
+        android:shadowColor="#000000"
+        android:shadowRadius="10"
         android:textColor="#70BEFB"
         android:textSize="25dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,16 +24,19 @@
 
     <TextView
         android:id="@+id/homePageTitleText"
-        android:layout_width="297dp"
+        android:layout_width="332dp"
         android:layout_height="82dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/abel_font"
+        android:gravity="center"
+        android:shadowColor="#000000"
+        android:shadowRadius="40"
         android:text="Welcome, *NAME*"
         android:textColor="#70D0FB"
         android:textSize="35dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.228"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -81,6 +86,8 @@
         android:layout_marginTop="204dp"
         android:fontFamily="@font/abel_font"
         android:text=" :EXP"
+        android:shadowColor="#000000"
+        android:shadowRadius="4"
         android:textColor="#70BEFB"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.788"

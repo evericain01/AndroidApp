@@ -47,7 +47,7 @@ public class HomePageActivity extends AppCompatActivity {
 
 
         // setting First and Last name of current user
-        welcomeTitle.setText("Welcome, " + db.getFirstAndLastName(currentUserID));
+        welcomeTitle.setText("Welcome, \n" + db.getFirstAndLastName(currentUserID));
 
         db.setExperiencePoints(currentUserID, "2400");
 

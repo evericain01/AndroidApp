@@ -19,19 +19,21 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/queuePlayButton"
             android:layout_width="69dp"
-            android:layout_height="match_parent"
+            android:layout_height="99dp"
+            android:layout_marginTop="1dp"
             android:background="@drawable/recycler_view_play_button"
-            android:gravity="center"
             android:fontFamily="@font/abel_font"
-            android:textStyle="bold"
+            android:gravity="center"
+            android:text="PLAY"
             android:textSize="18sp"
-            android:text="PLAY" />
+            android:textStyle="bold" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/queueDeleteButton"
             android:layout_width="69dp"
-            android:layout_height="match_parent"
-            android:background="@drawable/swipe_recycler_view_round_border"
+            android:layout_height="99dp"
+            android:layout_marginTop="1dp"
+            android:background="@drawable/recycler_view_delete_button"
             android:gravity="center"
             android:fontFamily="@font/abel_font"
             android:textStyle="bold"
@@ -41,7 +43,7 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="412dp"
+        android:layout_width="383dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:gravity="center_vertical"
@@ -52,14 +54,13 @@
             android:id="@+id/categoryText"
             android:layout_width="242dp"
             android:layout_height="17dp"
-
             android:layout_marginTop="4dp"
             android:fontFamily="@font/abel_font"
             android:text="Category"
             android:textColor="#000000"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.57"
+            app:layout_constraintHorizontal_bias="0.625"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -93,30 +94,31 @@
 
         <TextView
             android:id="@+id/amountText"
-            android:layout_width="84dp"
+            android:layout_width="194dp"
             android:layout_height="16dp"
-            android:layout_marginTop="72dp"
+            android:layout_marginTop="68dp"
             android:fontFamily="@font/abel_font"
             android:text="Amount"
             android:textColor="#000000"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.29"
+            app:layout_constraintHorizontal_bias="0.459"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/queueNumberText"
-            android:layout_width="54dp"
+            android:layout_width="74dp"
             android:layout_height="45dp"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="4dp"
             android:fontFamily="@font/abel_font"
+            android:gravity="center"
             android:text="#1"
             android:textColor="#000000"
             android:textSize="35sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.069"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

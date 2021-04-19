@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/container"
-    android:background="#1E1BEA"
+    android:background="#065CAE"
     android:gravity="center_horizontal">
 
     <LinearLayout
@@ -19,6 +19,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:shadowColor="#000000"
+            android:shadowRadius="40"
             android:paddingTop="20dp"
             android:paddingBottom="70dp"
             android:textColor="#70D0FB"
@@ -33,6 +35,8 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/abel_font"
             android:gravity="center"
+            android:shadowColor="#000000"
+            android:shadowRadius="20"
             android:textColor="#70BEFB"
             android:text="Enter First Name:"
             android:textSize="20sp" />
@@ -55,6 +59,8 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textColor="#70BEFB"
+            android:shadowColor="#000000"
+            android:shadowRadius="20"
             android:fontFamily="@font/abel_font"
             android:text="Enter Last Name:"
             android:textSize="20sp" />
