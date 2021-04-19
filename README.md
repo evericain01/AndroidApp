@@ -10,10 +10,10 @@ If it doesnt work, simply go to your emulator, uninstall the app, and re-run. Th
 
 Required Implementations:
 
-A dialog box 
-A drawer menu 
-A options menu
-Notifications
-Playing sound somewhere
-Localization
-Android Library
+A dialog box <br />
+A drawer menu <br />
+A options menu <br />
+Notifications <br />
+Playing sound somewhere <br />
+Localization <br />
+Android Library <br />
