@@ -10,6 +10,10 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import org.json.JSONException;
+
+import java.util.ArrayList;
+
 public class OptionsActivity extends AppCompatActivity {
     DatabaseHelper db;
     Button startQuiz;
@@ -52,22 +56,52 @@ public class OptionsActivity extends AppCompatActivity {
                 int chosenCategory = category.getSelectedItemPosition() + 9;
                 String chosenDifficulty = difficulty.getSelectedItem().toString().toLowerCase();
                 String chosenType = type.getSelectedItem().toString();
-                if (chosenType.equals("True or False")) {
-                    chosenType = "boolean";
-                }
-                else {
-                    chosenType = "multiple";
-                }
+                String finalType = chosenType.equals("True or False") ? "boolean" : "multiple";
+//                if (chosenType.equals("True or False")) {
+//                    finalType = "boolean";
+//                }
+//                else {
+//                    finalType = "multiple";
+//                }
                 int amountOfQuestions = Integer.parseInt(total.getSelectedItem().toString());
+                //String finalType1 = finalType;
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            QuestionHandler quiz = new QuestionHandler(amountOfQuestions, chosenCategory, chosenDifficulty, finalType);
 
-                QuestionHandler generator = new QuestionHandler(amountOfQuestions, chosenCategory, chosenDifficulty, chosenType);
-                generator.generateQuestions();
+                            quiz.setAmount(amountOfQuestions);
+                            quiz.setType(finalType);
+                            quiz.setDifficulty(chosenDifficulty);
+                            quiz.setCategory(chosenCategory);
+                            quiz.generateQuestions();
+                            forLoopHelper(quiz);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
+//                generator.generateQuestions();
+//                ArrayList<String> questions = generator.getQuestions();
+//                ArrayList<String> answers = generator.getAnswers();
+//                ArrayList<String> wrongAnswers = generator.getIncorrectAnswers();
 
-                if (chosenType.equals("True or False")) {
-                    
-                }
-                else {
-                }
+
+//                if (chosenType.equals("True or False")) {
+//                    Intent quiz = new Intent(OptionsActivity.this, TrueOrfalseQuiz.class);
+//
+//                    quiz.putExtra("questions", questions);
+//                    quiz.putExtra("answers", answers);
+//                    startActivity(quiz);
+//                }
+//                else {
+//                    Intent quiz = new Intent(OptionsActivity.this, MultipleChoiceQuiz.class);
+//
+//                    quiz.putExtra("questions", questions);
+//                    quiz.putExtra("answers", answers);
+//                    startActivity(quiz);
+//                }
 
             }
         });
@@ -115,5 +149,21 @@ public class OptionsActivity extends AppCompatActivity {
             }
         });
 
+    }
+    public void forLoopHelper(QuestionHandler handler) {
+        for (int i = 0; i < handler.getAmount(); i++ ){
+            System.out.println("Question: " + handler.getQuestions().get(i));
+            System.out.println("Difficulty: " + handler.getDifficultyArr().get(i));
+            System.out.println("Choices: ");
+            System.out.println(handler.getAnswers().get(i));
+            for (int j = 0; j < handler.getIncorrectAnswers().get(i).length(); j++) {
+                try {
+                    System.out.println(handler.getIncorrectAnswers().get(i).getString(j));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            System.out.println("");
+        }
     }
 }

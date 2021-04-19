@@ -24,23 +24,23 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    QuestionHandler temp = new QuestionHandler(20, 8, "", "boolean");
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                try {
+//                    QuestionHandler temp = new QuestionHandler(20, 8, "", "boolean");
+////                    temp.generateQuestions();
+////                    forLoopHelper(temp);
+//
+//                    temp.setType("boolean");
+//                    temp.setDifficulty("easy");
 //                    temp.generateQuestions();
 //                    forLoopHelper(temp);
-
-                    temp.setType("boolean");
-                    temp.setDifficulty("easy");
-                    temp.generateQuestions();
-                    forLoopHelper(temp);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }).start();
 
 
         db = new DatabaseHelper(this);
