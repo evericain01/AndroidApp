@@ -2,9 +2,9 @@
 
 Bugs:
 
-Android Studio is kinda garbage.
-Dropping the tables usually dont work. 
-If it doesnt work, simply go to your emulator, uninstall the app, and re-run. This wipes the entire database. Which means you have to re-input values into it. 
+Android Studio is kinda garbage. <br />
+Dropping the tables usually dont work. <br />
+If it doesnt work, simply go to your emulator, uninstall the app, and re-run. This wipes the entire database. Which means you have to re-input values into it. <br />
 
 ------------------------------------------------------------------------------
 
