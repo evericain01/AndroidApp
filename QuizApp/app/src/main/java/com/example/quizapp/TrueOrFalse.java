@@ -10,6 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
+
+import org.json.JSONException;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -17,6 +22,10 @@ import android.widget.Button;
  * create an instance of this fragment.
  */
 public class TrueOrFalse extends Fragment {
+    Button tButton, fButton;
+    int counter;
+    int score;
+    TextView questionBox;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -60,12 +69,40 @@ public class TrueOrFalse extends Fragment {
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
         Intent intent = getActivity().getIntent();
         Bundle bundle = intent.getExtras();
 
-        Button btn = getActivity().findViewById(R.id.trueButton);
-        btn.setOnClickListener();
+        String difficulty = (String) bundle.get("difficulty");
+        int amount = (int) bundle.get("amount");
+        int category = (int) bundle.get("category");
+        String type = (String) bundle.get("type");
+
+//        System.out.println(difficulty + "  " + amount + "  "  + category + "  "  + type);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    QuestionHandler quiz = new QuestionHandler(amount, category, difficulty, type);
+
+                    quiz.setAmount(amount);
+                    quiz.setType(type);
+                    quiz.setDifficulty(difficulty);
+                    quiz.setCategory(category);
+                    quiz.generateQuestions();
+                    forLoopHelper(quiz);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
+//        tButton = getActivity().findViewById(R.id.trueButton);
+//        tButton.setOnClickListener();
+
+        questionBox = getActivity().findViewById(R.id.questionBox);
+
+        super.onActivityCreated(savedInstanceState);
     }
 
     @Override
@@ -74,4 +111,30 @@ public class TrueOrFalse extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_true_or_false, container, false);
     }
+
+    public void forLoopHelper(QuestionHandler handler) {
+        System.out.println(handler.getQuestions().get(counter));
+        questionBox.setText(handler.getQuestions().get(counter));
+
+//        for (int i = 0; i < handler.getAmount(); i++ ){
+//            System.out.println("Question: " + handler.getQuestions().get(i));
+//            System.out.println("Difficulty: " + handler.getDifficultyArr().get(i));
+//            System.out.println("Choices: ");
+//            System.out.println(handler.getAnswers().get(i));
+//            System.out.println(handler.getAnswers().get(i));
+//            for (int j = 0; j < handler.getIncorrectAnswers().get(i).length(); j++) {
+//                try {
+//                    System.out.println(handler.getIncorrectAnswers().get(i).getString(j));
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//            System.out.println("");
+//        }
+    }
+
+    public void changeQuestion() {
+
+    }
+
 }
