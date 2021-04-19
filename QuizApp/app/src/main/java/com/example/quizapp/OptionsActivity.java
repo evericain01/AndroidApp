@@ -65,43 +65,43 @@ public class OptionsActivity extends AppCompatActivity {
 //                }
                 int amountOfQuestions = Integer.parseInt(total.getSelectedItem().toString());
                 //String finalType1 = finalType;
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            QuestionHandler quiz = new QuestionHandler(amountOfQuestions, chosenCategory, chosenDifficulty, finalType);
-
-                            quiz.setAmount(amountOfQuestions);
-                            quiz.setType(finalType);
-                            quiz.setDifficulty(chosenDifficulty);
-                            quiz.setCategory(chosenCategory);
-                            quiz.generateQuestions();
-                            forLoopHelper(quiz);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }).start();
-//                generator.generateQuestions();
-//                ArrayList<String> questions = generator.getQuestions();
-//                ArrayList<String> answers = generator.getAnswers();
-//                ArrayList<String> wrongAnswers = generator.getIncorrectAnswers();
-
-
-//                if (chosenType.equals("True or False")) {
-//                    Intent quiz = new Intent(OptionsActivity.this, TrueOrfalseQuiz.class);
+//                new Thread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        try {
+//                            QuestionHandler quiz = new QuestionHandler(amountOfQuestions, chosenCategory, chosenDifficulty, finalType);
 //
-//                    quiz.putExtra("questions", questions);
-//                    quiz.putExtra("answers", answers);
-//                    startActivity(quiz);
-//                }
-//                else {
-//                    Intent quiz = new Intent(OptionsActivity.this, MultipleChoiceQuiz.class);
-//
-//                    quiz.putExtra("questions", questions);
-//                    quiz.putExtra("answers", answers);
-//                    startActivity(quiz);
-//                }
+//                            quiz.setAmount(amountOfQuestions);
+//                            quiz.setType(finalType);
+//                            quiz.setDifficulty(chosenDifficulty);
+//                            quiz.setCategory(chosenCategory);
+//                            quiz.generateQuestions();
+//                            forLoopHelper(quiz);
+//                        } catch (Exception e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                }).start();
+                if (chosenType.equals("True or False")) {
+                    Intent quiz = new Intent(OptionsActivity.this, TrueOrfalseQuiz.class);
+
+                    quiz.putExtra("amount", amountOfQuestions);
+                    quiz.putExtra("category", chosenCategory);
+                    quiz.putExtra("difficulty", chosenDifficulty);
+                    quiz.putExtra("type", finalType);
+
+                    startActivity(quiz);
+                }
+                else {
+                    Intent quiz = new Intent(OptionsActivity.this, MultipleChoiceQuiz.class);
+
+                    quiz.putExtra("amount", amountOfQuestions);
+                    quiz.putExtra("category", chosenCategory);
+                    quiz.putExtra("difficulty", chosenDifficulty);
+                    quiz.putExtra("type", finalType);
+
+                    startActivity(quiz);
+                }
 
             }
         });
@@ -150,20 +150,20 @@ public class OptionsActivity extends AppCompatActivity {
         });
 
     }
-    public void forLoopHelper(QuestionHandler handler) {
-        for (int i = 0; i < handler.getAmount(); i++ ){
-            System.out.println("Question: " + handler.getQuestions().get(i));
-            System.out.println("Difficulty: " + handler.getDifficultyArr().get(i));
-            System.out.println("Choices: ");
-            System.out.println(handler.getAnswers().get(i));
-            for (int j = 0; j < handler.getIncorrectAnswers().get(i).length(); j++) {
-                try {
-                    System.out.println(handler.getIncorrectAnswers().get(i).getString(j));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-            System.out.println("");
-        }
-    }
+//    public void forLoopHelper(QuestionHandler handler) {
+//        for (int i = 0; i < handler.getAmount(); i++ ){
+//            System.out.println("Question: " + handler.getQuestions().get(i));
+//            System.out.println("Difficulty: " + handler.getDifficultyArr().get(i));
+//            System.out.println("Choices: ");
+//            System.out.println(handler.getAnswers().get(i));
+//            for (int j = 0; j < handler.getIncorrectAnswers().get(i).length(); j++) {
+//                try {
+//                    System.out.println(handler.getIncorrectAnswers().get(i).getString(j));
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//            System.out.println("");
+//        }
+//    }
 }
