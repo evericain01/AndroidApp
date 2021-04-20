@@ -21,6 +21,7 @@
             android:layout_width="69dp"
             android:layout_height="99dp"
             android:layout_marginTop="1dp"
+            android:layout_marginBottom="3dp"
             android:background="@drawable/recycler_view_play_button"
             android:fontFamily="@font/abel_font"
             android:gravity="center"
@@ -33,6 +34,7 @@
             android:layout_width="69dp"
             android:layout_height="99dp"
             android:layout_marginTop="1dp"
+            android:layout_marginBottom="3dp"
             android:background="@drawable/recycler_view_delete_button"
             android:gravity="center"
             android:fontFamily="@font/abel_font"
@@ -52,57 +54,54 @@
 
         <TextView
             android:id="@+id/categoryText"
-            android:layout_width="242dp"
+            android:layout_width="158dp"
             android:layout_height="17dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="5dp"
             android:fontFamily="@font/abel_font"
             android:text="Category"
-            android:textColor="#000000"
-            android:textStyle="bold"
+            android:textColor="#0826C2"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.625"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/difficultyText"
-            android:layout_width="119dp"
-            android:layout_height="16dp"
+            android:layout_width="97dp"
+            android:layout_height="18dp"
             android:layout_marginTop="28dp"
             android:fontFamily="@font/abel_font"
+            android:textColor="#0826C2"
             android:text="Difficulty"
-            android:textColor="#000000"
-            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.327"
+            app:layout_constraintHorizontal_bias="0.778"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/typeText"
-            android:layout_width="148dp"
-            android:layout_height="19dp"
-            android:layout_marginTop="48dp"
+            android:layout_width="95dp"
+            android:layout_height="17dp"
+            android:layout_marginTop="53dp"
+            android:layout_marginRight="3dp"
             android:fontFamily="@font/abel_font"
+            android:textColor="#0826C2"
             android:text="Type"
-            android:textColor="#000000"
-            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.363"
+            app:layout_constraintHorizontal_bias="0.783"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/amountText"
-            android:layout_width="194dp"
+            android:layout_width="62dp"
             android:layout_height="16dp"
-            android:layout_marginTop="68dp"
+            android:layout_marginTop="72dp"
             android:fontFamily="@font/abel_font"
+            android:textColor="#0826C2"
             android:text="Amount"
-            android:textColor="#000000"
-            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.459"
+            app:layout_constraintHorizontal_bias="0.692"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -131,6 +130,64 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.96"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/abel_font"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:text="Category:"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.269"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:layout_marginRight="5dp"
+            android:fontFamily="@font/abel_font"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:text="Difficulty:"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.276"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="46dp"
+            android:layout_height="16dp"
+            android:layout_marginTop="52dp"
+            android:layout_marginRight="5dp"
+            android:fontFamily="@font/abel_font"
+            android:text="Type:"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.272"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="126dp"
+            android:layout_height="16dp"
+            android:layout_marginTop="72dp"
+            android:layout_marginEnd="160dp"
+            android:fontFamily="@font/abel_font"
+            android:paddingLeft="3dp"
+            android:text="Amount of Questions:"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

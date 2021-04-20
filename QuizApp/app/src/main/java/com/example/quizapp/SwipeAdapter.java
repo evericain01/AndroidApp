@@ -2,6 +2,10 @@ package com.example.quizapp;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Typeface;
+import android.text.Html;
+import android.text.Spanned;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +17,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.view.menu.MenuView;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.text.HtmlCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 
@@ -97,7 +102,7 @@ public class SwipeAdapter extends RecyclerView.Adapter<SwipeAdapter.SwipeViewHol
                 @Override
                 public void onClick(View v) {
 //                    db.deleteQuiz(String.valueOf(id.getText()));
-//                    questionHandlerList.remove(getAdapterPosition());ebra
+//                    questionHandlerList.remove(getAdapterPosition());
 //                    notifyItemRemoved(getAdapterPosition());
 //                    notifyItemRangeChanged(getAdapterPosition(), questionHandlerList.size());
                     Toast.makeText(context, "Started Quiz", Toast.LENGTH_SHORT).show();
@@ -121,112 +126,112 @@ public class SwipeAdapter extends RecyclerView.Adapter<SwipeAdapter.SwipeViewHol
             id.setText(String.valueOf(questionHandler.getId()));
             switch (String.valueOf(questionHandler.getCategory())) {
                 case "9":
-                    category.setText("Category: General Knowledge");
+                    category.setText("General Knowledge");
                     break;
                 case "10":
-                    category.setText("Category: Books");
+                    category.setText("Books");
                     break;
                 case "11":
-                    category.setText("Category: Films");
+                    category.setText("Films");
                     break;
                 case "12":
-                    category.setText("Category: Music");
+                    category.setText("Music");
                     break;
                 case "13":
-                    category.setText("Category: Musical and Theatres");
+                    category.setText("Musical and Theatres");
                     break;
                 case "14":
-                    category.setText("Category: Television");
+                    category.setText("Television");
                     break;
                 case "15":
-                    category.setText("Category: Video Games");
+                    category.setText("Video Games");
                     break;
                 case "16":
-                    category.setText("Category: Board Games");
+                    category.setText("Board Games");
                     break;
                 case "17":
-                    category.setText("Category: Science and Nature");
+                    category.setText("Science and Nature");
                     break;
                 case "18":
-                    category.setText("Category: Computers");
+                    category.setText("Computers");
                     break;
                 case "19":
-                    category.setText("Category: Math");
+                    category.setText("Math");
                     break;
                 case "20":
-                    category.setText("Category: Mythology");
+                    category.setText("Mythology");
                     break;
                 case "21":
-                    category.setText("Category: Sports");
+                    category.setText("Sports");
                     break;
                 case "22":
-                    category.setText("Category: Geography");
+                    category.setText("Geography");
                     break;
                 case "23":
-                    category.setText("Category: Politics");
+                    category.setText("Politics");
                     break;
                 case "24":
-                    category.setText("Category: Art");
+                    category.setText("Art");
                     break;
                 case "25":
-                    category.setText("Category: Celebrities");
+                    category.setText("Celebrities");
                     break;
                 case "27":
-                    category.setText("Category: Animals");
+                    category.setText("Animals");
                     break;
                 case "28":
-                    category.setText("Category: Vehicles");
+                    category.setText("Vehicles");
                     break;
                 case "29":
-                    category.setText("Category: Comics");
+                    category.setText("Comics");
                     break;
                 case "30":
-                    category.setText("Category: Gadgets");
+                    category.setText("Gadgets");
                     break;
                 case "31":
-                    category.setText("Category: Japanese Anime and Manga");
+                    category.setText("Japanese Anime and Manga");
                     break;
                 case "32":
-                    category.setText("Category: Cartoons and Animations");
+                    category.setText("Cartoons and Animations");
                     break;
                 default:
             }
             switch (String.valueOf(questionHandler.getDifficulty())) {
                 case "easy":
-                    difficulty.setText("Difficulty: Easy");
+                    difficulty.setText("Easy");
                     break;
                 case "medium":
-                    difficulty.setText("Difficulty: Medium");
+                    difficulty.setText("Medium");
                     break;
                 case "hard":
-                    difficulty.setText("Difficulty: Hard");
+                    difficulty.setText("Hard");
                     break;
                 default:
             }
             switch (String.valueOf(questionHandler.getType())) {
                 case "boolean":
-                    type.setText("Type: True/False");
+                    type.setText("True/False");
                     break;
                 case "multiple":
-                    type.setText("Type: Multiple Choice");
+                    type.setText("Multiple Choice");
                     break;
                 default:
             }
             switch (String.valueOf(questionHandler.getAmount())) {
                 case "10":
-                    amount.setText("Amount of Questions: 10");
+                    amount.setText("10");
                     break;
                 case "20":
-                    amount.setText("Amount of Questions: 20");
+                    amount.setText("20");
                     break;
                 case "30":
-                    amount.setText("Amount of Questions: 30");
+                    amount.setText("30");
                     break;
                 case "40":
-                    amount.setText("Amount of Questions: 40");
+                    amount.setText("40");
                     break;
                 case "50":
-                    amount.setText("Amount of Questions: 50");
+                    amount.setText("50");
                     break;
                 default:
             }
