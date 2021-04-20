@@ -104,16 +104,8 @@ public class OptionsActivity extends AppCompatActivity {
                 }
                 int amountOfQuestions = Integer.parseInt(total.getSelectedItem().toString());
 
-                // Getting current user id
-                Intent intent = getIntent();
-                Bundle bundle = intent.getExtras();
-                String currentUserID = "";
-                if (bundle != null) {
-                    currentUserID = (String) bundle.get("USER_ID");
-                }
-
                 // Storing this quiz into the current user's QUEUE LIST.
-                db.addQuizToQueue(currentUserID, amountOfQuestions, chosenCategory, chosenDifficulty, chosenType);
+                db.addQuizToQueue(getCurrentUserId(), amountOfQuestions, chosenCategory, chosenDifficulty, chosenType);
                 Toast.makeText(OptionsActivity.this, "Quiz Added To Queue.", Toast.LENGTH_SHORT).show();
             }
         });
@@ -121,18 +113,28 @@ public class OptionsActivity extends AppCompatActivity {
         viewQueue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = getIntent();
-                Bundle bundle = intent.getExtras();
-                String currentUserID = "";
-                if (bundle != null) {
-                    currentUserID = (String) bundle.get("USER_ID");
-                }
                 Intent goToViewQueue = new Intent(OptionsActivity.this, QueueActivity.class);
-                goToViewQueue.putExtra("USER_ID", currentUserID);
+                goToViewQueue.putExtra("USER_ID", getCurrentUserId());
                 startActivity(goToViewQueue);
             }
         });
 
+    }
+
+    /**
+     * Gets the current user ID.
+     *
+     * @return The user ID as a String.
+     */
+    public String getCurrentUserId() {
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        String currentUserID = "";
+        if (bundle != null) {
+            currentUserID = (String) bundle.get("USER_ID");
+        }
+
+        return currentUserID;
     }
 
 }

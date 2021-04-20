@@ -31,18 +31,10 @@ public class ProfileCreationActivity extends AppCompatActivity {
         createProfileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 String firstName = firstNameInput.getText().toString();
                 String lastName = lastNameInput.getText().toString();
 
-                Intent intent = getIntent();
-                Bundle bundle = intent.getExtras();
-                String currentUserID = "";
-                if (bundle != null) {
-                    currentUserID = (String) bundle.get("USER_ID");
-                }
-
-                boolean result = db.addProfile(currentUserID, firstName, lastName);
+                boolean result = db.addProfile(getCurrentUserId(), firstName, lastName);
 
                 if (result) {
                     Toast.makeText(ProfileCreationActivity.this, "Profile Created.", Toast.LENGTH_SHORT).show();
@@ -53,5 +45,21 @@ public class ProfileCreationActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    /**
+     * Gets the current user ID.
+     *
+     * @return The user ID as a String.
+     */
+    public String getCurrentUserId() {
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        String currentUserID = "";
+        if (bundle != null) {
+            currentUserID = (String) bundle.get("USER_ID");
+        }
+
+        return currentUserID;
     }
 }

@@ -1,5 +1,6 @@
 package com.example.quizapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,16 +12,18 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 
 import java.util.List;
 
-public class HomePageActivity extends AppCompatActivity {
+public class HomePageActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     DatabaseHelper db;
 
     TextView welcomeTitle;
@@ -41,11 +44,14 @@ public class HomePageActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         drawer = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+
 
         db = new DatabaseHelper(this);
         welcomeTitle = findViewById(R.id.homePageTitleText);
@@ -55,21 +61,13 @@ public class HomePageActivity extends AppCompatActivity {
         viewQueue = findViewById(R.id.viewQueueButton);
         progressBar = findViewById(R.id.progressBar);
 
-        Intent intent = getIntent();
-        Bundle bundle = intent.getExtras();
-        String currentUserID = "";
-        if (bundle != null) {
-            currentUserID = (String) bundle.get("USER_ID");
-        }
-
-
         // setting First and Last name of current user
-        welcomeTitle.setText("Welcome, \n" + db.getFirstAndLastName(currentUserID));
+        welcomeTitle.setText("Welcome, \n" + db.getFirstAndLastName(getCurrentUserId()));
 
-        db.setExperiencePoints(currentUserID, "2400");
+        db.setExperiencePoints(getCurrentUserId(), "2400");
 
         // gets the total experience points of the current user (max 100)
-        int exp = Integer.parseInt(db.getExperiencePoints(currentUserID));
+        int exp = Integer.parseInt(db.getExperiencePoints(getCurrentUserId()));
         System.out.println(exp);
 
         // Calculating level based on experience
@@ -93,15 +91,9 @@ public class HomePageActivity extends AppCompatActivity {
         optionsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = getIntent();
-                Bundle bundle = intent.getExtras();
-                String currentUserID = "";
-                if (bundle != null) {
-                    currentUserID = (String) bundle.get("USER_ID");
-                }
                 Intent goToOptions = new Intent(HomePageActivity.this, OptionsActivity.class);
 
-                goToOptions.putExtra("USER_ID", currentUserID);
+                goToOptions.putExtra("USER_ID", getCurrentUserId());
 
                 startActivity(goToOptions);
             }
@@ -110,19 +102,27 @@ public class HomePageActivity extends AppCompatActivity {
         viewQueue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = getIntent();
-                Bundle bundle = intent.getExtras();
-                String currentUserID = "";
-                if (bundle != null) {
-                    currentUserID = (String) bundle.get("USER_ID");
-                }
                 Intent goToQueue = new Intent(HomePageActivity.this, QueueActivity.class);
-
-                goToQueue.putExtra("USER_ID", currentUserID);
-
+                goToQueue.putExtra("USER_ID", getCurrentUserId());
                 startActivity(goToQueue);
             }
         });
+    }
+
+    /**
+     * Gets the current user ID.
+     *
+     * @return The user ID as a String.
+     */
+    public String getCurrentUserId() {
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        String currentUserID = "";
+        if (bundle != null) {
+            currentUserID = (String) bundle.get("USER_ID");
+        }
+
+        return currentUserID;
     }
 
     /**
@@ -137,4 +137,36 @@ public class HomePageActivity extends AppCompatActivity {
             super.onBackPressed();
         }
     }
+
+    /**
+     *
+     * @param item
+     * @return
+     */
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.nav_start_quiz:
+                Intent goToOptions = new Intent(HomePageActivity.this, OptionsActivity.class);
+                goToOptions.putExtra("USER_ID", getCurrentUserId());
+                startActivity(goToOptions);
+                break;
+            case R.id.nav_queue:
+                Intent goToQueue = new Intent(HomePageActivity.this, QueueActivity.class);
+                goToQueue.putExtra("USER_ID", getCurrentUserId());
+                startActivity(goToQueue);
+                break;
+            default:
+
+//            case R.id.nav_view_all_quiz_options:
+//                Intent viewAllQuizOptions = new Intent(HomePageActivity.this, viewAllQuizOptions.class);
+//                startActivity(viewAllQuizOptions);
+//                break;
+        }
+
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+
 }

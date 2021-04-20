@@ -39,19 +39,11 @@ public class QueueActivity extends AppCompatActivity {
         swipeAdapter = new SwipeAdapter(this, quizzes);
         recyclerView.setAdapter(swipeAdapter);
 
-
-
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
-                    Intent intent = getIntent();
-                    Bundle bundle = intent.getExtras();
-                    String currentUserID = "";
-                    if (bundle != null) {
-                        currentUserID = (String) bundle.get("USER_ID");
-                    }
-                    quizzes = db.convertQueueTableToList(currentUserID);
+                    quizzes = db.convertQueueTableToList(getCurrentUserId());
 
                     runOnUiThread(new Runnable() {
                         public void run() { swipeAdapter.setData(quizzes); }
@@ -62,6 +54,21 @@ public class QueueActivity extends AppCompatActivity {
                 }
             }
         }).start();
+    }
 
+    /**
+     * Gets the current user ID.
+     *
+     * @return The user ID as a String.
+     */
+    public String getCurrentUserId() {
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        String currentUserID = "";
+        if (bundle != null) {
+            currentUserID = (String) bundle.get("USER_ID");
+        }
+
+        return currentUserID;
     }
 }
