@@ -7,6 +7,51 @@
     android:background="#065CAE"
     tools:context=".ViewAllOptionsActivity">
 
+    <ImageView
+        android:id="@+id/categoryImage"
+        android:layout_width="51dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="160dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.186"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <ImageView
+        android:id="@+id/difficultyImage"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="240dp"
+        android:layout_marginRight="19dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.19"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <ImageView
+        android:id="@+id/typeImage"
+        android:layout_width="51dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="336dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.186"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <ImageView
+        android:id="@+id/amountImage"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="428dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.186"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
     <TextView
         android:id="@+id/homePageTitleText"
         android:layout_width="332dp"
@@ -30,8 +75,10 @@
         android:layout_width="175dp"
         android:layout_height="58dp"
         android:layout_marginTop="160dp"
+        android:fontFamily="@font/abel_font"
         android:text="Categories"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.618"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -40,8 +87,10 @@
         android:layout_width="175dp"
         android:layout_height="58dp"
         android:layout_marginTop="252dp"
+        android:fontFamily="@font/abel_font"
         android:text="Difficulties"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.618"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -50,8 +99,10 @@
         android:layout_width="175dp"
         android:layout_height="58dp"
         android:layout_marginTop="336dp"
+        android:fontFamily="@font/abel_font"
         android:text="Types"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.618"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -60,8 +111,10 @@
         android:layout_width="175dp"
         android:layout_height="58dp"
         android:layout_marginTop="424dp"
+        android:fontFamily="@font/abel_font"
         android:text="Amount of Questions"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.618"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

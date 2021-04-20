@@ -10,12 +10,18 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 public class ViewAllOptionsActivity extends AppCompatActivity {
     Button viewCategories;
     Button viewDifficulties;
     Button viewTypes;
     Button viewAmounts;
+
+    ImageView categoryPic;
+    ImageView difficultyPic;
+    ImageView typePic;
+    ImageView amountPic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +32,15 @@ public class ViewAllOptionsActivity extends AppCompatActivity {
         viewDifficulties = findViewById(R.id.viewAllDifficulties);
         viewTypes = findViewById(R.id.viewAllTypes);
         viewAmounts = findViewById(R.id.viewAllAmounts);
+
+        categoryPic = findViewById(R.id.categoryImage);
+        categoryPic.setImageResource(R.drawable.categories_ico);
+        difficultyPic = findViewById(R.id.difficultyImage);
+        difficultyPic.setImageResource(R.drawable.difficulty_ico);
+        typePic = findViewById(R.id.typeImage);
+        typePic.setImageResource(R.drawable.type_ico);
+        amountPic = findViewById(R.id.amountImage);
+        amountPic.setImageResource(R.drawable.number_ico);
 
         viewCategories.setOnClickListener(new View.OnClickListener() {
             @Override

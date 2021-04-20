@@ -81,8 +81,6 @@
             android:hint=" Password"
             android:inputType="textPassword" />
 
-
-
     </LinearLayout>
 
     <Button
@@ -92,6 +90,7 @@
         android:layout_marginTop="20dp"
         android:backgroundTint="#4753FC"
         android:fontFamily="@font/abel_font"
+        android:textSize="18sp"
         android:text="LOGIN"
         android:textColor="#ffffff"
         android:textStyle="bold" />
@@ -107,6 +106,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:shadowColor="#000000"
+            android:textSize="20sp"
             android:shadowRadius="8"
             android:paddingLeft="2dp"
             android:fontFamily="@font/abel_font"
