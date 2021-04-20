@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/nav_start_quiz"
+            android:icon="@drawable/ic_start_quiz_ico"
+            android:title="Begin Quiz"/>
+        <item android:id="@+id/nav_queue"
+            android:icon="@drawable/ic_queue_ico"
+            android:title="View Queue"/>
+        <item android:id="@+id/nav_view_all_quiz_options"
+            android:icon="@drawable/ic_view_all_quiz_ico"
+            android:title="View All Quiz Options"/>
+    </group>
+
+</menu>
