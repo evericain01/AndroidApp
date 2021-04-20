@@ -6,8 +6,8 @@
     android:id="@+id/drawer_layout"
     android:fitsSystemWindows="true"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:openDrawer="start">
+    android:layout_height="match_parent">
+<!--    tools:openDrawer="start"-->
 
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
@@ -35,7 +35,7 @@
         android:id="@+id/levelText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="152dp"
+        android:layout_marginTop="230dp"
         android:fontFamily="@font/abel_font"
         android:shadowColor="#000000"
         android:shadowRadius="10"
@@ -49,9 +49,9 @@
 
     <TextView
         android:id="@+id/homePageTitleText"
-        android:layout_width="332dp"
-        android:layout_height="82dp"
-        android:layout_marginTop="64dp"
+        android:layout_width="313dp"
+        android:layout_height="92dp"
+        android:layout_marginTop="100dp"
         android:fontFamily="@font/abel_font"
         android:gravity="center"
         android:shadowColor="#000000"
@@ -69,7 +69,7 @@
         android:id="@+id/progressBar"
         android:layout_width="249dp"
         android:layout_height="35dp"
-        android:layout_marginTop="224dp"
+        android:layout_marginTop="280dp"
         android:indeterminate="false"
         app:indicatorColor="#8DFB70"
         app:layout_constraintEnd_toEndOf="parent"
@@ -80,12 +80,13 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/playButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="276dp"
+        android:layout_width="148dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="340dp"
         android:fontFamily="@font/abel_font"
-        android:textStyle="bold"
         android:text="Play!"
+        android:textSize="32dp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -93,12 +94,14 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/viewQueueButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="340dp"
+        android:layout_width="216dp"
+        android:layout_height="72dp"
+        android:layout_marginTop="415dp"
+        android:background="@drawable/home_page_queue_button"
         android:fontFamily="@font/abel_font"
+        android:text="VIEW YOUR QUEUE"
+        android:textSize="25sp"
         android:textStyle="bold"
-        android:text="VIEW QUEUE"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -108,7 +111,7 @@
         android:id="@+id/expNeededText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="204dp"
+        android:layout_marginTop="260dp"
         android:fontFamily="@font/abel_font"
         android:text=" :EXP"
         android:shadowColor="#000000"

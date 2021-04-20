@@ -27,8 +27,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/swipeRecyclerView"
-        android:layout_width="384dp"
-        android:layout_height="522dp"
+        android:layout_width="385dp"
+        android:layout_height="527dp"
         android:layout_marginTop="140dp"
         android:fontFamily="@font/abel_font"
         app:layout_constraintEnd_toEndOf="parent"

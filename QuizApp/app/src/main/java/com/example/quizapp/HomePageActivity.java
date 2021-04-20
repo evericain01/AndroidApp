@@ -21,6 +21,8 @@ import android.widget.Toast;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.List;
 
 public class HomePageActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
@@ -51,7 +53,6 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-
 
         db = new DatabaseHelper(this);
         welcomeTitle = findViewById(R.id.homePageTitleText);
@@ -92,9 +93,7 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
             @Override
             public void onClick(View v) {
                 Intent goToOptions = new Intent(HomePageActivity.this, OptionsActivity.class);
-
                 goToOptions.putExtra("USER_ID", getCurrentUserId());
-
                 startActivity(goToOptions);
             }
         });
@@ -105,6 +104,7 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
                 Intent goToQueue = new Intent(HomePageActivity.this, QueueActivity.class);
                 goToQueue.putExtra("USER_ID", getCurrentUserId());
                 startActivity(goToQueue);
+
             }
         });
     }
@@ -139,9 +139,9 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
     }
 
     /**
-     *
-     * @param item
-     * @return
+     * Navigates to Start Quiz, View Queue or View Quiz Options activities depending on which menu item has been click.
+     * @param item The clicked menu item.
+     * @return True.
      */
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -156,17 +156,14 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
                 goToQueue.putExtra("USER_ID", getCurrentUserId());
                 startActivity(goToQueue);
                 break;
-            default:
-
-//            case R.id.nav_view_all_quiz_options:
-//                Intent viewAllQuizOptions = new Intent(HomePageActivity.this, viewAllQuizOptions.class);
-//                startActivity(viewAllQuizOptions);
-//                break;
+            case R.id.nav_view_all_quiz_options:
+                Intent viewAllQuizOptions = new Intent(HomePageActivity.this, ViewAllOptionsActivity.class);
+                startActivity(viewAllQuizOptions);
+                break;
+                default:
         }
-
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
 
 }
