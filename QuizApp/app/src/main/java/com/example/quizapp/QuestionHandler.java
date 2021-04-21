@@ -19,7 +19,6 @@ public class QuestionHandler extends ApiHandler {
     private ArrayList<String> difficultyArr;
     private ArrayList<JSONArray> incorrectAnswers;
 
-
     /**
      * Generates questions in the private Data-Members that can be obtained from the getter methods
      * for questions, answers, incorrectAnswers and difficultyArr.

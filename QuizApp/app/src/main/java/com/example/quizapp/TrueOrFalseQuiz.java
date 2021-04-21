@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 
-public class TrueOrfalseQuiz extends AppCompatActivity {
+public class TrueOrFalseQuiz extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

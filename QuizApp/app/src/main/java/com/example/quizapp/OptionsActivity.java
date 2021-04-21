@@ -30,12 +30,16 @@ public class OptionsActivity extends AppCompatActivity implements NavigationView
     Button viewQueue;
     TextView menuFullName;
     TextView menuLevel;
+    Toolbar toolbar;
     DrawerLayout drawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_options);
+
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         initializeDrawerMenu();
 
@@ -83,7 +87,7 @@ public class OptionsActivity extends AppCompatActivity implements NavigationView
                 //String finalType1 = finalType;
 
                 if (chosenType.equals("True or False")) {
-                    Intent quiz = new Intent(OptionsActivity.this, TrueOrfalseQuiz.class);
+                    Intent quiz = new Intent(OptionsActivity.this, TrueOrFalseQuiz.class);
 
                     quiz.putExtra("amount", amountOfQuestions);
                     quiz.putExtra("category", chosenCategory);
@@ -157,14 +161,10 @@ public class OptionsActivity extends AppCompatActivity implements NavigationView
      * Initializing drawer menu.
      */
     public void initializeDrawerMenu() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
         drawer = findViewById(R.id.drawer_layout_options);
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         View headerView = navigationView.getHeaderView(0);
-
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);

@@ -9,6 +9,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -26,6 +28,7 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
     TextView menuLevel;
     Button optionsButton;
     Button viewQueue;
+    Toolbar toolbar;
     LinearProgressIndicator progressBar;
     DrawerLayout drawer;
 
@@ -33,6 +36,9 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
+
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         initializeDrawerMenu();
 
@@ -94,6 +100,30 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
         });
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.options_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.modifyProfile:
+                Intent modifyProfile = new Intent(HomePageActivity.this, ModifyProfileActivity.class);
+                modifyProfile.putExtra("USER_ID", getCurrentUserId());
+                startActivity(modifyProfile);
+                return true;
+            case R.id.logoutOption:
+                Intent logout = new Intent(HomePageActivity.this, LoginActivity.class);
+                startActivity(logout);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
     /**
      * Gets the current user ID.
      *
@@ -128,9 +158,6 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
      * Initializing drawer menu.
      */
     public void initializeDrawerMenu() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
         drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         View headerView = navigationView.getHeaderView(0);
