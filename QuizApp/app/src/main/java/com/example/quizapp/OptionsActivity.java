@@ -7,8 +7,12 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -198,12 +202,56 @@ public class OptionsActivity extends AppCompatActivity implements NavigationView
                 startActivity(viewAllQuizOptions);
                 break;
             case R.id.nav_logout:
-                Intent logout = new Intent(OptionsActivity.this, LoginActivity.class);
-                startActivity(logout);
-                break;
+                new AlertDialog.Builder(this)
+                        .setMessage("Are you sure you want to logout?")
+                        .setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                OptionsActivity.super.onBackPressed();
+                                Intent logout = new Intent(OptionsActivity.this, LoginActivity.class);
+                                startActivity(logout);
+                            }
+                        })
+                        .setNegativeButton("No", null)
+                        .show();
+                return true;
             default:
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.options_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.modifyProfile:
+                Intent modifyProfile = new Intent(OptionsActivity.this, ModifyProfileActivity.class);
+                modifyProfile.putExtra("USER_ID", getCurrentUserId());
+                startActivity(modifyProfile);
+                return true;
+            case R.id.logoutOption:
+                new AlertDialog.Builder(this)
+                        .setMessage("Are you sure you want to logout?")
+                        .setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                OptionsActivity.super.onBackPressed();
+                                Intent logout = new Intent(OptionsActivity.this, LoginActivity.class);
+                                startActivity(logout);
+                            }
+                        })
+                        .setNegativeButton("No", null)
+                        .show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

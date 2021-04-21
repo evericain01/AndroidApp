@@ -7,6 +7,19 @@
     android:background="#065CAE"
     tools:context=".ViewAllOptionsActivity">
 
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#1D329F"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
     <ImageView
         android:id="@+id/categoryImage"
         android:layout_width="51dp"
@@ -54,9 +67,9 @@
 
     <TextView
         android:id="@+id/homePageTitleText"
-        android:layout_width="332dp"
-        android:layout_height="82dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="221dp"
+        android:layout_height="74dp"
+        android:layout_marginTop="55dp"
         android:fontFamily="@font/abel_font"
         android:gravity="center"
         android:shadowColor="#000000"

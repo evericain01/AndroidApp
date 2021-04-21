@@ -7,6 +7,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import androidx.appcompat.widget.Toolbar;
+
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -96,8 +99,18 @@ public class QueueActivity extends AppCompatActivity {
                 startActivity(modifyProfile);
                 return true;
             case R.id.logoutOption:
-                Intent logout = new Intent(QueueActivity.this, LoginActivity.class);
-                startActivity(logout);
+                new AlertDialog.Builder(this)
+                        .setMessage("Are you sure you want to logout?")
+                        .setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                QueueActivity.super.onBackPressed();
+                                Intent logout = new Intent(QueueActivity.this, LoginActivity.class);
+                                startActivity(logout);
+                            }
+                        })
+                        .setNegativeButton("No", null)
+                        .show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

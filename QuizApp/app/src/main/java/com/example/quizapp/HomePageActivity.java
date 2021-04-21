@@ -7,6 +7,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -116,8 +118,18 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
                 startActivity(modifyProfile);
                 return true;
             case R.id.logoutOption:
-                Intent logout = new Intent(HomePageActivity.this, LoginActivity.class);
-                startActivity(logout);
+                new AlertDialog.Builder(this)
+                        .setMessage("Are you sure you want to logout?")
+                        .setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                HomePageActivity.super.onBackPressed();
+                                Intent logout = new Intent(HomePageActivity.this, LoginActivity.class);
+                                startActivity(logout);
+                            }
+                        })
+                        .setNegativeButton("No", null)
+                        .show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -195,9 +207,19 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
                 startActivity(viewAllQuizOptions);
                 break;
             case R.id.nav_logout:
-                Intent logout = new Intent(HomePageActivity.this, LoginActivity.class);
-                startActivity(logout);
-                break;
+                new AlertDialog.Builder(this)
+                        .setMessage("Are you sure you want to logout?")
+                        .setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                HomePageActivity.super.onBackPressed();
+                                Intent logout = new Intent(HomePageActivity.this, LoginActivity.class);
+                                startActivity(logout);
+                            }
+                        })
+                        .setNegativeButton("No", null)
+                        .show();
+                return true;
             default:
         }
         drawer.closeDrawer(GravityCompat.START);
