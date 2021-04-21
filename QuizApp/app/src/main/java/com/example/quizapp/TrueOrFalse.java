@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONException;
 
@@ -25,7 +26,8 @@ public class TrueOrFalse extends Fragment {
     Button tButton, fButton;
     int counter;
     int score;
-    TextView questionBox;
+    int currentScore;
+    TextView questionBox, scoreBoard;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -77,7 +79,8 @@ public class TrueOrFalse extends Fragment {
         int category = (int) bundle.get("category");
         String type = (String) bundle.get("type");
 
-//        System.out.println(difficulty + "  " + amount + "  "  + category + "  "  + type);
+        questionBox = getActivity().findViewById(R.id.questionBox);
+        scoreBoard = getActivity().findViewById(R.id.scoreBoard);
 
         new Thread(new Runnable() {
             @Override
@@ -90,17 +93,18 @@ public class TrueOrFalse extends Fragment {
                     quiz.setDifficulty(difficulty);
                     quiz.setCategory(category);
                     quiz.generateQuestions();
-                    forLoopHelper(quiz);
+                    while (counter <= quiz.getAmount()) {
+                        forLoopHelper(quiz);
+                    }
+                    Intent intent = new Intent();
+                    intent.putExtra("score", score);
+
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         }).start();
-
-//        tButton = getActivity().findViewById(R.id.trueButton);
-//        tButton.setOnClickListener();
-
-        questionBox = getActivity().findViewById(R.id.questionBox);
 
         super.onActivityCreated(savedInstanceState);
     }
@@ -113,8 +117,40 @@ public class TrueOrFalse extends Fragment {
     }
 
     public void forLoopHelper(QuestionHandler handler) {
-        System.out.println(handler.getQuestions().get(counter));
+        System.out.println(handler.getAnswers());
+        scoreBoard.setText(score + "");
         questionBox.setText(handler.getQuestions().get(counter));
+        tButton = getActivity().findViewById(R.id.trueButton);
+        fButton = getActivity().findViewById(R.id.falseButton);
+        if (handler.getAnswers().get(counter).equals("True")) {
+            tButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    score++;
+                    counter++;
+                }
+            });
+            fButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    counter++;
+                }
+            });
+        } else {
+            tButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    counter++;
+                }
+            });
+            fButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    counter++;
+                    score++;
+                }
+            });
+        }
 
 //        for (int i = 0; i < handler.getAmount(); i++ ){
 //            System.out.println("Question: " + handler.getQuestions().get(i));
@@ -131,10 +167,6 @@ public class TrueOrFalse extends Fragment {
 //            }
 //            System.out.println("");
 //        }
-    }
-
-    public void changeQuestion() {
-
     }
 
 }
