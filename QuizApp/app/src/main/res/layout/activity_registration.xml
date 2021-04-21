@@ -86,7 +86,7 @@
             android:shadowColor="#000000"
             android:shadowRadius="10"
             android:fontFamily="@font/abel_font"
-            android:text="Retype your Password:"
+            android:text="Re-type Password:"
             android:textSize="20sp" />
 
         <EditText

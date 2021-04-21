@@ -1,9 +1,167 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ModifyProfileActivity">
+    android:orientation="vertical"
+    android:id="@+id/container"
+    android:background="#065CAE"
+    android:gravity="center_horizontal">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/profileModifyTitleText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="#70D0FB"
+            android:paddingTop="20dp"
+            android:paddingBottom="36dp"
+            android:shadowColor="#000000"
+            android:shadowRadius="40"
+            android:textStyle="bold"
+            android:fontFamily="@font/abel_font"
+            android:text="Profile Modification"
+            android:textSize="35dp" />
+
+        <TextView
+            android:id="@+id/newFirstNameLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/abel_font"
+            android:gravity="center"
+            android:shadowColor="#000000"
+            android:shadowRadius="10"
+            android:text="New First Name:"
+            android:textColor="#70BEFB"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/newFirstNameEditText"
+            android:layout_width="190dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/rounded_edittext"
+            android:fontFamily="@font/abel_font"
+            android:hint=" First Name"
+            android:paddingStart="3dp" />
+
+        <TextView
+            android:id="@+id/newLastNameLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/abel_font"
+            android:gravity="center"
+            android:textColor="#70BEFB"
+            android:shadowColor="#000000"
+            android:shadowRadius="10"
+            android:text=" New Last Name:"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/newLastNameEditText"
+            android:layout_width="190dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/rounded_edittext"
+            android:fontFamily="@font/abel_font"
+            android:paddingStart="3dp"
+            android:hint=" Last Name"
+            android:inputType="textPassword" />
+        <View
+            android:layout_width="300dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="20dp"
+            android:background="#c0c0c0"/>
+
+        <TextView
+            android:id="@+id/oldPasswordLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:textColor="#70BEFB"
+            android:shadowColor="#000000"
+            android:shadowRadius="10"
+            android:fontFamily="@font/abel_font"
+            android:text=" Old Password:"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/oldPasswordEditText"
+            android:layout_width="190dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/rounded_edittext"
+            android:fontFamily="@font/abel_font"
+            android:paddingStart="3dp"
+            android:inputType="textPassword"
+            android:hint=" Password" />
+        <TextView
+            android:id="@+id/newPasswordLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:textColor="#70BEFB"
+            android:shadowColor="#000000"
+            android:shadowRadius="10"
+            android:fontFamily="@font/abel_font"
+            android:text=" New Password:"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/newPasswordEditText"
+            android:layout_width="190dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/rounded_edittext"
+            android:fontFamily="@font/abel_font"
+            android:paddingStart="3dp"
+            android:inputType="textPassword"
+            android:hint=" Password" />
+
+        <TextView
+            android:id="@+id/retypePasswordLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:textColor="#70BEFB"
+            android:shadowColor="#000000"
+            android:shadowRadius="10"
+            android:fontFamily="@font/abel_font"
+            android:text=" Re-Type Password:"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/retypePasswordEditText"
+            android:layout_width="190dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/rounded_edittext"
+            android:fontFamily="@font/abel_font"
+            android:paddingStart="3dp"
+            android:inputType="textPassword"
+            android:hint=" Password" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/registerButton"
+        android:layout_width="wrap_content"
+        android:layout_height="52dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#8577A8"
+        android:fontFamily="@font/abel_font"
+        android:text="Confirm Changes"
+        android:textColor="#ffffff"
+        android:textSize="18sp" />
+
+</LinearLayout>
