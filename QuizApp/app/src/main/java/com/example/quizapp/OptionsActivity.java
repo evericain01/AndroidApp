@@ -120,17 +120,29 @@ public class OptionsActivity extends AppCompatActivity implements NavigationView
                 int chosenCategory = category.getSelectedItemPosition() + 9;
                 String chosenDifficulty = difficulty.getSelectedItem().toString().toLowerCase();
                 String chosenType = type.getSelectedItem().toString();
+
                 if (chosenType.equals("True or False")) {
                     chosenType = "boolean";
                 }
                 else {
                     chosenType = "multiple";
                 }
+
                 int amountOfQuestions = Integer.parseInt(total.getSelectedItem().toString());
 
-                // Storing this quiz into the current user's QUEUE LIST.
-                db.addQuizToQueue(getCurrentUserId(), amountOfQuestions, chosenCategory, chosenDifficulty, chosenType);
-                Toast.makeText(OptionsActivity.this, "Quiz Added To Queue.", Toast.LENGTH_SHORT).show();
+                String finalChosenType = chosenType;
+                new AlertDialog.Builder(OptionsActivity.this)
+                        .setMessage("Are you sure you want to add this quiz to your queue?")
+                        .setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // Storing this quiz into the current user's QUEUE LIST.
+                                db.addQuizToQueue(getCurrentUserId(), amountOfQuestions, chosenCategory, chosenDifficulty, finalChosenType);
+                                Toast.makeText(OptionsActivity.this, "Quiz Added To Queue.", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .setNegativeButton("No", null)
+                        .show();
             }
         });
 

@@ -27,8 +27,6 @@ import com.chauthai.swipereveallayout.ViewBinderHelper;
 import java.util.List;
 
 public class SwipeAdapter extends RecyclerView.Adapter<SwipeAdapter.SwipeViewHolder>{
-    //List<QuestionHandler>
-
     private final DatabaseHelper db;
     private final Context context;
     private final ViewBinderHelper viewBinderHelper = new ViewBinderHelper();

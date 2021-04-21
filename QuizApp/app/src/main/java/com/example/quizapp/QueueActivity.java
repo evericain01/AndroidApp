@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -29,6 +30,7 @@ public class QueueActivity extends AppCompatActivity {
     List<QuestionHandler> quizzes = new ArrayList<>();
     Toolbar toolbar;
     TextView queueNumber;
+    TextView ifNoQuizzesText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +59,16 @@ public class QueueActivity extends AppCompatActivity {
                     quizzes = db.convertQueueTableToList(getCurrentUserId());
 
                     runOnUiThread(new Runnable() {
-                        public void run() { swipeAdapter.setData(quizzes); }
+                        public void run() {
+                            swipeAdapter.setData(quizzes);
+                            if (swipeAdapter.getItemCount() == 0) {
+                                ifNoQuizzesText = findViewById(R.id.ifQueueIsEmptyText);
+                                ViewGroup.LayoutParams layoutParams = ifNoQuizzesText.getLayoutParams();
+                                layoutParams.width = 1000;
+                                layoutParams.height = 100;
+                                ifNoQuizzesText.setLayoutParams(layoutParams);
+                            }
+                        }
                     });
 
                 } catch (Exception e) {

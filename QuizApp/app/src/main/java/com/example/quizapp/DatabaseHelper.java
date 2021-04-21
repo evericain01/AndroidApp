@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.inputmethodservice.Keyboard;
+import android.os.strictmode.SqliteObjectLeakedViolation;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
@@ -164,13 +165,89 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String selection = COL_USERNAME + "=?" + " AND " + COL_PASSWORD + "=?";
         Cursor cursor = db.query(USER_TABLE, columns, selection, selectionArgs, null, null, null);
 
-        boolean exists;
-        exists = cursor.getCount() > 0;
+        boolean valid;
+        valid = cursor.getCount() > 0;
 
         db.close();
         cursor.close();
 
-        return exists;
+        return valid;
+    }
+
+    /**
+     * Updates the current user's first name.
+     *
+     * @param id The user ID.
+     * @param newFirstName The new first name.
+     */
+    public void updateFirstName(String id, String newFirstName) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("first_name", newFirstName);
+        db.update(PROFILE_TABLE, values, "user_id = ?", new String[]{id});
+    }
+
+    /**
+     * Updates the current user's last name.
+     *
+     * @param id The user ID.
+     * @param newLastName The new last name.
+     */
+    public void updateLastName(String id, String newLastName) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("last_name", newLastName);
+        db.update(PROFILE_TABLE, values, "user_id = ?", new String[]{id});
+    }
+
+    /**
+     * Updates the current user's username.
+     *
+     * @param id The user ID.
+     * @param newUserName the new username.
+     */
+    public void updateUserName(String id, String newUserName) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("user_name", newUserName);
+        db.update(USER_TABLE, values, "user_id = ?", new String[]{id});
+    }
+
+    /**
+     * Updates the current user's password.
+     *
+     * @param id The user ID.
+     * @param newPassword The new password.
+     */
+    public void updatePassword(String id, String newPassword) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        newPassword = md5(newPassword);
+        values.put("password", newPassword);
+        db.update(USER_TABLE, values, "user_id = ?", new String[]{id});
+    }
+
+    /**
+     * Checks if the user's old password is correct.
+     *
+     * @param oldPassword The old password.
+     * @return True (if correct). False (if not correct).
+     */
+    public boolean checkOldPassword(String oldPassword) {
+        SQLiteDatabase db = getWritableDatabase();
+        oldPassword = md5(oldPassword);
+        String[] selectionArgs = {oldPassword};
+        String[] columns = { COL_USER_ID };
+        String selection = COL_PASSWORD + "=?";
+        Cursor cursor = db.query(USER_TABLE, columns, selection, selectionArgs, null , null, null, null);
+
+        boolean valid;
+        valid = cursor.getCount() > 0;
+
+        db.close();
+        cursor.close();
+
+        return valid;
     }
 
     /**
@@ -181,7 +258,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * @param password The desired password to hash.
      * @return The password hash.
      */
-    public static final String md5(final String password) {
+    public static String md5(final String password) {
         final String MD5 = "MD5";
         try {
             // Create MD5 Hash
@@ -266,15 +343,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      *
      * @param userID The user.
      * @param exp The desired experience points to be set.
-     * @return True.
      */
-    public boolean setExperiencePoints(String userID, String exp) {
+    public void setExperiencePoints(String userID, String exp) {
         SQLiteDatabase db = this.getWritableDatabase();
         String strFilter = "user_id=" + userID;
         ContentValues args = new ContentValues();
         args.put(COL_EXPERIENCE_POINTS, exp);
         db.update("profile", args, strFilter, null);
-        return true;
     }
 
     /**
@@ -329,7 +404,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 list.add(data);
             } while (cursor.moveToNext());
             cursor.close();
-
         }
         return list;
     }
@@ -348,7 +422,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.update(QUEUE_LIST_TABLE, values, "queue_list_id = ?", new String[]{id});
     }
 
-
     /**
      * Deletes a quiz from the the user's queue.
      *
@@ -358,17 +431,4 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(QUEUE_LIST_TABLE, "queue_list_id = ?", new String[]{id});
     }
-
-//
-//    public String getExperiencePoints(String userID) {
-//        String result = "";
-//        SQLiteDatabase db = this.getReadableDatabase();
-//        Cursor cursor = db.rawQuery("SELECT * FROM profile WHERE user_id=" + userID, null);
-//        if (cursor.moveToFirst()) {
-//            result = cursor.getString(cursor.getColumnIndex("experience_points"));
-//        }
-//        cursor.close();
-//        db.close();
-//        return result;
-//    }
 }
