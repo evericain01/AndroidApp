@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="176dp"
+    android:layout_height="220dp"
     android:background="#687FF8"
     android:gravity="bottom"
     android:padding="16dp"
@@ -11,18 +11,24 @@
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="97dp"
         android:layout_height="81dp"
+        android:layout_marginTop="30dp"
         android:layout_marginRight="190dp"
         android:src="@drawable/avatar_ico" />
     <TextView
+        android:id="@+id/menuFullNameText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="8dp"
+        android:textSize="20sp"
         android:text="Name"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
     <TextView
+        android:id="@+id/menuLevelText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="18sp"
         android:text="Level"/>
+
 
 
 </LinearLayout>

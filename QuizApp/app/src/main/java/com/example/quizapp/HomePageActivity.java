@@ -2,39 +2,31 @@ package com.example.quizapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
-import java.util.List;
-
 public class HomePageActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     DatabaseHelper db;
-
-    TextView welcomeTitle;
+    TextView nameTitle;
     TextView levelText;
     TextView expNeededText;
+    TextView menuFullName;
+    TextView menuLevel;
     Button optionsButton;
     Button viewQueue;
     LinearProgressIndicator progressBar;
-
     DrawerLayout drawer;
 
     @Override
@@ -42,28 +34,20 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
-                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
+        initializeDrawerMenu();
 
         db = new DatabaseHelper(this);
-        welcomeTitle = findViewById(R.id.homePageTitleText);
+        nameTitle = findViewById(R.id.homePageTitleText);
         levelText = findViewById(R.id.levelText);
         expNeededText = findViewById(R.id.expNeededText);
         optionsButton = findViewById(R.id.playButton);
         viewQueue = findViewById(R.id.viewQueueButton);
         progressBar = findViewById(R.id.progressBar);
 
+        menuFullName.setText(db.getFirstAndLastName(getCurrentUserId()));
+
         // setting First and Last name of current user
-        welcomeTitle.setText("Welcome, \n" + db.getFirstAndLastName(getCurrentUserId()));
+        nameTitle.setText(db.getFirstAndLastName(getCurrentUserId()));
 
         db.setExperiencePoints(getCurrentUserId(), "2400");
 
@@ -77,6 +61,7 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
 
         // Displaying level text as a string
         levelText.setText("LEVEL: " + String.valueOf(level));
+
 
         double expNeeded = Experience.nextLevelXpNeeded((double) exp);
         System.out.println(expNeeded);
@@ -138,6 +123,28 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
         }
     }
 
+
+    /**
+     * Initializing drawer menu.
+     */
+    public void initializeDrawerMenu() {
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        drawer = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        View headerView = navigationView.getHeaderView(0);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
+                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        menuFullName = headerView.findViewById(R.id.menuFullNameText);
+        menuLevel = headerView.findViewById(R.id.menuLevelText);
+    }
+
     /**
      * Navigates to Start Quiz, View Queue or View Quiz Options activities depending on which menu item has been click.
      * @param item The clicked menu item.
@@ -160,7 +167,11 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
                 Intent viewAllQuizOptions = new Intent(HomePageActivity.this, ViewAllOptionsActivity.class);
                 startActivity(viewAllQuizOptions);
                 break;
-                default:
+            case R.id.nav_logout:
+                Intent logout = new Intent(HomePageActivity.this, LoginActivity.class);
+                startActivity(logout);
+                break;
+            default:
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;

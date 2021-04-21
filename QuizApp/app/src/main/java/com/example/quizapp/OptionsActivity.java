@@ -1,34 +1,50 @@
 package com.example.quizapp;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.material.navigation.NavigationView;
 
 import org.json.JSONException;
 
 import java.util.ArrayList;
 
-public class OptionsActivity extends AppCompatActivity {
+public class OptionsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     DatabaseHelper db;
     Button startQuiz;
     Button addToQueue;
     Button viewQueue;
+    TextView menuFullName;
+    TextView menuLevel;
+    DrawerLayout drawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_options);
 
+        initializeDrawerMenu();
+
         db = new DatabaseHelper(this);
         startQuiz = findViewById(R.id.startQuizButton);
         addToQueue = findViewById(R.id.addToQueueButton);
         viewQueue = findViewById(R.id.viewQueueButtonFromOptions);
+
+        menuFullName.setText(db.getFirstAndLastName(getCurrentUserId()));
 
         Spinner category = findViewById(R.id.chooseCategory);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.categories, android.R.layout.simple_spinner_item);
@@ -137,4 +153,57 @@ public class OptionsActivity extends AppCompatActivity {
         return currentUserID;
     }
 
+    /**
+     * Initializing drawer menu.
+     */
+    public void initializeDrawerMenu() {
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        drawer = findViewById(R.id.drawer_layout_options);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+        View headerView = navigationView.getHeaderView(0);
+
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
+                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        menuFullName = headerView.findViewById(R.id.menuFullNameText);
+        menuLevel = headerView.findViewById(R.id.menuLevelText);
+    }
+
+    /**
+     * Navigates to Start Quiz, View Queue or View Quiz Options activities depending on which menu item has been click.
+     * @param item The clicked menu item.
+     * @return True.
+     */
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.nav_start_quiz:
+                Intent goToOptions = new Intent(OptionsActivity.this, OptionsActivity.class);
+                goToOptions.putExtra("USER_ID", getCurrentUserId());
+                startActivity(goToOptions);
+                break;
+            case R.id.nav_queue:
+                Intent goToQueue = new Intent(OptionsActivity.this, QueueActivity.class);
+                goToQueue.putExtra("USER_ID", getCurrentUserId());
+                startActivity(goToQueue);
+                break;
+            case R.id.nav_view_all_quiz_options:
+                Intent viewAllQuizOptions = new Intent(OptionsActivity.this, ViewAllOptionsActivity.class);
+                startActivity(viewAllQuizOptions);
+                break;
+            case R.id.nav_logout:
+                Intent logout = new Intent(OptionsActivity.this, LoginActivity.class);
+                startActivity(logout);
+                break;
+            default:
+        }
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
 }

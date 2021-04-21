@@ -18,7 +18,7 @@
         <TextView
             android:id="@+id/quizTitleText"
             android:layout_width="match_parent"
-            android:layout_height="75dp"
+            android:layout_height="95dp"
             android:fontFamily="@font/abel_font"
             android:gravity="center"
             android:shadowColor="#000000"
@@ -30,8 +30,8 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imageView"
-            android:layout_width="195dp"
-            android:layout_height="174dp"
+            android:layout_width="179dp"
+            android:layout_height="149dp"
             android:paddingBottom="15dp"
             android:src="@drawable/knowledge_pic" />
 

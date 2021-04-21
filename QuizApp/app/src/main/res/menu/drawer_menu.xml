@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
@@ -15,4 +16,28 @@
             android:title="View All Quiz Options"/>
     </group>
 
+    <group android:id="@+id/yes">
+        <item android:id="@+id/placeholder1"
+            android:title=" "
+            android:enabled="false"/>
+        <item android:id="@+id/placeholder2"
+            android:title=" "
+            android:enabled="false"/>
+        <item android:id="@+id/placeholder3"
+            android:title=" "
+            android:enabled="false"/>
+        <item android:id="@+id/placeholder4"
+            android:title=" "
+            android:enabled="false"/>
+        <item android:id="@+id/placeholder5"
+            android:title=" "
+            android:enabled="false"/>
+        <item android:id="@+id/placeholder6"
+            android:title=" "
+            android:enabled="false"/>
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_logout"
+            android:title="Logout" />
+    </group>
 </menu>

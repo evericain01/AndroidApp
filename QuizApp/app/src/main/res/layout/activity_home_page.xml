@@ -29,13 +29,15 @@
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
+
+    </FrameLayout>
 
     <TextView
         android:id="@+id/levelText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="230dp"
+        android:layout_marginTop="290dp"
         android:fontFamily="@font/abel_font"
         android:shadowColor="#000000"
         android:shadowRadius="10"
@@ -49,14 +51,14 @@
 
     <TextView
         android:id="@+id/homePageTitleText"
-        android:layout_width="313dp"
-        android:layout_height="92dp"
+        android:layout_width="319dp"
+        android:layout_height="58dp"
         android:layout_marginTop="100dp"
         android:fontFamily="@font/abel_font"
         android:gravity="center"
         android:shadowColor="#000000"
         android:shadowRadius="40"
-        android:text="Welcome, *NAME*"
+        android:text="*NAME*"
         android:textColor="#70D0FB"
         android:textSize="35dp"
         android:textStyle="bold"
@@ -65,11 +67,38 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="65dp"
+        android:fontFamily="@font/abel_font"
+        android:gravity="center"
+        android:shadowColor="#000000"
+        android:shadowRadius="40"
+        android:text="Welcome,"
+        android:textColor="#70D0FB"
+        android:textSize="35dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/toolbar" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="127dp"
+        android:layout_height="95dp"
+        android:layout_marginTop="180sp"
+        android:layout_marginRight="6sp"
+        android:src="@drawable/avatar_ico"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <com.google.android.material.progressindicator.LinearProgressIndicator
         android:id="@+id/progressBar"
         android:layout_width="249dp"
         android:layout_height="35dp"
-        android:layout_marginTop="280dp"
+        android:layout_marginTop="340dp"
         android:indeterminate="false"
         app:indicatorColor="#8DFB70"
         app:layout_constraintEnd_toEndOf="parent"
@@ -82,8 +111,9 @@
         android:id="@+id/playButton"
         android:layout_width="148dp"
         android:layout_height="60dp"
-        android:layout_marginTop="340dp"
+        android:layout_marginTop="430dp"
         android:fontFamily="@font/abel_font"
+        android:background="@drawable/home_page_play_button"
         android:text="Play!"
         android:textSize="32dp"
         android:textStyle="bold"
@@ -94,9 +124,9 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/viewQueueButton"
-        android:layout_width="216dp"
-        android:layout_height="72dp"
-        android:layout_marginTop="415dp"
+        android:layout_width="221dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="510dp"
         android:background="@drawable/home_page_queue_button"
         android:fontFamily="@font/abel_font"
         android:text="VIEW YOUR QUEUE"
@@ -111,7 +141,7 @@
         android:id="@+id/expNeededText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="260dp"
+        android:layout_marginTop="320dp"
         android:fontFamily="@font/abel_font"
         android:text=" :EXP"
         android:shadowColor="#000000"

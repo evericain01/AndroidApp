@@ -29,10 +29,9 @@
         android:id="@+id/swipeRecyclerView"
         android:layout_width="385dp"
         android:layout_height="527dp"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="204dp"
         android:fontFamily="@font/abel_font"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
