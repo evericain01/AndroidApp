@@ -4,8 +4,10 @@
 
     <item android:id="@+id/modifyProfile"
         android:title="Modify Profile"
+        android:fontFamily="@font/abel_font"
         app:showAsAction="never"/>
     <item android:id="@+id/logoutOption"
+        android:fontFamily="@font/abel_font"
         android:title="Logout"
         app:showAsAction="never"/>
 </menu>

@@ -29,18 +29,21 @@
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
 
     </FrameLayout>
 
     <TextView
         android:id="@+id/levelText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="95dp"
+        android:layout_height="31dp"
         android:layout_marginTop="290dp"
         android:fontFamily="@font/abel_font"
         android:shadowColor="#000000"
         android:shadowRadius="10"
+        android:textAlignment="center"
         android:text="Level: "
         android:textColor="#70BEFB"
         android:textSize="25dp"
@@ -107,11 +110,41 @@
         app:trackCornerRadius="6dp"
         app:trackThickness="11dp" />
 
+    <TextView
+        android:id="@+id/expNeededText"
+        android:layout_width="95dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="375dp"
+        android:fontFamily="@font/abel_font"
+        android:shadowColor="#000000"
+        android:shadowRadius="4"
+        android:text="exp"
+        android:textAlignment="center"
+        android:textSize="19dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/toolbar" />
+
+    <TextView
+        android:id="@+id/expNeededTextText"
+        android:layout_width="207dp"
+        android:layout_height="23dp"
+        android:layout_marginTop="400dp"
+        android:fontFamily="@font/abel_font"
+        android:gravity="center"
+        android:shadowColor="#000000"
+        android:shadowRadius="4"
+        android:text="NEEDED FOR NEXT LEVEL UP"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/playButton"
         android:layout_width="148dp"
         android:layout_height="60dp"
-        android:layout_marginTop="430dp"
+        android:layout_marginTop="470dp"
         android:fontFamily="@font/abel_font"
         android:background="@drawable/home_page_play_button"
         android:text="Play!"
@@ -126,7 +159,7 @@
         android:id="@+id/viewQueueButton"
         android:layout_width="221dp"
         android:layout_height="52dp"
-        android:layout_marginTop="510dp"
+        android:layout_marginTop="550dp"
         android:background="@drawable/home_page_queue_button"
         android:fontFamily="@font/abel_font"
         android:text="VIEW YOUR QUEUE"
@@ -134,21 +167,6 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/expNeededText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="320dp"
-        android:fontFamily="@font/abel_font"
-        android:text=" :EXP"
-        android:shadowColor="#000000"
-        android:shadowRadius="4"
-        android:textColor="#70BEFB"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.788"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

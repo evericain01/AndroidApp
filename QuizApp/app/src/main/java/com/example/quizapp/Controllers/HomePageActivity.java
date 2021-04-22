@@ -31,6 +31,7 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
     Toolbar toolbar;
     LinearProgressIndicator progressBar;
     DrawerLayout drawer;
+    int level;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,46 +41,15 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        initializeDrawerMenu();
-
         db = new DatabaseHelper(this);
         nameTitle = findViewById(R.id.homePageTitleText);
-        levelText = findViewById(R.id.levelText);
-        expNeededText = findViewById(R.id.expNeededText);
         optionsButton = findViewById(R.id.playButton);
         viewQueue = findViewById(R.id.viewQueueButton);
-        progressBar = findViewById(R.id.progressBar);
 
-        menuFullName.setText(db.getFirstAndLastName(getCurrentUserId()));
         nameTitle.setText(db.getFirstAndLastName(getCurrentUserId()));
 
-//--------------------------------------------------------------------------------------------------
-        // Experience:
-
-        db.setExperiencePoints(getCurrentUserId(), "2590");
-
-        // gets the total experience points of the current user (max 100)
-        int exp = Integer.parseInt(db.getExperiencePoints(getCurrentUserId()));
-        System.out.println(exp);
-
-        // Calculating level based on experience
-        int level = Experience.calculateLevel((double) exp);
-        System.out.println("Level:" + level);
-
-        // Displaying level text as a string
-        levelText.setText("LEVEL: " + String.valueOf(level));
-
-        double expNeeded = Experience.nextLevelXpNeeded(exp);
-        System.out.println("Exp needed:" + expNeeded);
-
-        expNeededText.setText(String.valueOf(expNeeded) + " :EXP NEEDED");
-
-        int barProgression = Experience.progressionRate((double) exp);
-        System.out.println("Bar Progression: " + barProgression);
-
-        // sets the value of the progress bar (progress bar can only take a max of 100)
-        progressBar.setProgressCompat(barProgression, true);
-//--------------------------------------------------------------------------------------------------
+        experienceHelper();
+        initializeDrawerMenu();
 
         optionsButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,9 +66,37 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
                 Intent goToQueue = new Intent(HomePageActivity.this, QueueActivity.class);
                 goToQueue.putExtra("USER_ID", getCurrentUserId());
                 startActivity(goToQueue);
-
             }
         });
+    }
+
+    public void experienceHelper() {
+        levelText = findViewById(R.id.levelText);
+        expNeededText = findViewById(R.id.expNeededText);
+        progressBar = findViewById(R.id.progressBar);
+
+        // Gets the total experience points of the current user (max 100)
+        int exp = Integer.parseInt(db.getExperiencePoints(getCurrentUserId()));
+        System.out.println(exp);
+
+        // Calculating level based on experience
+        level = Experience.calculateLevel((double) exp);
+        System.out.println("Level: " + level);
+
+        // Displaying level text as a string
+        levelText.setText("LEVEL: " + String.valueOf(level));
+
+        // Gets the experience needed to level up
+        double expNeeded = Experience.nextLevelXpNeeded(exp);
+        System.out.println("Exp needed:" + expNeeded);
+        expNeededText.setText(String.valueOf((int) expNeeded) + " EXP NEED FOR LEVEL UP");
+
+        // Getting progressionRate through level.
+        int barProgression = Experience.progressionRate((double) exp);
+        System.out.println("Bar Progression: " + barProgression);
+
+        // sets the value of the progress bar (progress bar can only take a max of 100)
+        progressBar.setProgressCompat(barProgression, true);
     }
 
     /**
@@ -132,7 +130,10 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
         toggle.syncState();
 
         menuFullName = headerView.findViewById(R.id.menuFullNameText);
+        menuFullName.setText(db.getFirstAndLastName(getCurrentUserId()));
         menuLevel = headerView.findViewById(R.id.menuLevelText);
+        menuLevel.setText("Level " + String.valueOf(level));
+        System.out.println("Level: " + level);
     }
 
     /**

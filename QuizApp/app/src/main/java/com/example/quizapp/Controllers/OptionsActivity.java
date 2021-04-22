@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.quizapp.Models.DatabaseHelper;
+import com.example.quizapp.Models.Experience;
 import com.example.quizapp.R;
 import com.google.android.material.navigation.NavigationView;
 
@@ -31,6 +32,7 @@ public class OptionsActivity extends AppCompatActivity implements NavigationView
     TextView menuFullName, menuLevel;
     Toolbar toolbar;
     DrawerLayout drawer;
+    int level;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,14 +42,12 @@ public class OptionsActivity extends AppCompatActivity implements NavigationView
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        initializeDrawerMenu();
-
         db = new DatabaseHelper(this);
         startQuiz = findViewById(R.id.startQuizButton);
         addToQueue = findViewById(R.id.addToQueueButton);
         viewQueue = findViewById(R.id.viewQueueButtonFromOptions);
 
-        menuFullName.setText(db.getFirstAndLastName(getCurrentUserId()));
+        initializeDrawerMenu();
 
         Spinner category = findViewById(R.id.chooseCategory);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.categories, android.R.layout.simple_spinner_item);
@@ -169,9 +169,16 @@ public class OptionsActivity extends AppCompatActivity implements NavigationView
     }
 
     /**
-     * Initializing drawer menu.
+     * Initializing drawer menu, setting name and level into it.
      */
     public void initializeDrawerMenu() {
+        // Gets the total experience points of the current user (max 100)
+        int exp = Integer.parseInt(db.getExperiencePoints(getCurrentUserId()));
+
+        // Calculating level based on experience
+        level = Experience.calculateLevel((double) exp);
+        System.out.println("Level: " + level);
+
         drawer = findViewById(R.id.drawer_layout_options);
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -183,7 +190,9 @@ public class OptionsActivity extends AppCompatActivity implements NavigationView
         toggle.syncState();
 
         menuFullName = headerView.findViewById(R.id.menuFullNameText);
+        menuFullName.setText(db.getFirstAndLastName(getCurrentUserId()));
         menuLevel = headerView.findViewById(R.id.menuLevelText);
+        menuLevel.setText("Level " + String.valueOf(level));
     }
 
     /**

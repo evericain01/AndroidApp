@@ -65,14 +65,8 @@ public class SwipeAdapter extends RecyclerView.Adapter<SwipeAdapter.SwipeViewHol
     public int getItemCount() { return questionHandlerList.size(); }
 
     public class SwipeViewHolder extends RecyclerView.ViewHolder {
-        TextView id;
-        TextView queueNumber;
-        TextView category;
-        TextView difficulty;
-        TextView type;
-        TextView amount;
-        Button play;
-        Button delete;
+        TextView id, queueNumber, category, difficulty, type, amount;
+        Button play, delete;
         SwipeRevealLayout swipeLayout;
 
         public SwipeViewHolder(@NonNull View ItemView) {

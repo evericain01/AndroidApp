@@ -6,12 +6,15 @@
 
     <group android:checkableBehavior="single">
         <item android:id="@+id/nav_start_quiz"
+            android:fontFamily="@font/abel_font"
             android:icon="@drawable/ic_start_quiz_ico"
             android:title="Begin Quiz"/>
         <item android:id="@+id/nav_queue"
+            android:fontFamily="@font/abel_font"
             android:icon="@drawable/ic_queue_ico"
             android:title="View Queue"/>
         <item android:id="@+id/nav_view_all_quiz_options"
+            android:fontFamily="@font/abel_font"
             android:icon="@drawable/ic_view_all_quiz_ico"
             android:title="View All Quiz Options"/>
     </group>
@@ -37,6 +40,7 @@
             android:enabled="false"/>
         <item
             android:id="@+id/nav_logout"
+            android:fontFamily="@font/abel_font"
             android:icon="@drawable/ic_logout"
             android:title="Logout" />
     </group>
