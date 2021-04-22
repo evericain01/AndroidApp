@@ -1,4 +1,4 @@
-package com.example.quizapp;
+package com.example.quizapp.Controllers;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -11,6 +11,8 @@ import android.os.strictmode.SqliteObjectLeakedViolation;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
+
+import com.example.quizapp.QuestionHandler;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

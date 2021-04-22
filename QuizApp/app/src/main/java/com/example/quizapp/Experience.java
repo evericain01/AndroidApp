@@ -55,7 +55,7 @@ public class Experience {
         // Difference between the next level total experience and the current level total experience.
         double levelXpDiff = nextLevelXp - currLevelXp;
         // Difference between the current experience and the difference of experience of the two levels.
-        double xpDiff = currentExperience - levelXpDiff;
+        double xpDiff = currentExperience - currLevelXp;
 
         // Gets how far along a user is in a current level, based off of the difference of the level
         // experience difference and the xp difference divided by the level xp difference.
@@ -74,15 +74,11 @@ public class Experience {
         // Get the current level based on the current player experience.
         int currLevel =  calculateLevel(currentExperience);
 
-        // Calculate the experience of the current level and the next level.
-        double currLevelXp = calculateLevelExperience(currLevel);
+        //Calculates the xp needed for the next level.
         double nextLevelXp = calculateLevelExperience(currLevel + 1);
 
-        // Difference between the next level total experience and the current level total experience.
-        double levelXpDiff = nextLevelXp - currLevelXp;
-
         // Difference between the current experience and the difference of experience of the two levels.
-        return currentExperience - levelXpDiff;
+        return nextLevelXp - currentExperience;
     }
 
     /**
@@ -92,7 +88,7 @@ public class Experience {
      * @return The experience needed to obtain a specified level.
      */
     private static double calculateLevelExperience(int level) {
-        return (Math.pow(level, 2) / LEVEL_CONST);
+        return (Math.pow(level, 2) / (LEVEL_CONST / 10));
     }
 
     /**
@@ -102,8 +98,6 @@ public class Experience {
      * @return The level the user is at.
      */
     public static int calculateLevel(double currentExperience) {
-        int currLevel;
-
         return (int)(LEVEL_CONST * Math.sqrt(currentExperience));
     }
 
