@@ -1,4 +1,4 @@
-package com.example.quizapp;
+package com.example.quizapp.Models;
 
 import org.json.JSONArray;
 import org.json.JSONException;

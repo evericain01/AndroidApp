@@ -1,4 +1,4 @@
-package com.example.quizapp;
+package com.example.quizapp.Controllers;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,7 +10,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.json.JSONException;
+import com.example.quizapp.Models.DatabaseHelper;
+import com.example.quizapp.R;
 
 public class LoginActivity extends AppCompatActivity {
     EditText usernameInput, passwordInput;

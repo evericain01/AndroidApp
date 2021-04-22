@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MultipleChoiceQuiz">
+    tools:context=".Controllers.MultipleChoiceQuiz">
 
     <fragment
         android:id="@+id/fragment"
-        android:name="com.example.quizapp.MultipleChoice"
+        android:name="com.example.quizapp.Controllers.MultipleChoice"
         android:layout_width="411dp"
         android:layout_height="566dp"
         app:layout_constraintBottom_toBottomOf="parent"

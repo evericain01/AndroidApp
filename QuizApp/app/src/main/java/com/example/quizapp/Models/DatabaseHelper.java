@@ -1,18 +1,12 @@
-package com.example.quizapp.Controllers;
+package com.example.quizapp.Models;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.inputmethodservice.Keyboard;
-import android.os.strictmode.SqliteObjectLeakedViolation;
-import android.util.Log;
 
 import androidx.annotation.Nullable;
-
-import com.example.quizapp.QuestionHandler;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

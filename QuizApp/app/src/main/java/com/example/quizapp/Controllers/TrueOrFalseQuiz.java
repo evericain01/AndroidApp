@@ -1,10 +1,12 @@
-package com.example.quizapp;
+package com.example.quizapp.Controllers;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.os.Bundle;
+
+import com.example.quizapp.R;
 
 public class TrueOrFalseQuiz extends AppCompatActivity {
 

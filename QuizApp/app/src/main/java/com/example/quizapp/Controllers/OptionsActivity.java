@@ -1,4 +1,4 @@
-package com.example.quizapp;
+package com.example.quizapp.Controllers;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -21,11 +21,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.quizapp.Models.DatabaseHelper;
+import com.example.quizapp.R;
 import com.google.android.material.navigation.NavigationView;
-
-import org.json.JSONException;
-
-import java.util.ArrayList;
 
 public class OptionsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     DatabaseHelper db;

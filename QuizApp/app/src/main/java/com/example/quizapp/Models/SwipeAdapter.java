@@ -1,28 +1,20 @@
-package com.example.quizapp;
+package com.example.quizapp.Models;
 
-import android.app.Activity;
 import android.content.Context;
-import android.graphics.Typeface;
-import android.text.Html;
-import android.text.Spanned;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.view.menu.MenuView;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.text.HtmlCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.chauthai.swipereveallayout.SwipeRevealLayout;
 import com.chauthai.swipereveallayout.ViewBinderHelper;
+import com.example.quizapp.R;
 
 import java.util.List;
 

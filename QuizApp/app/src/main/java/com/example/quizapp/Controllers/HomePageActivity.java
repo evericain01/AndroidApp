@@ -1,4 +1,4 @@
-package com.example.quizapp;
+package com.example.quizapp.Controllers;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -18,6 +18,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.quizapp.Models.DatabaseHelper;
+import com.example.quizapp.Models.Experience;
+import com.example.quizapp.R;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 
@@ -53,7 +56,7 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
 //--------------------------------------------------------------------------------------------------
         // Experience:
 
-        db.setExperiencePoints(getCurrentUserId(), "2400");
+        db.setExperiencePoints(getCurrentUserId(), "2590");
 
         // gets the total experience points of the current user (max 100)
         int exp = Integer.parseInt(db.getExperiencePoints(getCurrentUserId()));
@@ -61,13 +64,13 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
 
         // Calculating level based on experience
         int level = Experience.calculateLevel((double) exp);
-        System.out.println(level);
+        System.out.println("Level:" + level);
 
         // Displaying level text as a string
         levelText.setText("LEVEL: " + String.valueOf(level));
 
-        double expNeeded = Experience.nextLevelXpNeeded((double) exp);
-        System.out.println(expNeeded);
+        double expNeeded = Experience.nextLevelXpNeeded(exp);
+        System.out.println("Exp needed:" + expNeeded);
 
         expNeededText.setText(String.valueOf(expNeeded) + " :EXP NEEDED");
 

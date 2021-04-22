@@ -1,4 +1,4 @@
-package com.example.quizapp;
+package com.example.quizapp.Controllers;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +18,11 @@ import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.example.quizapp.Models.DatabaseHelper;
+import com.example.quizapp.Models.QuestionHandler;
+import com.example.quizapp.Models.SwipeAdapter;
+import com.example.quizapp.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;

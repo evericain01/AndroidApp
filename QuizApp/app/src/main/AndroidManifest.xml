@@ -11,18 +11,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.QuizApp">
-        <activity android:name=".ModifyProfileActivity" />
-        <activity android:name=".ViewAllOptionsActivity" />
-        <activity android:name=".TrueOrFalseQuiz" />
-        <activity android:name=".MultipleChoiceQuiz" />
-        <activity android:name=".QueueActivity" />
+        <activity android:name=".Controllers.ModifyProfileActivity" />
+        <activity android:name=".Controllers.ViewAllOptionsActivity" />
+        <activity android:name=".Controllers.TrueOrFalseQuiz" />
+        <activity android:name=".Controllers.MultipleChoiceQuiz" />
+        <activity android:name=".Controllers.QueueActivity" />
         <activity
-            android:name=".HomePageActivity"
+            android:name=".Controllers.HomePageActivity"
             android:theme="@style/Theme.QuizApp.NoActionBar" />
-        <activity android:name=".ProfileCreationActivity" />
-        <activity android:name=".OptionsActivity" />
-        <activity android:name=".RegistrationActivity" />
-        <activity android:name=".LoginActivity">
+        <activity android:name=".Controllers.ProfileCreationActivity" />
+        <activity android:name=".Controllers.OptionsActivity" />
+        <activity android:name=".Controllers.RegistrationActivity" />
+        <activity android:name=".Controllers.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

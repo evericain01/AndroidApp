@@ -1,4 +1,4 @@
-package com.example.quizapp;
+package com.example.quizapp.Controllers;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,11 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import org.json.JSONException;
-
-import java.util.ArrayList;
+import com.example.quizapp.Models.QuestionHandler;
+import com.example.quizapp.R;
 
 /**
  * A simple {@link Fragment} subclass.

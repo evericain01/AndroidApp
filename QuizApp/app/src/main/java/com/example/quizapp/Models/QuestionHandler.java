@@ -1,4 +1,4 @@
-package com.example.quizapp;
+package com.example.quizapp.Models;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -116,7 +116,7 @@ public class QuestionHandler extends ApiHandler {
      *
      * @return True if it successfully generated questions, false if it didn't generate any questions.
      */
-    protected boolean generateQuestions() {
+    public boolean generateQuestions() {
         boolean flag = true;
         originalJsonArr = generateQuestionsArray(amount, category, difficulty, type);
 
