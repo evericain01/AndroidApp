@@ -25,11 +25,11 @@ Required Implementations:
 <strike>12) Use at least two layout managers (other than linear layout manager).</strike> <br />
 <strike>13) Use your own custom styles: color, dimensions, etc.</strike> <br />
 <strike>14) Use event listeners other than the click listener. Example: touch, swipe, keyboard, etc.</strike> <br />
-<strike>15) Use Android notification: your application should generate notifications with embedded actions of your choice. <br />
+15) Use Android notification: your application should generate notifications with embedded actions of your choice. <br />
 <strike>16) SQLITE database: your database must contain at least 3 tables.</strike> <br />
 <strike>17) Use the MVC (Model View Controller) pattern: as instructed and demonstrated in class.</strike> <br />
 <strike>18) Shared preferences or raw files to persist any kind of data. For example, caching the responses of API calls, user actions, user profile, etc.</strike> <br />
-<strike>19) Playing sound: using the Android MediaPlayer class. <br />
-<strike>20) Localization: the user interface (UI) of your application should be available in two different languages. That is, English and any other language of your choice. <br />
+19) Playing sound: using the Android MediaPlayer class. <br />
+20) Localization: the user interface (UI) of your application should be available in two different languages. That is, English and any other language of your choice. <br />
 <strike>21) Networking: your application should consume at least one web service (REST-based API) that provides JSON data of your choice. Bear in mind that your choice of API must be consistent, relevant and somehow related to the context of your application.</strike> <br />
-<strike>22) Document your application in a README.md (Markdown document). <br />
+22) Document your application in a README.md (Markdown document). <br />
