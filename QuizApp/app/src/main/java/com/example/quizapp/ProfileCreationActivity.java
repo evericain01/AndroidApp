@@ -13,8 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class ProfileCreationActivity extends AppCompatActivity {
-    EditText firstNameInput;
-    EditText lastNameInput;
+    EditText firstNameInput, lastNameInput;
     Button createProfileButton;
     DatabaseHelper db;
 

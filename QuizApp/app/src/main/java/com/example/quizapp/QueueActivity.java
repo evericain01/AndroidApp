@@ -24,7 +24,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class QueueActivity extends AppCompatActivity {
-    private DatabaseHelper db;
+    DatabaseHelper db;
     RecyclerView recyclerView;
     SwipeAdapter swipeAdapter;
     List<QuestionHandler> quizzes = new ArrayList<>();
@@ -94,6 +94,12 @@ public class QueueActivity extends AppCompatActivity {
         return currentUserID;
     }
 
+    /**
+     * Initializing the options menu.
+     *
+     * @param menu The desired menu format.
+     * @return true;
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -101,6 +107,12 @@ public class QueueActivity extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * Navigates to Modify Profile or Logout depending on which option menu item has been click.
+     *
+     * @param item The item in the options menu.
+     * @return True.
+     */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {

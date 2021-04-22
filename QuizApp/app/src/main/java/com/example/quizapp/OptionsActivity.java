@@ -29,11 +29,8 @@ import java.util.ArrayList;
 
 public class OptionsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     DatabaseHelper db;
-    Button startQuiz;
-    Button addToQueue;
-    Button viewQueue;
-    TextView menuFullName;
-    TextView menuLevel;
+    Button startQuiz, addToQueue, viewQueue;
+    TextView menuFullName, menuLevel;
     Toolbar toolbar;
     DrawerLayout drawer;
 
@@ -193,6 +190,7 @@ public class OptionsActivity extends AppCompatActivity implements NavigationView
 
     /**
      * Navigates to Start Quiz, View Queue or View Quiz Options activities depending on which menu item has been click.
+     *
      * @param item The clicked menu item.
      * @return True.
      */
@@ -233,6 +231,12 @@ public class OptionsActivity extends AppCompatActivity implements NavigationView
         return true;
     }
 
+    /**
+     * Initializing the options menu.
+     *
+     * @param menu The desired menu format.
+     * @return true;
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -240,6 +244,12 @@ public class OptionsActivity extends AppCompatActivity implements NavigationView
         return true;
     }
 
+    /**
+     * Navigates to Modify Profile or Logout depending on which option menu item has been click.
+     *
+     * @param item The item in the options menu.
+     * @return True.
+     */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
@@ -264,6 +274,19 @@ public class OptionsActivity extends AppCompatActivity implements NavigationView
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    /**
+     * When pressing the back button as the drawer menu is toggled.
+     * It will simply close the drawer menu instead of quitting the entire activity.
+     */
+    @Override
+    public void onBackPressed() {
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
         }
     }
 }

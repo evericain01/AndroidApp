@@ -11,14 +11,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class ModifyProfileActivity extends AppCompatActivity {
-    EditText newFirstName;
-    EditText newLastName;
-    EditText oldPassword;
-    EditText newPassword;
-    EditText retypeNewPassword;
-
+    EditText newFirstName, newLastName, oldPassword, newPassword, retypeNewPassword;
     Button confirmChanges;
-
     DatabaseHelper db;
 
     @Override

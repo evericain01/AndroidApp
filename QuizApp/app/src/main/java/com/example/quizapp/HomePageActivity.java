@@ -23,13 +23,8 @@ import com.google.android.material.progressindicator.LinearProgressIndicator;
 
 public class HomePageActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     DatabaseHelper db;
-    TextView nameTitle;
-    TextView levelText;
-    TextView expNeededText;
-    TextView menuFullName;
-    TextView menuLevel;
-    Button optionsButton;
-    Button viewQueue;
+    TextView nameTitle, levelText, expNeededText, menuFullName, menuLevel;
+    Button optionsButton, viewQueue;
     Toolbar toolbar;
     LinearProgressIndicator progressBar;
     DrawerLayout drawer;
@@ -53,9 +48,10 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
         progressBar = findViewById(R.id.progressBar);
 
         menuFullName.setText(db.getFirstAndLastName(getCurrentUserId()));
-
-        // setting First and Last name of current user
         nameTitle.setText(db.getFirstAndLastName(getCurrentUserId()));
+
+//--------------------------------------------------------------------------------------------------
+        // Experience:
 
         db.setExperiencePoints(getCurrentUserId(), "2400");
 
@@ -70,7 +66,6 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
         // Displaying level text as a string
         levelText.setText("LEVEL: " + String.valueOf(level));
 
-
         double expNeeded = Experience.nextLevelXpNeeded((double) exp);
         System.out.println(expNeeded);
 
@@ -81,6 +76,7 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
 
         // sets the value of the progress bar (progress bar can only take a max of 100)
         progressBar.setProgressCompat(barProgression, true);
+//--------------------------------------------------------------------------------------------------
 
         optionsButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,40 +98,6 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
         });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.options_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.modifyProfile:
-                Intent modifyProfile = new Intent(HomePageActivity.this, ModifyProfileActivity.class);
-                modifyProfile.putExtra("USER_ID", getCurrentUserId());
-                startActivity(modifyProfile);
-                return true;
-            case R.id.logoutOption:
-                new AlertDialog.Builder(this)
-                        .setMessage("Are you sure you want to logout?")
-                        .setCancelable(false)
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                HomePageActivity.super.onBackPressed();
-                                Intent logout = new Intent(HomePageActivity.this, LoginActivity.class);
-                                startActivity(logout);
-                            }
-                        })
-                        .setNegativeButton("No", null)
-                        .show();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
     /**
      * Gets the current user ID.
      *
@@ -151,20 +113,6 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
 
         return currentUserID;
     }
-
-    /**
-     * When pressing the back button as the drawer menu is toggled.
-     * It will simply close the drawer menu instead of quitting the entire activity.
-     */
-    @Override
-    public void onBackPressed() {
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
-
 
     /**
      * Initializing drawer menu.
@@ -224,6 +172,65 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    /**
+     * Initializing the options menu.
+     *
+     * @param menu The desired menu format.
+     * @return true;
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.options_menu, menu);
+        return true;
+    }
+
+    /**
+     * Navigates to Modify Profile or Logout depending on which option menu item has been click.
+     *
+     * @param item The item in the options menu.
+     * @return True.
+     */
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.modifyProfile:
+                Intent modifyProfile = new Intent(HomePageActivity.this, ModifyProfileActivity.class);
+                modifyProfile.putExtra("USER_ID", getCurrentUserId());
+                startActivity(modifyProfile);
+                return true;
+            case R.id.logoutOption:
+                new AlertDialog.Builder(this)
+                        .setMessage("Are you sure you want to logout?")
+                        .setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                HomePageActivity.super.onBackPressed();
+                                Intent logout = new Intent(HomePageActivity.this, LoginActivity.class);
+                                startActivity(logout);
+                            }
+                        })
+                        .setNegativeButton("No", null)
+                        .show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    /**
+     * When pressing the back button as the drawer menu is toggled.
+     * It will simply close the drawer menu instead of quitting the entire activity.
+     */
+    @Override
+    public void onBackPressed() {
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
     }
 
 }

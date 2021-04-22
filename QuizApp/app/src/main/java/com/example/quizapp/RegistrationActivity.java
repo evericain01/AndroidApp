@@ -12,9 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class RegistrationActivity extends AppCompatActivity {
-    EditText usernameInput;
-    EditText passwordInput;
-    EditText confirmPasswordInput;
+    EditText usernameInput, passwordInput, confirmPasswordInput;
     Button registerButton;
     TextView loginHereText;
     DatabaseHelper db;

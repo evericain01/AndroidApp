@@ -19,16 +19,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 public class ViewAllOptionsActivity extends AppCompatActivity {
-    Button viewCategories;
-    Button viewDifficulties;
-    Button viewTypes;
-    Button viewAmounts;
-
-    ImageView categoryPic;
-    ImageView difficultyPic;
-    ImageView typePic;
-    ImageView amountPic;
-
+    Button viewCategories, viewDifficulties, viewTypes, viewAmounts;
+    ImageView categoryPic, difficultyPic, typePic, amountPic;
     Toolbar toolbar;
 
     @Override
@@ -81,9 +73,29 @@ public class ViewAllOptionsActivity extends AppCompatActivity {
                 getAmounts(ViewAllOptionsActivity.this);
             }
         });
-
     }
 
+    /**
+     * Gets the current user ID.
+     *
+     * @return The user ID as a String.
+     */
+    public String getCurrentUserId() {
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        String currentUserID = "";
+        if (bundle != null) {
+            currentUserID = (String) bundle.get("USER_ID");
+        }
+
+        return currentUserID;
+    }
+
+    /**
+     * Creates a dialog displaying all categories.
+     *
+     * @param context This activity context.
+     */
     public void getCategories(Context context) {
         AlertDialog dialog = new AlertDialog.Builder(context).create();
         dialog.setTitle("Categories:");
@@ -96,6 +108,11 @@ public class ViewAllOptionsActivity extends AppCompatActivity {
         dialog.show();
     }
 
+    /**
+     * Creates a dialog displaying all difficulties.
+     *
+     * @param context This activity context.
+     */
     public void getDifficulties(Context context) {
         AlertDialog dialog = new AlertDialog.Builder(context).create();
         dialog.setTitle("Difficulties:");
@@ -104,6 +121,11 @@ public class ViewAllOptionsActivity extends AppCompatActivity {
         dialog.show();
     }
 
+    /**
+     * Creates a dialog displaying all types.
+     *
+     * @param context This activity context.
+     */
     public void getType(Context context) {
         AlertDialog dialog = new AlertDialog.Builder(context).create();
         dialog.setTitle("Types:");
@@ -112,6 +134,11 @@ public class ViewAllOptionsActivity extends AppCompatActivity {
         dialog.show();
     }
 
+    /**
+     * Creates a dialog displaying all amounts.
+     *
+     * @param context This activity context.
+     */
     public void getAmounts(Context context) {
         AlertDialog dialog = new AlertDialog.Builder(context).create();
         dialog.setTitle("Amount of Questions:");
@@ -120,6 +147,12 @@ public class ViewAllOptionsActivity extends AppCompatActivity {
         dialog.show();
     }
 
+    /**
+     * Initializing the options menu.
+     *
+     * @param menu The desired menu format.
+     * @return true;
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -127,6 +160,12 @@ public class ViewAllOptionsActivity extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * Navigates to Modify Profile or Logout depending on which option menu item has been click.
+     *
+     * @param item The item in the options menu.
+     * @return True.
+     */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
@@ -152,22 +191,6 @@ public class ViewAllOptionsActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
-
-    /**
-     * Gets the current user ID.
-     *
-     * @return The user ID as a String.
-     */
-    public String getCurrentUserId() {
-        Intent intent = getIntent();
-        Bundle bundle = intent.getExtras();
-        String currentUserID = "";
-        if (bundle != null) {
-            currentUserID = (String) bundle.get("USER_ID");
-        }
-
-        return currentUserID;
     }
 
 }

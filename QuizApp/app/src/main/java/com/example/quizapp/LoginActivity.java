@@ -13,8 +13,7 @@ import android.widget.Toast;
 import org.json.JSONException;
 
 public class LoginActivity extends AppCompatActivity {
-    EditText usernameInput;
-    EditText passwordInput;
+    EditText usernameInput, passwordInput;
     Button loginButton;
     TextView registerHereText;
     DatabaseHelper db;
