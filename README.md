@@ -2,7 +2,7 @@
 
 Bugs:
 
-Something might be wrong with the Experience logic. <br /> <br />
+<strike>Something might be wrong with the Experience logic.</strike> <br /> <br />
 
 Dropping the tables usually dont work. <br />
 If it doesnt work, simply go to your emulator, uninstall the app, and re-run. This wipes the entire database. Which means you have to re-input values into it. <br />
