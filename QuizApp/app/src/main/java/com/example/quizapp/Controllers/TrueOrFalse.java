@@ -24,7 +24,6 @@ public class TrueOrFalse extends Fragment {
     Button tButton, fButton;
     int counter;
     int score;
-    int currentScore;
     TextView questionBox, scoreBoard;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -115,7 +114,6 @@ public class TrueOrFalse extends Fragment {
     }
 
     public void forLoopHelper(QuestionHandler handler) {
-        System.out.println(handler.getAnswers());
         scoreBoard.setText(score + "");
         questionBox.setText(handler.getQuestions().get(counter));
         tButton = getActivity().findViewById(R.id.trueButton);
