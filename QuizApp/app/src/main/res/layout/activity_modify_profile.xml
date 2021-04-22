@@ -73,8 +73,7 @@
             android:background="@drawable/rounded_edittext"
             android:fontFamily="@font/abel_font"
             android:paddingStart="3dp"
-            android:hint=" Last Name"
-            android:inputType="textPassword" />
+            android:hint=" Last Name" />
         <View
             android:layout_width="300dp"
             android:layout_height="2dp"
@@ -154,7 +153,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/registerButton"
+        android:id="@+id/confirmChangesButton"
         android:layout_width="wrap_content"
         android:layout_height="52dp"
         android:layout_marginTop="20dp"

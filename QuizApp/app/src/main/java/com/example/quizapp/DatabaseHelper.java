@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.inputmethodservice.Keyboard;
 import android.os.strictmode.SqliteObjectLeakedViolation;
@@ -201,19 +202,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * Updates the current user's username.
-     *
-     * @param id The user ID.
-     * @param newUserName the new username.
-     */
-    public void updateUserName(String id, String newUserName) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put("user_name", newUserName);
-        db.update(USER_TABLE, values, "user_id = ?", new String[]{id});
-    }
-
-    /**
      * Updates the current user's password.
      *
      * @param id The user ID.
@@ -244,8 +232,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         boolean valid;
         valid = cursor.getCount() > 0;
 
-        db.close();
         cursor.close();
+        db.close();
 
         return valid;
     }
@@ -288,7 +276,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * @return The current user ID.
      */
     public String getCurrentUserID(String username) {
-        SQLiteDatabase db = getReadableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase();
 
         String query = "SELECT user_id FROM user WHERE username = ?";
         String[] parameters = new String[] { username };
@@ -309,7 +297,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public String getFirstAndLastName(String userID) {
         String result = "";
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM profile WHERE user_id=" + userID, null);
+
+        String[] params = new String[]{ userID };
+
+        Cursor cursor = db.rawQuery("SELECT * FROM profile WHERE user_id = ?", params);
         if (cursor.moveToFirst()) {
             result = cursor.getString(cursor.getColumnIndex("first_name"));
             result += " ";
@@ -329,7 +320,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public String getExperiencePoints(String userID) {
         String result = "";
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM profile WHERE user_id=" + userID, null);
+
+        String[] params = new String[]{ userID };
+
+        Cursor cursor = db.rawQuery("SELECT * FROM profile WHERE user_id = ?", params);
         if (cursor.moveToFirst()) {
             result = cursor.getString(cursor.getColumnIndex("experience_points"));
         }
@@ -346,10 +340,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      */
     public void setExperiencePoints(String userID, String exp) {
         SQLiteDatabase db = this.getWritableDatabase();
-        String strFilter = "user_id=" + userID;
-        ContentValues args = new ContentValues();
-        args.put(COL_EXPERIENCE_POINTS, exp);
-        db.update("profile", args, strFilter, null);
+        ContentValues values = new ContentValues();
+        values.put(COL_EXPERIENCE_POINTS, exp);
+        db.update(PROFILE_TABLE, values, "user_id = ?", new String[]{userID});
     }
 
     /**
