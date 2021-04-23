@@ -16,6 +16,7 @@ import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.quizapp.Models.QuestionHandler;
 import com.example.quizapp.R;
@@ -26,6 +27,7 @@ import java.util.Random;
 
 public class MultipleChoiceQuizFragment extends Fragment {
     RadioButton radioButton1, radioButton2, radioButton3, radioButton4;
+    RadioGroup radioGroup;
     Button nextButton;
     int counter = 1;
     int score;
@@ -138,6 +140,7 @@ public class MultipleChoiceQuizFragment extends Fragment {
     public void forLoopHelper(QuestionHandler handler, int selection) {
 
         questionBox.setText(handler.getQuestions().get(counter));
+        radioGroup = getActivity().findViewById(R.id.radioGroup);
         radioButton1 = getActivity().findViewById(R.id.button1);
         radioButton2 = getActivity().findViewById(R.id.button2);
         radioButton3 = getActivity().findViewById(R.id.button3);
@@ -188,8 +191,6 @@ public class MultipleChoiceQuizFragment extends Fragment {
             default:
         }
 
-
-
         radioButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -200,7 +201,7 @@ public class MultipleChoiceQuizFragment extends Fragment {
                             if (radioButton1.getText() == handler.getAnswers().get(counter)) {
                                 score++;
                             }
-                            radioButton1.setChecked(false);
+                            radioGroup.clearCheck();
                             counter++;
                         }
                         counterText.setText(String.valueOf(counter) + "/" + String.valueOf(questionAmount));
@@ -210,6 +211,7 @@ public class MultipleChoiceQuizFragment extends Fragment {
                 });
             }
         });
+
         radioButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -220,7 +222,7 @@ public class MultipleChoiceQuizFragment extends Fragment {
                             if (radioButton2.getText() == handler.getAnswers().get(counter)) {
                                 score++;
                             }
-                            radioButton2.setChecked(false);
+                            radioGroup.clearCheck();
                             counter++;
                         }
                         counterText.setText(String.valueOf(counter) + "/" + String.valueOf(questionAmount));
@@ -230,6 +232,7 @@ public class MultipleChoiceQuizFragment extends Fragment {
                 });
             }
         });
+
         radioButton3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -240,7 +243,7 @@ public class MultipleChoiceQuizFragment extends Fragment {
                             if (radioButton3.getText() == handler.getAnswers().get(counter)) {
                                 score++;
                             }
-                            radioButton3.setChecked(false);
+                            radioGroup.clearCheck();
                             counter++;
                         }
                         counterText.setText(String.valueOf(counter) + "/" + String.valueOf(questionAmount));
@@ -250,6 +253,7 @@ public class MultipleChoiceQuizFragment extends Fragment {
                 });
             }
         });
+
         radioButton4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -260,7 +264,7 @@ public class MultipleChoiceQuizFragment extends Fragment {
                             if (radioButton4.getText() == handler.getAnswers().get(counter)) {
                                 score++;
                             }
-                            radioButton4.setChecked(false);
+                            radioGroup.clearCheck();
                             counter++;
                         }
                         counterText.setText(String.valueOf(counter) + "/" + String.valueOf(questionAmount));
@@ -270,31 +274,8 @@ public class MultipleChoiceQuizFragment extends Fragment {
                 });
             }
         });
-    }
 
-//    @Override
-//    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//
-//    }
-//
-//
-//    @Override
-//    public void onCheckedChanged(RadioGroup group, int checkedId) {
-//        if (checkedId) {
-//            if (RadioGroup.getId() == R.id.rB1) {
-//                r2.setChecked(false);
-//                r3.setChecked(false);
-//            }
-//            if (RadioGroup.getId() == R.id.rB2) {
-//                r1.setChecked(false);
-//                r3.setChecked(false);
-//            }
-//            if (RadioGroup.getId() == R.id.rB3) {
-//                r1.setChecked(false);
-//                r2.setChecked(false);
-//            }
-//        }
-//    }
+    }
 
     /**
      * Gets the current user ID.

@@ -12,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.example.quizapp.Models.QuestionHandler;
@@ -22,7 +24,9 @@ import org.json.JSONException;
 import java.util.Random;
 
 public class TrueOrFalseQuizFragment extends Fragment {
-    Button tButton, fButton, nextButton;
+    RadioButton trueButton, falseButton;
+    RadioGroup radioGroup;
+    Button nextButton;
     int counter = 1;
     int score;
     int questionAmount;
@@ -129,31 +133,29 @@ public class TrueOrFalseQuizFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_true_or_false, container, false);
     }
 
     public void forLoopHelper(QuestionHandler handler, int selection) {
         questionBox.setText(handler.getQuestions().get(counter));
-        tButton = getActivity().findViewById(R.id.trueButton);
-        fButton = getActivity().findViewById(R.id.falseButton);
-
-//        nextButton = getActivity().findViewById(R.id.nextQuestionButton);
+        radioGroup = getActivity().findViewById(R.id.radioGroup);
+        trueButton = getActivity().findViewById(R.id.trueFalseButton1);
+        falseButton = getActivity().findViewById(R.id.trueFalseButton2);
+        nextButton = getActivity().findViewById(R.id.nextQuestionButton);
 
         switch (selection) {
             case 0:
-                tButton.setText(handler.getAnswers().get(counter));
+                trueButton.setText(handler.getAnswers().get(counter));
                 try {
-                    fButton.setText(handler.getIncorrectAnswers().get(counter).getString(0));
+                    falseButton.setText(handler.getIncorrectAnswers().get(counter).getString(0));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
                 break;
             case 1:
-                fButton.setText(handler.getAnswers().get(counter));
+                falseButton.setText(handler.getAnswers().get(counter));
                 try {
-                    fButton.setText(handler.getIncorrectAnswers().get(counter).getString(0));
-
+                    trueButton.setText(handler.getIncorrectAnswers().get(counter).getString(0));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -161,32 +163,45 @@ public class TrueOrFalseQuizFragment extends Fragment {
             default:
         }
 
-        tButton.setOnClickListener(new View.OnClickListener() {
+        trueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (counter < handler.getAmount()) {
-                    if (tButton.getText() == handler.getAnswers().get(counter)) {
-                        score++;
+                nextButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (counter < handler.getAmount()) {
+                            if (trueButton.getText() == handler.getAnswers().get(counter)) {
+                                score++;
+                            }
+                            radioGroup.clearCheck();
+                            counter++;
+                        }
+                        counterText.setText(String.valueOf(counter) + "/" + String.valueOf(questionAmount));
+                        System.out.println("Counter: " + counter);
+                        System.out.println("Score: " + score);
                     }
-                    counter++;
-                }
-                counterText.setText(String.valueOf(counter) + "/" + String.valueOf(questionAmount));
-                System.out.println("Counter: " + counter);
-                System.out.println("Score: " + score);
+                });
             }
         });
-        fButton.setOnClickListener(new View.OnClickListener() {
+
+        falseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (counter < handler.getAmount()) {
-                    if (fButton.getText() == handler.getAnswers().get(counter)) {
-                        score++;
+                nextButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (counter < handler.getAmount()) {
+                            if (falseButton.getText() == handler.getAnswers().get(counter)) {
+                                score++;
+                            }
+                            radioGroup.clearCheck();
+                            counter++;
+                        }
+                        counterText.setText(String.valueOf(counter) + "/" + String.valueOf(questionAmount));
+                        System.out.println("Counter: " + counter);
+                        System.out.println("Score: " + score);
                     }
-                    counter++;
-                }
-                counterText.setText(String.valueOf(counter) + "/" + String.valueOf(questionAmount));
-                System.out.println("Counter: " + counter);
-                System.out.println("Score: " + score);
+                });
             }
         });
 

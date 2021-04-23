@@ -73,55 +73,68 @@
 
     <TextView
         android:id="@+id/questionBox"
-        android:layout_width="381dp"
-        android:layout_height="114dp"
-        android:layout_marginTop="216dp"
+        android:layout_width="366dp"
+        android:layout_height="92dp"
+        android:layout_marginTop="204dp"
         android:fontFamily="@font/abel_font"
         android:gravity="center"
         android:text="questions"
-        android:textColor="#46DDF4"
-        android:textSize="20sp"
+        android:textSize="22sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/trueButton"
-        android:layout_width="156dp"
-        android:layout_height="75dp"
-        android:layout_marginTop="440dp"
-        android:text="True"
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="371dp"
+        android:layout_height="127dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.054"
+        app:layout_constraintHorizontal_bias="0.35"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.538">
 
-    <Button
-        android:id="@+id/falseButton"
-        android:layout_width="156dp"
-        android:layout_height="75dp"
-        android:layout_marginTop="440dp"
-        android:text="False"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <RadioButton
+            android:id="@+id/trueFalseButton1"
+            android:layout_width="150dp"
+            android:textColor="#46DDF4"
+            android:textSize="19dp"
+            android:textStyle="bold"
+            android:fontFamily="@font/abel_font"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:text="TRUE/FASLE" />
+
+        <RadioButton
+            android:id="@+id/trueFalseButton2"
+            android:layout_width="150dp"
+            android:textStyle="bold"
+            android:textSize="19dp"
+            android:textColor="#46DDF4"
+            android:fontFamily="@font/abel_font"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="TRUE/FALSE" />
+
+    </RadioGroup>
 
     <TextView
         android:id="@+id/quitQuizTextView"
-        android:layout_width="77dp"
+        android:layout_width="103dp"
         android:layout_height="27dp"
-        android:layout_marginTop="656dp"
+        android:layout_marginTop="658dp"
         android:fontFamily="@font/abel_font"
         android:paddingLeft="2dp"
         android:shadowColor="#000000"
         android:shadowRadius="8"
-        android:text="Quit Quiz"
+        android:text="Leave Quiz"
         android:textColor="#F44646"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.122"
+        app:layout_constraintHorizontal_bias="0.133"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

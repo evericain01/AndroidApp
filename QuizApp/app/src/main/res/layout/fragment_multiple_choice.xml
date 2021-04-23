@@ -73,14 +73,14 @@
 
     <TextView
         android:id="@+id/questionBox"
-        android:layout_width="381dp"
-        android:layout_height="101dp"
+        android:layout_width="370dp"
+        android:layout_height="99dp"
         android:layout_marginTop="204dp"
         android:fontFamily="@font/abel_font"
         android:gravity="center"
         android:text="questions"
-        android:textColor="#46DDF4"
-        android:textSize="20sp"
+        android:textSize="22sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.433"
         app:layout_constraintStart_toStartOf="parent"
@@ -99,25 +99,45 @@
 
         <RadioButton
             android:id="@+id/button1"
+            android:checked="false"
             android:layout_width="370dp"
+            android:textColor="#46DDF4"
+            android:textSize="19dp"
+            android:textStyle="bold"
+            android:fontFamily="@font/abel_font"
             android:layout_height="wrap_content"
             android:layout_marginTop="0dp" />
 
         <RadioButton
             android:id="@+id/button2"
+            android:checked="false"
             android:layout_width="370dp"
+            android:textColor="#46DDF4"
+            android:textSize="19dp"
+            android:textStyle="bold"
+            android:fontFamily="@font/abel_font"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp" />
 
         <RadioButton
             android:id="@+id/button3"
+            android:checked="false"
             android:layout_width="370dp"
+            android:textColor="#46DDF4"
+            android:textSize="19dp"
+            android:textStyle="bold"
+            android:fontFamily="@font/abel_font"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp" />
 
         <RadioButton
             android:id="@+id/button4"
+            android:checked="false"
             android:layout_width="370dp"
+            android:textColor="#46DDF4"
+            android:textSize="19dp"
+            android:textStyle="bold"
+            android:fontFamily="@font/abel_font"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp" />
 
@@ -125,19 +145,19 @@
 
     <TextView
         android:id="@+id/quitQuizTextView"
-        android:layout_width="77dp"
+        android:layout_width="103dp"
         android:layout_height="27dp"
-        android:layout_marginTop="656dp"
+        android:layout_marginTop="658dp"
         android:fontFamily="@font/abel_font"
         android:paddingLeft="2dp"
         android:shadowColor="#000000"
         android:shadowRadius="8"
-        android:text="Quit Quiz"
+        android:text="Leave Quiz"
         android:textColor="#F44646"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.122"
+        app:layout_constraintHorizontal_bias="0.133"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
