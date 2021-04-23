@@ -98,9 +98,11 @@ public class MultipleChoice extends Fragment {
                     quiz.setDifficulty(difficulty);
                     quiz.setCategory(category);
                     quiz.generateQuestions();
-                    while (counter <= quiz.getAmount()) {
+
+                    while (counter < quiz.getAmount() - 1) {
                         forLoopHelper(quiz, selection);
                     }
+
                     Intent intent = new Intent();
                     intent.putExtra("score", score);
 
@@ -121,6 +123,7 @@ public class MultipleChoice extends Fragment {
     }
 
     public void forLoopHelper(QuestionHandler handler, int selection) {
+
         scoreBoard.setText(score + "");
         questionBox.setText(handler.getQuestions().get(counter));
         button1 = getActivity().findViewById(R.id.button1);
@@ -138,6 +141,7 @@ public class MultipleChoice extends Fragment {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+                break;
             case 1:
                 button2.setText(handler.getAnswers().get(counter));
                 try {
@@ -147,6 +151,7 @@ public class MultipleChoice extends Fragment {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+                break;
             case 2:
                 button3.setText(handler.getAnswers().get(counter));
                 try {
@@ -156,6 +161,7 @@ public class MultipleChoice extends Fragment {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+                break;
             case 3:
                 button4.setText(handler.getAnswers().get(counter));
                 try {
@@ -165,43 +171,60 @@ public class MultipleChoice extends Fragment {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+                break;
         }
 
-            button1.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if(button1.getText() == handler.getAnswers().get(counter)){
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (counter < handler.getAmount()) {
+                    if (button1.getText() == handler.getAnswers().get(counter)) {
                         score++;
                     }
                     counter++;
                 }
-            });
-            button2.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if(button1.getText() == handler.getAnswers().get(counter)){
+
+                System.out.println(counter);
+            }
+        });
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (counter < handler.getAmount()) {
+                    if (button2.getText() == handler.getAnswers().get(counter)) {
                         score++;
                     }
                     counter++;
                 }
-            });
-            button3.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if(button1.getText() == handler.getAnswers().get(counter)){
+
+                System.out.println(counter);
+            }
+        });
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (counter < handler.getAmount()) {
+                    if (button3.getText() == handler.getAnswers().get(counter)) {
                         score++;
                     }
                     counter++;
                 }
-            });
-            button4.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if(button1.getText() == handler.getAnswers().get(counter)){
+
+                System.out.println(counter);
+            }
+        });
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (counter < handler.getAmount()) {
+                    if (button4.getText() == handler.getAnswers().get(counter)) {
                         score++;
                     }
                     counter++;
                 }
-            });
+
+                System.out.println(counter);
+            }
+        });
     }
 }
