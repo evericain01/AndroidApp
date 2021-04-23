@@ -1,7 +1,9 @@
 package com.example.quizapp.Models;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -74,7 +76,6 @@ public class SwipeAdapter extends RecyclerView.Adapter<SwipeAdapter.SwipeViewHol
 
         public SwipeViewHolder(@NonNull View ItemView) {
             super(ItemView);
-//            context = ItemView.getContext();
 
             id = ItemView.findViewById(R.id.idText);
             queueNumber = ItemView.findViewById(R.id.queueNumberText);
@@ -86,11 +87,9 @@ public class SwipeAdapter extends RecyclerView.Adapter<SwipeAdapter.SwipeViewHol
             delete = ItemView.findViewById(R.id.queueDeleteButton);
             swipeLayout = ItemView.findViewById(R.id.swipeLayout);
 
-
             play.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
                     int chosenCategory = questionHandlerList.get(getAdapterPosition()).getCategory() + 9;
 
                     String chosenDifficulty = questionHandlerList.get(getAdapterPosition()).getDifficulty();
@@ -103,6 +102,7 @@ public class SwipeAdapter extends RecyclerView.Adapter<SwipeAdapter.SwipeViewHol
                     quiz.putExtra("category", chosenCategory);
                     quiz.putExtra("difficulty", chosenDifficulty);
                     quiz.putExtra("type", chosenType);
+                    quiz.putExtra("USER_ID", getCurrentUserId());
 
                     context.startActivity(quiz);
 
@@ -241,6 +241,17 @@ public class SwipeAdapter extends RecyclerView.Adapter<SwipeAdapter.SwipeViewHol
                 default:
             }
         }
+    }
+
+    /**
+     * Gets the current user ID.
+     *
+     * @return The user ID as a String.
+     */
+    public String getCurrentUserId() {
+        Intent intent = ((Activity) context).getIntent();
+        Bundle bundle = intent.getExtras();
+        return (String) bundle.get("USER_ID");
     }
 
 }

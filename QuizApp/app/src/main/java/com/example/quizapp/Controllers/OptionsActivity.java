@@ -79,6 +79,7 @@ public class OptionsActivity extends AppCompatActivity implements NavigationView
                 int amountOfQuestions = Integer.parseInt(total.getSelectedItem().toString());
 
                 Intent quiz = new Intent(OptionsActivity.this, QuizActivity.class);
+                quiz.putExtra("USER_ID", getCurrentUserId());
 
                 quiz.putExtra("amount", amountOfQuestions);
                 quiz.putExtra("category", chosenCategory);

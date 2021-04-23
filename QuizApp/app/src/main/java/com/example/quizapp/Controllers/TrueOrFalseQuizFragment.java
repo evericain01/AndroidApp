@@ -1,5 +1,7 @@
 package com.example.quizapp.Controllers;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -20,11 +22,11 @@ import org.json.JSONException;
 import java.util.Random;
 
 public class TrueOrFalseQuizFragment extends Fragment {
-    Button tButton, fButton;
+    Button tButton, fButton, nextButton;
     int counter = 1;
     int score;
     int questionAmount;
-    TextView categoryTitle, difficultyTitle, questionBox, counterText;
+    TextView categoryTitle, difficultyTitle, questionBox, counterText, quitQuiz;
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -102,6 +104,26 @@ public class TrueOrFalseQuizFragment extends Fragment {
         difficultyTitle.setText(getDifficultyString(difficulty));
         counterText.setText("1/"+ String.valueOf(amount));
         questionAmount = amount;
+
+        quitQuiz = getActivity().findViewById(R.id.quitQuizTextView);
+
+        quitQuiz.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(getActivity())
+                        .setMessage("Are you sure you want to quit?")
+                        .setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                Intent quitQuiz = new Intent(getActivity(), HomePageActivity.class);
+                                quitQuiz.putExtra("USER_ID", getCurrentUserId());
+                                startActivity(quitQuiz);
+                            }
+                        })
+                        .setNegativeButton("No", null)
+                        .show();
+            }
+        });
     }
 
     @Override
@@ -115,6 +137,8 @@ public class TrueOrFalseQuizFragment extends Fragment {
         questionBox.setText(handler.getQuestions().get(counter));
         tButton = getActivity().findViewById(R.id.trueButton);
         fButton = getActivity().findViewById(R.id.falseButton);
+
+//        nextButton = getActivity().findViewById(R.id.nextQuestionButton);
 
         switch (selection) {
             case 0:
@@ -165,6 +189,18 @@ public class TrueOrFalseQuizFragment extends Fragment {
                 System.out.println("Score: " + score);
             }
         });
+
+    }
+
+    /**
+     * Gets the current user ID.
+     *
+     * @return The user ID as a String.
+     */
+    public String getCurrentUserId() {
+        Intent intent = getActivity().getIntent();
+        Bundle bundle = intent.getExtras();
+        return (String) bundle.get("USER_ID");
     }
 
     private String getCategoryString(int categoryNumber) {
