@@ -4,72 +4,121 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Controllers.MultipleChoice" >
+    android:background="#065CAE"
+    tools:context=".Controllers.MultipleChoiceQuizFragment">
 
     <TextView
-        android:id="@+id/scoreBoard"
-        android:layout_width="189dp"
+        android:id="@+id/categoryTitle"
+        android:layout_width="389dp"
         android:layout_height="55dp"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/abel_font"
         android:gravity="center"
-        android:textSize="36sp"
+        android:shadowColor="#000000"
+        android:shadowRadius="40"
+        android:text="CategoryTitle"
+        android:textColor="#70D0FB"
+        android:textSize="35dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView2"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="222dp"
-        android:layout_height="54dp"
+        android:id="@+id/difficultyTitle"
+        android:layout_width="135dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="84dp"
+        android:fontFamily="@font/abel_font"
         android:gravity="center"
-        android:text="Question"
-        android:textSize="36sp"
+        android:shadowColor="#000000"
+        android:shadowRadius="20"
+        android:text="Difficulty"
+        android:textColor="#70D0FB"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/counterText"
+        android:layout_width="89dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="144dp"
+        android:fontFamily="@font/abel_font"
+        android:gravity="center"
+        android:text="5/10"
+        android:textColor="#46F4AC"
+        android:textSize="27dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.332"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/questionTitle"
+        android:layout_width="115dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="144dp"
+        android:fontFamily="@font/abel_font"
+        android:gravity="center"
+        android:text="Question:"
+        android:textColor="#46F4AC"
+        android:textSize="27sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/questionBox"
-        android:layout_width="413dp"
-        android:layout_height="85dp"
+        android:layout_width="381dp"
+        android:layout_height="114dp"
+        android:layout_marginTop="216dp"
+        android:fontFamily="@font/abel_font"
+        android:gravity="center"
+        android:text="questions"
+        android:textColor="#46DDF4"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="143dp"
-        android:layout_height="75dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="112dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/questionBox" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="143dp"
-        android:layout_height="75dp"
-        android:layout_marginTop="48dp"
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="374dp"
+        android:layout_height="312dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.544"
-        app:layout_constraintStart_toEndOf="@+id/button3"
-        app:layout_constraintTop_toBottomOf="@+id/button4" />
-
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="143dp"
-        android:layout_height="75dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="48dp"
+        app:layout_constraintHorizontal_bias="0.486"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button1" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.806">
 
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="143dp"
-        android:layout_height="75dp"
-        android:layout_marginTop="112dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.544"
-        app:layout_constraintStart_toEndOf="@+id/button1"
-        app:layout_constraintTop_toBottomOf="@+id/questionBox" />
+        <RadioButton
+            android:id="@+id/button1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp" />
+
+        <RadioButton
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp" />
+
+        <RadioButton
+            android:id="@+id/button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp" />
+
+        <RadioButton
+            android:id="@+id/button4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp" />
+
+    </RadioGroup>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

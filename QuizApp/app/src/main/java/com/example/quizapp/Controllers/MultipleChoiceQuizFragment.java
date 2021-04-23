@@ -17,44 +17,26 @@ import com.example.quizapp.R;
 
 import org.json.JSONException;
 
-import java.util.ArrayList;
 import java.util.Random;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link MultipleChoice#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class MultipleChoice extends Fragment {
+public class MultipleChoiceQuizFragment extends Fragment {
     Button button1, button2, button3, button4;
-    int counter;
+    int counter = 1;
     int score;
-    TextView questionBox, scoreBoard;
+    int questionAmount;
+    TextView categoryTitle, difficultyTitle, questionBox, counterText;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
-    public MultipleChoice() {
-        // Required empty public constructor
+    public MultipleChoiceQuizFragment() {
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment MultipleChoice.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static MultipleChoice newInstance(String param1, String param2) {
-        MultipleChoice fragment = new MultipleChoice();
+    public static MultipleChoiceQuizFragment newInstance(String param1, String param2) {
+        MultipleChoiceQuizFragment fragment = new MultipleChoiceQuizFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -81,8 +63,10 @@ public class MultipleChoice extends Fragment {
         int category = (int) bundle.get("category");
         String type = (String) bundle.get("type");
 
+        categoryTitle = getActivity().findViewById(R.id.categoryTitle);
+        difficultyTitle = getActivity().findViewById(R.id.difficultyTitle);
         questionBox = getActivity().findViewById(R.id.questionBox);
-        scoreBoard = getActivity().findViewById(R.id.scoreBoard);
+        counterText = getActivity().findViewById(R.id.counterText);
 
         Random rand = new Random();
         int selection = rand.nextInt(3);
@@ -113,18 +97,22 @@ public class MultipleChoice extends Fragment {
             }
         }).start();
         super.onActivityCreated(savedInstanceState);
+
+        categoryTitle.setText(getCategoryString(category));
+        difficultyTitle.setText(getDifficultyString(difficulty));
+        counterText.setText("1/"+ String.valueOf(amount));
+        questionAmount = amount;
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_multiple_choice, container, false);
     }
 
     public void forLoopHelper(QuestionHandler handler, int selection) {
 
-        scoreBoard.setText(score + "");
         questionBox.setText(handler.getQuestions().get(counter));
         button1 = getActivity().findViewById(R.id.button1);
         button2 = getActivity().findViewById(R.id.button2);
@@ -172,6 +160,7 @@ public class MultipleChoice extends Fragment {
                     e.printStackTrace();
                 }
                 break;
+            default:
         }
 
         button1.setOnClickListener(new View.OnClickListener() {
@@ -183,8 +172,9 @@ public class MultipleChoice extends Fragment {
                     }
                     counter++;
                 }
-
-                System.out.println(counter);
+                counterText.setText(String.valueOf(counter) + "/" + String.valueOf(questionAmount));
+                System.out.println("Counter: " + counter);
+                System.out.println("Score: " + score);
             }
         });
         button2.setOnClickListener(new View.OnClickListener() {
@@ -196,8 +186,9 @@ public class MultipleChoice extends Fragment {
                     }
                     counter++;
                 }
-
-                System.out.println(counter);
+                counterText.setText(String.valueOf(counter) + "/" + String.valueOf(questionAmount));
+                System.out.println("Counter: " + counter);
+                System.out.println("Score: " + score);
             }
         });
         button3.setOnClickListener(new View.OnClickListener() {
@@ -209,8 +200,9 @@ public class MultipleChoice extends Fragment {
                     }
                     counter++;
                 }
-
-                System.out.println(counter);
+                counterText.setText(String.valueOf(counter) + "/" + String.valueOf(questionAmount));
+                System.out.println("Counter: " + counter);
+                System.out.println("Score: " + score);
             }
         });
         button4.setOnClickListener(new View.OnClickListener() {
@@ -222,9 +214,106 @@ public class MultipleChoice extends Fragment {
                     }
                     counter++;
                 }
-
-                System.out.println(counter);
+                counterText.setText(String.valueOf(counter) + "/" + String.valueOf(questionAmount));
+                System.out.println("Counter: " + counter);
+                System.out.println("Score: " + score);
             }
         });
+    }
+
+    private String getCategoryString(int categoryNumber) {
+        String category = "";
+        switch (categoryNumber) {
+            case 9:
+                category = "General Knowledge";
+                break;
+            case 10:
+                category = "Books";
+                break;
+            case 11:
+                category = "Films";
+                break;
+            case 12:
+                category = "Music";
+                break;
+            case 13:
+                category = "Musical and Theatres";
+                break;
+            case 14:
+                category = "Television";
+                break;
+            case 15:
+                category = "Video Games";
+                break;
+            case 16:
+                category = "Board Games";
+                break;
+            case 17:
+                category = "Science and Nature";
+                break;
+            case 18:
+                category = "Computers";
+                break;
+            case 19:
+                category = "Math";
+                break;
+            case 20:
+                category = "Mythology";
+                break;
+            case 21:
+                category = "Sports";
+                break;
+            case 22:
+                category = "Geography";
+                break;
+            case 23:
+                category = "Politics";
+                break;
+            case 24:
+                category = "Art";
+                break;
+            case 25:
+                category = "Celebrities";
+                break;
+            case 27:
+                category = "Animals";
+                break;
+            case 28:
+                category = "Vehicles";
+                break;
+            case 29:
+                category = "Comics";
+                break;
+            case 30:
+                category = "Gadgets";
+                break;
+            case 31:
+                category = "Japanese Anime and Manga";
+                break;
+            case 32:
+                category = "Cartoons and Animations";
+                break;
+            default:
+        }
+
+        return category;
+    }
+
+    private String getDifficultyString(String difficultyText) {
+        String difficulty = "";
+        switch (difficultyText) {
+            case "easy":
+                difficulty = ("(EASY)");
+                break;
+            case "medium":
+                difficulty = ("(MEDIUM)");
+                break;
+            case "hard":
+                difficulty = ("(HARD)");
+                break;
+            default:
+        }
+
+        return difficulty;
     }
 }

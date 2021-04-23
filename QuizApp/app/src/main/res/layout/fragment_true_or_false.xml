@@ -4,58 +4,106 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Controllers.TrueOrFalse" >
+    android:background="#065CAE"
+    tools:context=".Controllers.TrueOrFalseQuizFragment" >
 
     <TextView
-        android:id="@+id/scoreBoard"
-        android:layout_width="189dp"
+        android:id="@+id/categoryTitle"
+        android:layout_width="389dp"
         android:layout_height="55dp"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/abel_font"
         android:gravity="center"
-        android:textSize="36sp"
+        android:shadowColor="#000000"
+        android:shadowRadius="40"
+        android:text="CategoryTitle"
+        android:textColor="#70D0FB"
+        android:textSize="35dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="222dp"
-        android:layout_height="54dp"
-        android:gravity="center"
-        android:text="Question"
-        android:textSize="36sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/difficultyTitle"
+        android:layout_width="135dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="84dp"
+        android:fontFamily="@font/abel_font"
+        android:gravity="center"
+        android:shadowColor="#000000"
+        android:shadowRadius="20"
+        android:text="Difficulty"
+        android:textColor="#70D0FB"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/counterText"
+        android:layout_width="89dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="132dp"
+        android:fontFamily="@font/abel_font"
+        android:gravity="center"
+        android:textColor="#46F4AC"
+        android:text="5/10"
+        android:textSize="27dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.335"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/questionTitle"
+        android:layout_width="115dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="132dp"
+        android:fontFamily="@font/abel_font"
+        android:gravity="center"
+        android:textColor="#46F4AC"
+        android:text="Question:"
+        android:textSize="27sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/questionBox"
-        android:layout_width="412dp"
-        android:layout_height="77dp"
+        android:layout_width="381dp"
+        android:layout_height="114dp"
+        android:layout_marginTop="216dp"
+        android:fontFamily="@font/abel_font"
         android:gravity="center"
+        android:text="questions"
+        android:textColor="#46DDF4"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/trueButton"
         android:layout_width="156dp"
         android:layout_height="75dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="440dp"
         android:text="True"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.054"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/questionBox" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/falseButton"
         android:layout_width="156dp"
         android:layout_height="75dp"
-        android:layout_marginTop="104dp"
+        android:layout_marginTop="440dp"
         android:text="False"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/trueButton" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
