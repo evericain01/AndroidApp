@@ -13,7 +13,6 @@
         android:theme="@style/Theme.QuizApp">
         <activity android:name=".Controllers.ModifyProfileActivity" />
         <activity android:name=".Controllers.ViewAllOptionsActivity" />
-        <activity android:name=".Controllers.TrueOrFalseQuizActivity" />
         <activity android:name=".Controllers.QuizActivity" />
         <activity android:name=".Controllers.QueueActivity" />
         <activity
