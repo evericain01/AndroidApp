@@ -95,7 +95,6 @@ public class SwipeAdapter extends RecyclerView.Adapter<SwipeAdapter.SwipeViewHol
 
                     String chosenDifficulty = questionHandlerList.get(getAdapterPosition()).getDifficulty();
                     String chosenType = questionHandlerList.get(getAdapterPosition()).getType();
-                    String finalType = chosenType.equals("True or False") ? "boolean" : "multiple";
                     int amountOfQuestions = questionHandlerList.get(getAdapterPosition()).getAmount();
 
                     Intent quiz = new Intent(context, QuizActivity.class);
@@ -103,7 +102,7 @@ public class SwipeAdapter extends RecyclerView.Adapter<SwipeAdapter.SwipeViewHol
                     quiz.putExtra("amount", amountOfQuestions);
                     quiz.putExtra("category", chosenCategory);
                     quiz.putExtra("difficulty", chosenDifficulty);
-                    quiz.putExtra("type", finalType);
+                    quiz.putExtra("type", chosenType);
 
                     context.startActivity(quiz);
 

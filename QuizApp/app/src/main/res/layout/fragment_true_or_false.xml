@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#065CAE"
-    tools:context=".Controllers.TrueOrFalseQuizFragment" >
+    tools:context=".Controllers.TrueOrFalseQuizFragment">
 
     <TextView
         android:id="@+id/categoryTitle"
@@ -46,9 +46,10 @@
         android:layout_marginTop="132dp"
         android:fontFamily="@font/abel_font"
         android:gravity="center"
-        android:textColor="#46F4AC"
         android:text="5/10"
+        android:textColor="#46F4AC"
         android:textSize="27dp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.335"
         app:layout_constraintStart_toStartOf="parent"
@@ -61,9 +62,10 @@
         android:layout_marginTop="132dp"
         android:fontFamily="@font/abel_font"
         android:gravity="center"
-        android:textColor="#46F4AC"
         android:text="Question:"
+        android:textColor="#46F4AC"
         android:textSize="27sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -102,6 +104,39 @@
         android:text="False"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/quitQuizTextView"
+        android:layout_width="77dp"
+        android:layout_height="27dp"
+        android:layout_marginTop="656dp"
+        android:fontFamily="@font/abel_font"
+        android:paddingLeft="2dp"
+        android:shadowColor="#000000"
+        android:shadowRadius="8"
+        android:text="Quit Quiz"
+        android:textColor="#F44646"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.113"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="110dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="628dp"
+        android:backgroundTint="@color/teal_700"
+        android:fontFamily="@font/abel_font"
+        android:text="NEXT"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.897"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
