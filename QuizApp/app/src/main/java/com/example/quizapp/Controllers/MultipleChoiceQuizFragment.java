@@ -12,6 +12,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.example.quizapp.Models.QuestionHandler;
@@ -22,7 +25,8 @@ import org.json.JSONException;
 import java.util.Random;
 
 public class MultipleChoiceQuizFragment extends Fragment {
-    Button button1, button2, button3, button4;
+    RadioButton radioButton1, radioButton2, radioButton3, radioButton4;
+    Button nextButton;
     int counter = 1;
     int score;
     int questionAmount;
@@ -92,7 +96,6 @@ public class MultipleChoiceQuizFragment extends Fragment {
                     Intent intent = new Intent();
                     intent.putExtra("score", score);
 
-
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -135,48 +138,49 @@ public class MultipleChoiceQuizFragment extends Fragment {
     public void forLoopHelper(QuestionHandler handler, int selection) {
 
         questionBox.setText(handler.getQuestions().get(counter));
-        button1 = getActivity().findViewById(R.id.button1);
-        button2 = getActivity().findViewById(R.id.button2);
-        button3 = getActivity().findViewById(R.id.button3);
-        button4 = getActivity().findViewById(R.id.button4);
+        radioButton1 = getActivity().findViewById(R.id.button1);
+        radioButton2 = getActivity().findViewById(R.id.button2);
+        radioButton3 = getActivity().findViewById(R.id.button3);
+        radioButton4 = getActivity().findViewById(R.id.button4);
+        nextButton = getActivity().findViewById(R.id.nextQuestionButton);
 
         switch (selection) {
             case 0:
-                button1.setText(handler.getAnswers().get(counter));
+                radioButton1.setText(handler.getAnswers().get(counter));
                 try {
-                    button2.setText(handler.getIncorrectAnswers().get(counter).getString(0));
-                    button3.setText(handler.getIncorrectAnswers().get(counter).getString(1));
-                    button4.setText(handler.getIncorrectAnswers().get(counter).getString(2));
+                    radioButton2.setText(handler.getIncorrectAnswers().get(counter).getString(0));
+                    radioButton3.setText(handler.getIncorrectAnswers().get(counter).getString(1));
+                    radioButton4.setText(handler.getIncorrectAnswers().get(counter).getString(2));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
                 break;
             case 1:
-                button2.setText(handler.getAnswers().get(counter));
+                radioButton2.setText(handler.getAnswers().get(counter));
                 try {
-                    button1.setText(handler.getIncorrectAnswers().get(counter).getString(0));
-                    button3.setText(handler.getIncorrectAnswers().get(counter).getString(1));
-                    button4.setText(handler.getIncorrectAnswers().get(counter).getString(2));
+                    radioButton1.setText(handler.getIncorrectAnswers().get(counter).getString(0));
+                    radioButton3.setText(handler.getIncorrectAnswers().get(counter).getString(1));
+                    radioButton4.setText(handler.getIncorrectAnswers().get(counter).getString(2));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
                 break;
             case 2:
-                button3.setText(handler.getAnswers().get(counter));
+                radioButton3.setText(handler.getAnswers().get(counter));
                 try {
-                    button2.setText(handler.getIncorrectAnswers().get(counter).getString(0));
-                    button1.setText(handler.getIncorrectAnswers().get(counter).getString(1));
-                    button4.setText(handler.getIncorrectAnswers().get(counter).getString(2));
+                    radioButton2.setText(handler.getIncorrectAnswers().get(counter).getString(0));
+                    radioButton1.setText(handler.getIncorrectAnswers().get(counter).getString(1));
+                    radioButton4.setText(handler.getIncorrectAnswers().get(counter).getString(2));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
                 break;
             case 3:
-                button4.setText(handler.getAnswers().get(counter));
+                radioButton4.setText(handler.getAnswers().get(counter));
                 try {
-                    button2.setText(handler.getIncorrectAnswers().get(counter).getString(0));
-                    button3.setText(handler.getIncorrectAnswers().get(counter).getString(1));
-                    button1.setText(handler.getIncorrectAnswers().get(counter).getString(2));
+                    radioButton2.setText(handler.getIncorrectAnswers().get(counter).getString(0));
+                    radioButton3.setText(handler.getIncorrectAnswers().get(counter).getString(1));
+                    radioButton1.setText(handler.getIncorrectAnswers().get(counter).getString(2));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -184,63 +188,113 @@ public class MultipleChoiceQuizFragment extends Fragment {
             default:
         }
 
-        button1.setOnClickListener(new View.OnClickListener() {
+
+
+        radioButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (counter < handler.getAmount()) {
-                    if (button1.getText() == handler.getAnswers().get(counter)) {
-                        score++;
+                nextButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (counter < handler.getAmount()) {
+                            if (radioButton1.getText() == handler.getAnswers().get(counter)) {
+                                score++;
+                            }
+                            radioButton1.setChecked(false);
+                            counter++;
+                        }
+                        counterText.setText(String.valueOf(counter) + "/" + String.valueOf(questionAmount));
+                        System.out.println("Counter: " + counter);
+                        System.out.println("Score: " + score);
                     }
-                    counter++;
-                }
-                counterText.setText(String.valueOf(counter) + "/" + String.valueOf(questionAmount));
-                System.out.println("Counter: " + counter);
-                System.out.println("Score: " + score);
+                });
             }
         });
-        button2.setOnClickListener(new View.OnClickListener() {
+        radioButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (counter < handler.getAmount()) {
-                    if (button2.getText() == handler.getAnswers().get(counter)) {
-                        score++;
+                nextButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (counter < handler.getAmount()) {
+                            if (radioButton2.getText() == handler.getAnswers().get(counter)) {
+                                score++;
+                            }
+                            radioButton2.setChecked(false);
+                            counter++;
+                        }
+                        counterText.setText(String.valueOf(counter) + "/" + String.valueOf(questionAmount));
+                        System.out.println("Counter: " + counter);
+                        System.out.println("Score: " + score);
                     }
-                    counter++;
-                }
-                counterText.setText(String.valueOf(counter) + "/" + String.valueOf(questionAmount));
-                System.out.println("Counter: " + counter);
-                System.out.println("Score: " + score);
+                });
             }
         });
-        button3.setOnClickListener(new View.OnClickListener() {
+        radioButton3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (counter < handler.getAmount()) {
-                    if (button3.getText() == handler.getAnswers().get(counter)) {
-                        score++;
+                nextButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (counter < handler.getAmount()) {
+                            if (radioButton3.getText() == handler.getAnswers().get(counter)) {
+                                score++;
+                            }
+                            radioButton3.setChecked(false);
+                            counter++;
+                        }
+                        counterText.setText(String.valueOf(counter) + "/" + String.valueOf(questionAmount));
+                        System.out.println("Counter: " + counter);
+                        System.out.println("Score: " + score);
                     }
-                    counter++;
-                }
-                counterText.setText(String.valueOf(counter) + "/" + String.valueOf(questionAmount));
-                System.out.println("Counter: " + counter);
-                System.out.println("Score: " + score);
+                });
             }
         });
-        button4.setOnClickListener(new View.OnClickListener() {
+        radioButton4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (counter < handler.getAmount()) {
-                    if (button4.getText() == handler.getAnswers().get(counter)) {
-                        score++;
+                nextButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (counter < handler.getAmount()) {
+                            if (radioButton4.getText() == handler.getAnswers().get(counter)) {
+                                score++;
+                            }
+                            radioButton4.setChecked(false);
+                            counter++;
+                        }
+                        counterText.setText(String.valueOf(counter) + "/" + String.valueOf(questionAmount));
+                        System.out.println("Counter: " + counter);
+                        System.out.println("Score: " + score);
                     }
-                    counter++;
-                }
-                counterText.setText(String.valueOf(counter) + "/" + String.valueOf(questionAmount));
-                System.out.println("Counter: " + counter);
-                System.out.println("Score: " + score);
+                });
             }
         });
     }
+
+//    @Override
+//    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//
+//    }
+//
+//
+//    @Override
+//    public void onCheckedChanged(RadioGroup group, int checkedId) {
+//        if (checkedId) {
+//            if (RadioGroup.getId() == R.id.rB1) {
+//                r2.setChecked(false);
+//                r3.setChecked(false);
+//            }
+//            if (RadioGroup.getId() == R.id.rB2) {
+//                r1.setChecked(false);
+//                r3.setChecked(false);
+//            }
+//            if (RadioGroup.getId() == R.id.rB3) {
+//                r1.setChecked(false);
+//                r2.setChecked(false);
+//            }
+//        }
+//    }
 
     /**
      * Gets the current user ID.
@@ -348,4 +402,6 @@ public class MultipleChoiceQuizFragment extends Fragment {
 
         return difficulty;
     }
+
+
 }
