@@ -1,6 +1,7 @@
 package com.example.quizapp.Models;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.chauthai.swipereveallayout.SwipeRevealLayout;
 import com.chauthai.swipereveallayout.ViewBinderHelper;
+import com.example.quizapp.Controllers.OptionsActivity;
+import com.example.quizapp.Controllers.QuizActivity;
 import com.example.quizapp.R;
 
 import java.util.List;
@@ -71,6 +74,7 @@ public class SwipeAdapter extends RecyclerView.Adapter<SwipeAdapter.SwipeViewHol
 
         public SwipeViewHolder(@NonNull View ItemView) {
             super(ItemView);
+//            context = ItemView.getContext();
 
             id = ItemView.findViewById(R.id.idText);
             queueNumber = ItemView.findViewById(R.id.queueNumberText);
@@ -82,13 +86,31 @@ public class SwipeAdapter extends RecyclerView.Adapter<SwipeAdapter.SwipeViewHol
             delete = ItemView.findViewById(R.id.queueDeleteButton);
             swipeLayout = ItemView.findViewById(R.id.swipeLayout);
 
+
             play.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    db.deleteQuiz(String.valueOf(id.getText()));
-//                    questionHandlerList.remove(getAdapterPosition());
-//                    notifyItemRemoved(getAdapterPosition());
-//                    notifyItemRangeChanged(getAdapterPosition(), questionHandlerList.size());
+
+                    int chosenCategory = questionHandlerList.get(getAdapterPosition()).getCategory() + 9;
+
+                    String chosenDifficulty = questionHandlerList.get(getAdapterPosition()).getDifficulty();
+                    String chosenType = questionHandlerList.get(getAdapterPosition()).getType();
+                    String finalType = chosenType.equals("True or False") ? "boolean" : "multiple";
+                    int amountOfQuestions = questionHandlerList.get(getAdapterPosition()).getAmount();
+
+                    Intent quiz = new Intent(context, QuizActivity.class);
+
+                    quiz.putExtra("amount", amountOfQuestions);
+                    quiz.putExtra("category", chosenCategory);
+                    quiz.putExtra("difficulty", chosenDifficulty);
+                    quiz.putExtra("type", finalType);
+
+                    context.startActivity(quiz);
+
+                    db.deleteQuiz(String.valueOf(id.getText()));
+                    questionHandlerList.remove(getAdapterPosition());
+                    notifyItemRemoved(getAdapterPosition());
+                    notifyItemRangeChanged(getAdapterPosition(), questionHandlerList.size());
                     Toast.makeText(context, "Started Quiz", Toast.LENGTH_SHORT).show();
                 }
             });

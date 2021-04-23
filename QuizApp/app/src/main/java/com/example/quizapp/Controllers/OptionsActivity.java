@@ -76,35 +76,16 @@ public class OptionsActivity extends AppCompatActivity implements NavigationView
                 String chosenDifficulty = difficulty.getSelectedItem().toString().toLowerCase();
                 String chosenType = type.getSelectedItem().toString();
                 String finalType = chosenType.equals("True or False") ? "boolean" : "multiple";
-//                if (chosenType.equals("True or False")) {
-//                    finalType = "boolean";
-//                }
-//                else {
-//                    finalType = "multiple";
-//                }
                 int amountOfQuestions = Integer.parseInt(total.getSelectedItem().toString());
-                //String finalType1 = finalType;
 
-//                if (chosenType.equals("True or False")) {
-//                    Intent quiz = new Intent(OptionsActivity.this, TrueOrFalseQuizActivity.class);
-//
-//                    quiz.putExtra("amount", amountOfQuestions);
-//                    quiz.putExtra("category", chosenCategory);
-//                    quiz.putExtra("difficulty", chosenDifficulty);
-//                    quiz.putExtra("type", finalType);
-//
-//                    startActivity(quiz);
-//                }
-//                else {
-                    Intent quiz = new Intent(OptionsActivity.this, QuizActivity.class);
+                Intent quiz = new Intent(OptionsActivity.this, QuizActivity.class);
 
-                    quiz.putExtra("amount", amountOfQuestions);
-                    quiz.putExtra("category", chosenCategory);
-                    quiz.putExtra("difficulty", chosenDifficulty);
-                    quiz.putExtra("type", finalType);
+                quiz.putExtra("amount", amountOfQuestions);
+                quiz.putExtra("category", chosenCategory);
+                quiz.putExtra("difficulty", chosenDifficulty);
+                quiz.putExtra("type", finalType);
 
-                    startActivity(quiz);
-//                }
+                startActivity(quiz);
 
             }
         });
