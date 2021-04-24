@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/constraintMultipleChoice"
     android:background="#065CAE"
     tools:context=".Controllers.MultipleChoiceQuizFragment">
 
@@ -45,13 +46,13 @@
         android:layout_height="52dp"
         android:layout_marginTop="144dp"
         android:fontFamily="@font/abel_font"
-        android:textStyle="bold"
+        android:gravity="center"
         android:shadowColor="#002383"
         android:shadowRadius="10"
-        android:gravity="center"
         android:text="5/10"
         android:textColor="#46F4AC"
         android:textSize="27dp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.332"
         app:layout_constraintStart_toStartOf="parent"
@@ -63,13 +64,13 @@
         android:layout_height="52dp"
         android:layout_marginTop="144dp"
         android:fontFamily="@font/abel_font"
-        android:textStyle="bold"
         android:gravity="center"
         android:shadowColor="#002383"
         android:shadowRadius="10"
         android:text="Question:"
         android:textColor="#46F4AC"
         android:textSize="27sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -79,7 +80,7 @@
         android:id="@+id/questionBox"
         android:layout_width="341dp"
         android:layout_height="115dp"
-        android:layout_marginTop="224dp"
+        android:layout_marginTop="220dp"
         android:fontFamily="@font/abel_font"
         android:gravity="top|center"
         android:shadowColor="#002383"
@@ -87,6 +88,7 @@
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.457"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -94,29 +96,29 @@
         android:id="@+id/radioGroup"
         android:layout_width="346dp"
         android:layout_height="238dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="336dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintHorizontal_bias="0.415"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.722">
+        app:layout_constraintTop_toTopOf="parent">
 
         <RadioButton
             android:id="@+id/button1"
-            android:layout_width="370dp"
+            android:layout_width="346dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="0dp"
+            android:backgroundTint="@color/white"
             android:checked="false"
             android:fontFamily="@font/abel_font"
             android:shadowColor="#000000"
             android:shadowRadius="8"
             android:textColor="#46DDF4"
-            android:textSize="19dp"
+            android:textSize="21dp"
             android:textStyle="bold" />
 
         <RadioButton
             android:id="@+id/button2"
-            android:layout_width="370dp"
+            android:layout_width="346dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:checked="false"
@@ -124,12 +126,12 @@
             android:shadowColor="#000000"
             android:shadowRadius="8"
             android:textColor="#46DDF4"
-            android:textSize="19dp"
+            android:textSize="21dp"
             android:textStyle="bold" />
 
         <RadioButton
             android:id="@+id/button3"
-            android:layout_width="370dp"
+            android:layout_width="346dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:checked="false"
@@ -137,12 +139,12 @@
             android:shadowColor="#000000"
             android:shadowRadius="8"
             android:textColor="#46DDF4"
-            android:textSize="19dp"
+            android:textSize="21dp"
             android:textStyle="bold" />
 
         <RadioButton
             android:id="@+id/button4"
-            android:layout_width="370dp"
+            android:layout_width="346dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:checked="false"
@@ -150,7 +152,7 @@
             android:shadowColor="#000000"
             android:shadowRadius="8"
             android:textColor="#46DDF4"
-            android:textSize="19dp"
+            android:textSize="21dp"
             android:textStyle="bold" />
 
     </RadioGroup>
@@ -159,7 +161,7 @@
         android:id="@+id/quitQuizTextView"
         android:layout_width="103dp"
         android:layout_height="27dp"
-        android:layout_marginTop="658dp"
+        android:layout_marginTop="628dp"
         android:fontFamily="@font/abel_font"
         android:paddingLeft="2dp"
         android:shadowColor="#000000"
@@ -169,7 +171,7 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.133"
+        app:layout_constraintHorizontal_bias="0.168"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -177,14 +179,15 @@
         android:id="@+id/nextQuestionButton"
         android:layout_width="110dp"
         android:layout_height="56dp"
-        android:layout_marginTop="636dp"
-        android:backgroundTint="@color/teal_700"
+        android:layout_marginTop="608dp"
+        android:backgroundTint="@color/design_default_color_secondary"
         android:fontFamily="@font/abel_font"
         android:text="NEXT"
+        android:textColor="@color/black"
         android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.936"
+        app:layout_constraintHorizontal_bias="0.946"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -192,10 +195,10 @@
         android:id="@+id/powerImage"
         android:layout_width="25dp"
         android:layout_height="29dp"
-        android:layout_marginTop="656dp"
+        android:layout_marginTop="628dp"
         android:src="@drawable/off_icon"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.041"
+        app:layout_constraintHorizontal_bias="0.069"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

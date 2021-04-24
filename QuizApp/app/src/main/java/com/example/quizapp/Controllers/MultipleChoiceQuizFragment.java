@@ -3,11 +3,14 @@ package com.example.quizapp.Controllers;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SwitchCompat;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -22,6 +25,7 @@ import android.widget.Toast;
 
 import com.example.quizapp.Models.QuestionHandler;
 import com.example.quizapp.R;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONException;
 
@@ -188,7 +192,10 @@ public class MultipleChoiceQuizFragment extends Fragment {
                     public void onClick(View v) {
                         if (counter < handler.getAmount()) {
                             if (radioButton1.getText() == handler.getAnswers().get(counter)) {
+                                correctAnswer();
                                 score++;
+                            } else {
+                                incorrectAnswer();
                             }
                             radioGroup.clearCheck();
                             counter++;
@@ -209,7 +216,10 @@ public class MultipleChoiceQuizFragment extends Fragment {
                     public void onClick(View v) {
                         if (counter < handler.getAmount()) {
                             if (radioButton2.getText() == handler.getAnswers().get(counter)) {
+                                correctAnswer();
                                 score++;
+                            } else {
+                                incorrectAnswer();
                             }
                             radioGroup.clearCheck();
                             counter++;
@@ -230,7 +240,10 @@ public class MultipleChoiceQuizFragment extends Fragment {
                     public void onClick(View v) {
                         if (counter < handler.getAmount()) {
                             if (radioButton3.getText() == handler.getAnswers().get(counter)) {
+                                correctAnswer();
                                 score++;
+                            }else {
+                                incorrectAnswer();
                             }
                             radioGroup.clearCheck();
                             counter++;
@@ -251,7 +264,10 @@ public class MultipleChoiceQuizFragment extends Fragment {
                     public void onClick(View v) {
                         if (counter < handler.getAmount()) {
                             if (radioButton4.getText() == handler.getAnswers().get(counter)) {
+                                correctAnswer();
                                 score++;
+                            } else {
+                                incorrectAnswer();
                             }
                             radioGroup.clearCheck();
                             counter++;
@@ -264,6 +280,30 @@ public class MultipleChoiceQuizFragment extends Fragment {
             }
         });
 
+    }
+
+    /**
+     * Sets a snackBar for correct answers.
+     */
+    public void correctAnswer() {
+        ConstraintLayout constraintLayout = getActivity().findViewById(R.id.constraintMultipleChoice);
+        final Snackbar snack = Snackbar.make(constraintLayout, "CORRECT!", Snackbar.LENGTH_SHORT);
+        View snackView = snack.getView();
+        snack.setTextColor(Color.BLACK);
+        snackView.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.green));
+        snack.show();
+
+    }
+
+    /**
+     * Sets a snackBar for incorrect answers.
+     */
+    public void incorrectAnswer() {
+        ConstraintLayout constraintLayout = getActivity().findViewById(R.id.constraintMultipleChoice);
+        final Snackbar snack = Snackbar.make(constraintLayout, "INCORRECT.", Snackbar.LENGTH_SHORT);
+        View snackView = snack.getView();
+        snackView.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.red));
+        snack.show();
     }
 
     /**
