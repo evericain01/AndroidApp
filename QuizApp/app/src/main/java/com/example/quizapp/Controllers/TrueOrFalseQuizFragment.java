@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -214,6 +215,7 @@ public class TrueOrFalseQuizFragment extends Fragment {
         final Snackbar snack = Snackbar.make(constraintLayout, "CORRECT!", Snackbar.LENGTH_SHORT);
         View snackView = snack.getView();
         snack.setTextColor(Color.BLACK);
+        snack.setDuration(1500);
         snackView.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.green));
         snack.show();
 
@@ -226,6 +228,7 @@ public class TrueOrFalseQuizFragment extends Fragment {
         ConstraintLayout constraintLayout = getActivity().findViewById(R.id.constraintTrueFalse);
         final Snackbar snack = Snackbar.make(constraintLayout, "INCORRECT.", Snackbar.LENGTH_SHORT);
         View snackView = snack.getView();
+        snack.setDuration(1500);
         snackView.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.red));
         snack.show();
     }

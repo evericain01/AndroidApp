@@ -11,6 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.QuizApp">
+        <activity android:name=".Controllers.ResultActivity"></activity>
         <activity android:name=".Controllers.ModifyProfileActivity" />
         <activity android:name=".Controllers.ViewAllOptionsActivity" />
         <activity android:name=".Controllers.QuizActivity" />
