@@ -11,7 +11,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
-import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -22,6 +21,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.example.quizapp.Models.Experience;
 import com.example.quizapp.Models.QuestionHandler;
 import com.example.quizapp.R;
 import com.google.android.material.snackbar.Snackbar;
@@ -31,15 +31,17 @@ import org.json.JSONException;
 import java.util.Random;
 
 public class TrueOrFalseQuizFragment extends Fragment {
+    int counter = 1;
+    int totalExperienceGained = 0;
+    int score, questionAmount;
+
     RadioButton trueButton, falseButton;
     RadioGroup radioGroup;
     Button nextButton;
-    int counter = 1;
-    int score;
-    int questionAmount;
     TextView categoryTitle, difficultyTitle, questionBox, counterText, quitQuiz;
     MediaPlayer mediaPlayer;
     SwitchCompat switchCompat;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -90,15 +92,6 @@ public class TrueOrFalseQuizFragment extends Fragment {
                     quiz.generateQuestions();
 
                     while (counter < quiz.getAmount()) {
-                        if (counter + 1 == quiz.getAmount()) {
-                            Intent resultActivity = new Intent(getActivity(), ResultActivity.class);
-                            resultActivity.putExtra("USER_ID", getCurrentUserId());
-                            resultActivity.putExtra("score", score);
-                            resultActivity.putExtra("amount", amount);
-                            startActivity(resultActivity);
-                            break;
-                        }
-
                         forLoopHelper(quiz, selection);
                     }
 
@@ -170,11 +163,13 @@ public class TrueOrFalseQuizFragment extends Fragment {
                     public void onClick(View v) {
                         if (counter < handler.getAmount()) {
                             if (trueButton.getText() == handler.getAnswers().get(counter)) {
-                                correctAnswer();
+                                totalExperienceGained += Experience.calculateExperience(handler.getDifficulty());
+                                correctAnswerSnackBar();
                                 score++;
                             } else {
-                                incorrectAnswer();
+                                incorrectAnswerSnackBar();
                             }
+                            gotoResultActivityIfLast(handler);
                             radioGroup.clearCheck();
                             counter++;
                         }
@@ -194,11 +189,13 @@ public class TrueOrFalseQuizFragment extends Fragment {
                     public void onClick(View v) {
                         if (counter < handler.getAmount()) {
                             if (falseButton.getText() == handler.getAnswers().get(counter)) {
-                                correctAnswer();
+                                totalExperienceGained += Experience.calculateExperience(handler.getDifficulty());
+                                correctAnswerSnackBar();
                                 score++;
                             } else {
-                                incorrectAnswer();
+                                incorrectAnswerSnackBar();
                             }
+                            gotoResultActivityIfLast(handler);
                             radioGroup.clearCheck();
                             counter++;
                         }
@@ -212,10 +209,22 @@ public class TrueOrFalseQuizFragment extends Fragment {
 
     }
 
+    public void gotoResultActivityIfLast(QuestionHandler handler) {
+        if (counter + 1 == handler.getAmount()) {
+            counter--;
+            Intent resultActivity = new Intent(getActivity(), ResultActivity.class);
+            resultActivity.putExtra("USER_ID", getCurrentUserId());
+            resultActivity.putExtra("score", score);
+            resultActivity.putExtra("amount", handler.getAmount());
+            resultActivity.putExtra("experienceGained", totalExperienceGained);
+            startActivity(resultActivity);
+        }
+    }
+
     /**
      * Sets a snackBar for correct answers.
      */
-    public void correctAnswer() {
+    public void correctAnswerSnackBar() {
         ConstraintLayout constraintLayout = getActivity().findViewById(R.id.constraintTrueFalse);
         final Snackbar snack = Snackbar.make(constraintLayout, "CORRECT!", Snackbar.LENGTH_SHORT);
         View snackView = snack.getView();
@@ -229,7 +238,7 @@ public class TrueOrFalseQuizFragment extends Fragment {
     /**
      * Sets a snackBar for incorrect answers.
      */
-    public void incorrectAnswer() {
+    public void incorrectAnswerSnackBar() {
         ConstraintLayout constraintLayout = getActivity().findViewById(R.id.constraintTrueFalse);
         final Snackbar snack = Snackbar.make(constraintLayout, "INCORRECT.", Snackbar.LENGTH_SHORT);
         View snackView = snack.getView();

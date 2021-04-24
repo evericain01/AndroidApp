@@ -17,12 +17,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.quizapp.Models.Experience;
 import com.example.quizapp.Models.QuestionHandler;
 import com.example.quizapp.R;
 import com.google.android.material.snackbar.Snackbar;
@@ -32,12 +31,13 @@ import org.json.JSONException;
 import java.util.Random;
 
 public class MultipleChoiceQuizFragment extends Fragment {
+    int counter = 1;
+    int totalExperienceGained = 0;
+    int score, questionAmount;
+
     RadioButton radioButton1, radioButton2, radioButton3, radioButton4;
     RadioGroup radioGroup;
     Button nextButton;
-    int counter = 1;
-    int score;
-    int questionAmount;
     TextView categoryTitle, difficultyTitle, questionBox, counterText, quitQuiz;
     MediaPlayer mediaPlayer;
     SwitchCompat switchCompat;
@@ -91,15 +91,6 @@ public class MultipleChoiceQuizFragment extends Fragment {
                     quiz.generateQuestions();
 
                     while (counter < quiz.getAmount()) {
-                        if (counter + 1 == quiz.getAmount()) {
-                            Intent resultActivity = new Intent(getActivity(), ResultActivity.class);
-                            resultActivity.putExtra("USER_ID", getCurrentUserId());
-                            resultActivity.putExtra("score", score);
-                            resultActivity.putExtra("amount", amount);
-                            startActivity(resultActivity);
-                            break;
-                        }
-
                         forLoopHelper(quiz, selection);
                     }
 
@@ -198,11 +189,13 @@ public class MultipleChoiceQuizFragment extends Fragment {
                     public void onClick(View v) {
                         if (counter < handler.getAmount()) {
                             if (radioButton1.getText() == handler.getAnswers().get(counter)) {
-                                correctAnswer();
+                                totalExperienceGained += Experience.calculateExperience(handler.getDifficulty());
+                                correctAnswerSnackBar();
                                 score++;
                             } else {
-                                incorrectAnswer();
+                                incorrectAnswerSnackBar();
                             }
+                            gotoResultActivityIfLast(handler);
                             radioGroup.clearCheck();
                             counter++;
                         }
@@ -222,11 +215,13 @@ public class MultipleChoiceQuizFragment extends Fragment {
                     public void onClick(View v) {
                         if (counter < handler.getAmount()) {
                             if (radioButton2.getText() == handler.getAnswers().get(counter)) {
-                                correctAnswer();
+                                totalExperienceGained += Experience.calculateExperience(handler.getDifficulty());
+                                correctAnswerSnackBar();
                                 score++;
                             } else {
-                                incorrectAnswer();
+                                incorrectAnswerSnackBar();
                             }
+                            gotoResultActivityIfLast(handler);
                             radioGroup.clearCheck();
                             counter++;
                         }
@@ -246,11 +241,13 @@ public class MultipleChoiceQuizFragment extends Fragment {
                     public void onClick(View v) {
                         if (counter < handler.getAmount()) {
                             if (radioButton3.getText() == handler.getAnswers().get(counter)) {
-                                correctAnswer();
+                                totalExperienceGained += Experience.calculateExperience(handler.getDifficulty());
+                                correctAnswerSnackBar();
                                 score++;
                             }else {
-                                incorrectAnswer();
+                                incorrectAnswerSnackBar();
                             }
+                            gotoResultActivityIfLast(handler);
                             radioGroup.clearCheck();
                             counter++;
                         }
@@ -270,11 +267,13 @@ public class MultipleChoiceQuizFragment extends Fragment {
                     public void onClick(View v) {
                         if (counter < handler.getAmount()) {
                             if (radioButton4.getText() == handler.getAnswers().get(counter)) {
-                                correctAnswer();
+                                totalExperienceGained += Experience.calculateExperience(handler.getDifficulty());
+                                correctAnswerSnackBar();
                                 score++;
                             } else {
-                                incorrectAnswer();
+                                incorrectAnswerSnackBar();
                             }
+                            gotoResultActivityIfLast(handler);
                             radioGroup.clearCheck();
                             counter++;
                         }
@@ -288,10 +287,23 @@ public class MultipleChoiceQuizFragment extends Fragment {
 
     }
 
+    public void gotoResultActivityIfLast(QuestionHandler handler) {
+        if (counter + 1 == handler.getAmount()) {
+            counter--;
+            Intent resultActivity = new Intent(getActivity(), ResultActivity.class);
+            resultActivity.putExtra("USER_ID", getCurrentUserId());
+            resultActivity.putExtra("score", score);
+            resultActivity.putExtra("amount", handler.getAmount());
+            resultActivity.putExtra("experienceGained", totalExperienceGained);
+            startActivity(resultActivity);
+        }
+
+    }
+
     /**
      * Sets a snackBar for correct answers.
      */
-    public void correctAnswer() {
+    public void correctAnswerSnackBar() {
         ConstraintLayout constraintLayout = getActivity().findViewById(R.id.constraintMultipleChoice);
         final Snackbar snack = Snackbar.make(constraintLayout, "CORRECT!", Snackbar.LENGTH_SHORT);
         View snackView = snack.getView();
@@ -305,7 +317,7 @@ public class MultipleChoiceQuizFragment extends Fragment {
     /**
      * Sets a snackBar for incorrect answers.
      */
-    public void incorrectAnswer() {
+    public void incorrectAnswerSnackBar() {
         ConstraintLayout constraintLayout = getActivity().findViewById(R.id.constraintMultipleChoice);
         final Snackbar snack = Snackbar.make(constraintLayout, "INCORRECT.", Snackbar.LENGTH_SHORT);
         View snackView = snack.getView();

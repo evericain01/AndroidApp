@@ -39,7 +39,7 @@
         android:shadowRadius="40"
         android:text="Results"
         android:textColor="#70D0FB"
-        android:textSize="40dp"
+        android:textSize="50dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -112,15 +112,16 @@
 
     <TextView
         android:id="@+id/experienceGainedText"
-        android:layout_width="170dp"
+        android:layout_width="290dp"
         android:layout_height="49dp"
         android:layout_marginTop="160dp"
         android:fontFamily="@font/abel_font"
         android:gravity="center"
+        android:textColor="#77E700"
         android:shadowColor="#000000"
         android:shadowRadius="4"
-        android:text="Experience: +10"
-        android:textSize="25sp"
+        android:text="EXP: +10"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

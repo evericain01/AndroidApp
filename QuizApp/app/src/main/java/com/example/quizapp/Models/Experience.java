@@ -16,11 +16,10 @@ public class Experience {
      * @param difficulty How hard a question was, easy, medium or hard.
      * @return Total experience a user gained.
      */
-    public static double calculateExperience(ArrayList<String> difficulty) {
-        double totalExperienceGained = 0;
+    public static int calculateExperience(String difficulty) {
+        int totalExperienceGained = 0;
 
-        for (int i = 0; i < difficulty.size() - 1; i++) {
-            switch (difficulty.get(i)) {
+            switch (difficulty) {
                 case "easy":
                     totalExperienceGained += EASY_MULTIPLIER * CORRECT_QUESTION_CONST;
                     break;
@@ -31,7 +30,7 @@ public class Experience {
                     totalExperienceGained += HARD_MULTIPLIER * CORRECT_QUESTION_CONST;
                     break;
             }
-        }
+
         return totalExperienceGained;
     }
 

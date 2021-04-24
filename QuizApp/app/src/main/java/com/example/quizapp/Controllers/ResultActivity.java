@@ -8,21 +8,26 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.quizapp.R;
 
 public class ResultActivity extends AppCompatActivity {
-
-    TextView experienceGained;
+    TextView experienceGained, levelStage, percentageScore, fractionScore;
+    Button homePageButton, doAnotherQuizButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
-        experienceGained = findViewById(R.id.experienceGainedText);
 
-//        startAnimation();
+
+        experienceGained = findViewById(R.id.experienceGainedText);
+        experienceGained.setText("EXP: +" + String.valueOf(getExperienceGained()));
+
+
+        startAnimation();
     }
 
     private void startAnimation() {
@@ -45,6 +50,22 @@ public class ResultActivity extends AppCompatActivity {
                 })
                 .setNegativeButton("No", null)
                 .show();
+    }
+
+    /**
+     * Gets the current user ID.
+     *
+     * @return The user ID as a String.
+     */
+    public String getCurrentUserId() {
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        String currentUserID = "";
+        if (bundle != null) {
+            currentUserID = (String) bundle.get("USER_ID");
+        }
+
+        return currentUserID;
     }
 
 
@@ -85,14 +106,14 @@ public class ResultActivity extends AppCompatActivity {
      *
      * @return The user ID as a String.
      */
-    public String getCurrentUserId() {
+    public int getExperienceGained() {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-        String currentUserID = "";
+        Integer experienceGained = 0;
         if (bundle != null) {
-            currentUserID = (String) bundle.get("USER_ID");
+            experienceGained = (Integer) bundle.get("experienceGained");
         }
 
-        return currentUserID;
+        return experienceGained;
     }
 }
