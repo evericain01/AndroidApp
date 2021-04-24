@@ -3,9 +3,11 @@ package com.example.quizapp.Controllers;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -33,32 +35,13 @@ public class MultipleChoiceQuizFragment extends Fragment {
     int score;
     int questionAmount;
     TextView categoryTitle, difficultyTitle, questionBox, counterText, quitQuiz;
-
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    private String mParam1;
-    private String mParam2;
-
-    public MultipleChoiceQuizFragment() {
-    }
-
-    public static MultipleChoiceQuizFragment newInstance(String param1, String param2) {
-        MultipleChoiceQuizFragment fragment = new MultipleChoiceQuizFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    MediaPlayer mediaPlayer;
+    SwitchCompat switchCompat;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_multiple_choice, container, false);
     }
 
     @Override
@@ -75,6 +58,18 @@ public class MultipleChoiceQuizFragment extends Fragment {
         difficultyTitle = getActivity().findViewById(R.id.difficultyTitle);
         questionBox = getActivity().findViewById(R.id.questionBox);
         counterText = getActivity().findViewById(R.id.counterText);
+
+        switchCompat = getActivity().findViewById(R.id.musicSwitch);
+        switchCompat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (switchCompat.isChecked()) {
+                    startMusic();
+                }else {
+                    pauseMusic();
+                }
+            }
+        });
 
         Random rand = new Random();
         int selection = rand.nextInt(3);
@@ -129,12 +124,6 @@ public class MultipleChoiceQuizFragment extends Fragment {
                         .show();
             }
         });
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_multiple_choice, container, false);
     }
 
     public void forLoopHelper(QuestionHandler handler, int selection) {
@@ -288,6 +277,28 @@ public class MultipleChoiceQuizFragment extends Fragment {
         return (String) bundle.get("USER_ID");
     }
 
+    /**
+     * Starts the music.
+     */
+    public void startMusic() {
+        mediaPlayer = MediaPlayer.create(getContext(), R.raw.treasure_grenada_no_copyright);
+        mediaPlayer.start();
+        mediaPlayer.setLooping(true);
+    }
+
+    /**
+     * Pauses the music.
+     */
+    public void pauseMusic() {
+        mediaPlayer.pause();
+    }
+
+    /**
+     * Converting category number to its string.
+     *
+     * @param categoryNumber Category number.
+     * @return Category string.
+     */
     private String getCategoryString(int categoryNumber) {
         String category = "";
         switch (categoryNumber) {
@@ -366,6 +377,12 @@ public class MultipleChoiceQuizFragment extends Fragment {
         return category;
     }
 
+    /**
+     * Capitalizes difficulty name.
+     *
+     * @param difficultyText Difficulty text.
+     * @return Capitalizes difficulty name.
+     */
     private String getDifficultyString(String difficultyText) {
         String difficulty = "";
         switch (difficultyText) {

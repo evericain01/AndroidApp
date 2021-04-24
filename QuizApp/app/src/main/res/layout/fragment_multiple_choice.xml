@@ -46,6 +46,8 @@
         android:layout_marginTop="144dp"
         android:fontFamily="@font/abel_font"
         android:textStyle="bold"
+        android:shadowColor="#002383"
+        android:shadowRadius="10"
         android:gravity="center"
         android:text="5/10"
         android:textColor="#46F4AC"
@@ -63,6 +65,8 @@
         android:fontFamily="@font/abel_font"
         android:textStyle="bold"
         android:gravity="center"
+        android:shadowColor="#002383"
+        android:shadowRadius="10"
         android:text="Question:"
         android:textColor="#46F4AC"
         android:textSize="27sp"
@@ -73,73 +77,81 @@
 
     <TextView
         android:id="@+id/questionBox"
-        android:layout_width="370dp"
-        android:layout_height="99dp"
-        android:layout_marginTop="204dp"
+        android:layout_width="341dp"
+        android:layout_height="115dp"
+        android:layout_marginTop="224dp"
         android:fontFamily="@font/abel_font"
-        android:gravity="center"
-        android:text="questions"
+        android:gravity="top|center"
+        android:shadowColor="#002383"
+        android:shadowRadius="4"
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.433"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
-        android:layout_width="378dp"
-        android:layout_height="282dp"
+        android:layout_width="346dp"
+        android:layout_height="238dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.424"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.708">
+        app:layout_constraintVertical_bias="0.722">
 
         <RadioButton
             android:id="@+id/button1"
-            android:checked="false"
             android:layout_width="370dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:checked="false"
+            android:fontFamily="@font/abel_font"
+            android:shadowColor="#000000"
+            android:shadowRadius="8"
             android:textColor="#46DDF4"
             android:textSize="19dp"
-            android:textStyle="bold"
-            android:fontFamily="@font/abel_font"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="0dp" />
+            android:textStyle="bold" />
 
         <RadioButton
             android:id="@+id/button2"
-            android:checked="false"
             android:layout_width="370dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:checked="false"
+            android:fontFamily="@font/abel_font"
+            android:shadowColor="#000000"
+            android:shadowRadius="8"
             android:textColor="#46DDF4"
             android:textSize="19dp"
-            android:textStyle="bold"
-            android:fontFamily="@font/abel_font"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp" />
+            android:textStyle="bold" />
 
         <RadioButton
             android:id="@+id/button3"
-            android:checked="false"
             android:layout_width="370dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:checked="false"
+            android:fontFamily="@font/abel_font"
+            android:shadowColor="#000000"
+            android:shadowRadius="8"
             android:textColor="#46DDF4"
             android:textSize="19dp"
-            android:textStyle="bold"
-            android:fontFamily="@font/abel_font"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp" />
+            android:textStyle="bold" />
 
         <RadioButton
             android:id="@+id/button4"
-            android:checked="false"
             android:layout_width="370dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:checked="false"
+            android:fontFamily="@font/abel_font"
+            android:shadowColor="#000000"
+            android:shadowRadius="8"
             android:textColor="#46DDF4"
             android:textSize="19dp"
-            android:textStyle="bold"
-            android:fontFamily="@font/abel_font"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp" />
+            android:textStyle="bold" />
 
     </RadioGroup>
 
@@ -177,13 +189,26 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/powerImage"
         android:layout_width="25dp"
         android:layout_height="29dp"
         android:layout_marginTop="656dp"
         android:src="@drawable/off_icon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.041"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/musicSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="144dp"
+        android:fontFamily="@font/abel_font"
+        android:text="Music "
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.948"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

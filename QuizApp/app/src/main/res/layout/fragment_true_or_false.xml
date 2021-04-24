@@ -45,6 +45,8 @@
         android:layout_height="52dp"
         android:layout_marginTop="132dp"
         android:fontFamily="@font/abel_font"
+        android:shadowColor="#002383"
+        android:shadowRadius="10"
         android:gravity="center"
         android:text="5/10"
         android:textColor="#46F4AC"
@@ -62,6 +64,8 @@
         android:layout_marginTop="132dp"
         android:fontFamily="@font/abel_font"
         android:gravity="center"
+        android:shadowColor="#002383"
+        android:shadowRadius="10"
         android:text="Question:"
         android:textColor="#46F4AC"
         android:textSize="27sp"
@@ -73,50 +77,54 @@
 
     <TextView
         android:id="@+id/questionBox"
-        android:layout_width="366dp"
-        android:layout_height="92dp"
-        android:layout_marginTop="204dp"
+        android:layout_width="344dp"
+        android:layout_height="115dp"
+        android:layout_marginTop="220dp"
         android:fontFamily="@font/abel_font"
-        android:gravity="center"
-        android:text="questions"
+        android:gravity="top|center"
+        android:shadowColor="#002383"
+        android:shadowRadius="4"
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
-        android:layout_width="371dp"
-        android:layout_height="127dp"
+        android:layout_width="275dp"
+        android:layout_height="129dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.35"
+        app:layout_constraintHorizontal_bias="0.161"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.538">
+        app:layout_constraintVertical_bias="0.593">
 
         <RadioButton
             android:id="@+id/trueFalseButton1"
             android:layout_width="150dp"
-            android:textColor="#46DDF4"
-            android:textSize="19dp"
-            android:textStyle="bold"
-            android:fontFamily="@font/abel_font"
             android:layout_height="wrap_content"
             android:layout_marginTop="0dp"
-            android:text="TRUE/FASLE" />
+            android:shadowColor="#000000"
+            android:shadowRadius="8"
+            android:fontFamily="@font/abel_font"
+            android:textColor="#46DDF4"
+            android:textSize="19dp"
+            android:textStyle="bold" />
 
         <RadioButton
             android:id="@+id/trueFalseButton2"
             android:layout_width="150dp"
-            android:textStyle="bold"
-            android:textSize="19dp"
-            android:textColor="#46DDF4"
-            android:fontFamily="@font/abel_font"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:text="TRUE/FALSE" />
+            android:shadowColor="#000000"
+            android:shadowRadius="8"
+            android:fontFamily="@font/abel_font"
+            android:textColor="#46DDF4"
+            android:textSize="19dp"
+            android:textStyle="bold" />
 
     </RadioGroup>
 
@@ -154,13 +162,26 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/powerImage"
         android:layout_width="25dp"
         android:layout_height="29dp"
         android:layout_marginTop="656dp"
         android:src="@drawable/off_icon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.041"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/musicSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="136dp"
+        android:fontFamily="@font/abel_font"
+        android:text="Music "
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.948"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
