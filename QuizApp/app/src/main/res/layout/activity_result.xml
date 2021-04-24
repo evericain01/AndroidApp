@@ -4,6 +4,154 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Controllers.ResultActivity">
+    tools:context=".Controllers.ResultActivity"
+    android:background="#065CAE">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#1D329F"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/resultTitle"
+        android:layout_width="148dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="76dp"
+        android:fontFamily="@font/abel_font"
+        android:gravity="center"
+        android:shadowColor="#000000"
+        android:shadowRadius="40"
+        android:text="Results"
+        android:textColor="#70D0FB"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/toolbar" />
+
+    <TextView
+        android:id="@+id/levelStageTitle"
+        android:layout_width="293dp"
+        android:layout_height="69dp"
+        android:layout_marginTop="260dp"
+        android:fontFamily="@font/abel_font"
+        android:gravity="center"
+        android:shadowColor="#000000"
+        android:shadowRadius="40"
+        android:text="*Beginner*"
+        android:textColor="#70D0FB"
+        android:textSize="43dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/youScoredText"
+        android:layout_width="156dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="350dp"
+        android:fontFamily="@font/abel_font"
+        android:shadowColor="#000000"
+        android:shadowRadius="10"
+        android:text="You scored:"
+        android:textAlignment="center"
+        android:textColor="#70BEFB"
+        android:textSize="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/percentageScoreText"
+        android:layout_width="133dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="380dp"
+        android:fontFamily="@font/abel_font"
+        android:gravity="center"
+        android:shadowColor="#000000"
+        android:shadowRadius="4"
+        android:text="50%"
+        android:textSize="50sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/fractionScoreText"
+        android:layout_width="104dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="430dp"
+        android:fontFamily="@font/abel_font"
+        android:gravity="center"
+        android:shadowColor="#000000"
+        android:shadowRadius="4"
+        android:text="(5/10)"
+        android:textSize="27sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/experienceGainedText"
+        android:layout_width="170dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="160dp"
+        android:fontFamily="@font/abel_font"
+        android:gravity="center"
+        android:shadowColor="#000000"
+        android:shadowRadius="4"
+        android:text="Experience: +10"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/backToHomePageButton"
+        android:layout_width="148dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="590dp"
+        android:fontFamily="@font/abel_font"
+        android:text="Go To Home Page"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.071"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/doAnotherQuizButton"
+        android:layout_width="141dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="590dp"
+        android:fontFamily="@font/abel_font"
+        android:text="Do Another Quiz?"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.943"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

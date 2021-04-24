@@ -84,18 +84,24 @@ public class MultipleChoiceQuizFragment extends Fragment {
                 try {
                     QuestionHandler quiz = new QuestionHandler(amount, category, difficulty, type);
 
-                    quiz.setAmount(amount);
+                    quiz.setAmount(amount + 1);
                     quiz.setType(type);
                     quiz.setDifficulty(difficulty);
                     quiz.setCategory(category);
                     quiz.generateQuestions();
 
-                    while (counter < quiz.getAmount() - 1) {
+                    while (counter < quiz.getAmount()) {
+                        if (counter + 1 == quiz.getAmount()) {
+                            Intent resultActivity = new Intent(getActivity(), ResultActivity.class);
+                            resultActivity.putExtra("USER_ID", getCurrentUserId());
+                            resultActivity.putExtra("score", score);
+                            resultActivity.putExtra("amount", amount);
+                            startActivity(resultActivity);
+                            break;
+                        }
+
                         forLoopHelper(quiz, selection);
                     }
-
-                    Intent intent = new Intent();
-                    intent.putExtra("score", score);
 
                 } catch (Exception e) {
                     e.printStackTrace();

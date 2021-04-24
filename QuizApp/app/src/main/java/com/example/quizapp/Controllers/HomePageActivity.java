@@ -96,7 +96,7 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
         System.out.println("Bar Progression: " + barProgression);
 
         // sets the value of the progress bar (progress bar can only take a max of 100)
-        progressBar.setProgressCompat(barProgression, true);
+        progressBar.setProgress(barProgression, true);
     }
 
     /**
@@ -113,6 +113,23 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
         }
 
         return currentUserID;
+    }
+
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setMessage("Are you sure you want to quit the app?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Intent a = new Intent(Intent.ACTION_MAIN);
+                        a.addCategory(Intent.CATEGORY_HOME);
+                        a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(a);
+                    }
+                })
+                .setNegativeButton("No", null)
+                .show();
     }
 
     /**
@@ -224,17 +241,5 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
         }
     }
 
-    /**
-     * When pressing the back button as the drawer menu is toggled.
-     * It will simply close the drawer menu instead of quitting the entire activity.
-     */
-    @Override
-    public void onBackPressed() {
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
 
 }
