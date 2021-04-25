@@ -287,6 +287,10 @@ public class MultipleChoiceQuizFragment extends Fragment {
 
     }
 
+    /**
+     *
+     * @param handler
+     */
     public void gotoResultActivityIfLast(QuestionHandler handler) {
         if (counter + 1 == handler.getAmount()) {
             counter--;

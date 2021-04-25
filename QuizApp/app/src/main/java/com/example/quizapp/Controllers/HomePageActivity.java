@@ -115,6 +115,9 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
         return currentUserID;
     }
 
+    /**
+     * When pressing the back button it'll prompted a message saying if the user wants to quit the app.
+     */
     @Override
     public void onBackPressed() {
         new AlertDialog.Builder(this)
@@ -240,6 +243,4 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
                 return super.onOptionsItemSelected(item);
         }
     }
-
-
 }

@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -12,6 +13,7 @@ import androidx.appcompat.widget.SwitchCompat;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +22,7 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.quizapp.Models.Experience;
 import com.example.quizapp.Models.QuestionHandler;
@@ -155,58 +158,57 @@ public class TrueOrFalseQuizFragment extends Fragment {
             default:
         }
 
-        truefalse1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                nextButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (counter < handler.getAmount()) {
-                            if (truefalse1.getText() == handler.getAnswers().get(counter)) {
-                                totalExperienceGained += Experience.calculateExperience(handler.getDifficulty());
-                                correctAnswerSnackBar();
-                                score++;
-                            } else {
-                                incorrectAnswerSnackBar();
+            truefalse1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    nextButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (counter < handler.getAmount()) {
+                                if (truefalse1.getText() == handler.getAnswers().get(counter)) {
+                                    totalExperienceGained += Experience.calculateExperience(handler.getDifficulty());
+                                    correctAnswerSnackBar();
+                                    score++;
+                                } else {
+                                    incorrectAnswerSnackBar();
+                                }
+                                gotoResultActivityIfLast(handler);
+                                radioGroup.clearCheck();
+                                counter++;
                             }
-                            gotoResultActivityIfLast(handler);
-                            radioGroup.clearCheck();
-                            counter++;
+                            counterText.setText(String.valueOf(counter) + "/" + String.valueOf(questionAmount));
+                            System.out.println("Counter: " + counter);
+                            System.out.println("Score: " + score);
                         }
-                        counterText.setText(String.valueOf(counter) + "/" + String.valueOf(questionAmount));
-                        System.out.println("Counter: " + counter);
-                        System.out.println("Score: " + score);
-                    }
-                });
-            }
-        });
+                    });
+                }
+            });
 
-        truefalse2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                nextButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (counter < handler.getAmount()) {
-                            if (truefalse2.getText() == handler.getAnswers().get(counter)) {
-                                totalExperienceGained += Experience.calculateExperience(handler.getDifficulty());
-                                correctAnswerSnackBar();
-                                score++;
-                            } else {
-                                incorrectAnswerSnackBar();
+            truefalse2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    nextButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (counter < handler.getAmount()) {
+                                if (truefalse2.getText() == handler.getAnswers().get(counter)) {
+                                    totalExperienceGained += Experience.calculateExperience(handler.getDifficulty());
+                                    correctAnswerSnackBar();
+                                    score++;
+                                } else {
+                                    incorrectAnswerSnackBar();
+                                }
+                                gotoResultActivityIfLast(handler);
+                                radioGroup.clearCheck();
+                                counter++;
                             }
-                            gotoResultActivityIfLast(handler);
-                            radioGroup.clearCheck();
-                            counter++;
+                            counterText.setText(String.valueOf(counter) + "/" + String.valueOf(questionAmount));
+                            System.out.println("Counter: " + counter);
+                            System.out.println("Score: " + score);
                         }
-                        counterText.setText(String.valueOf(counter) + "/" + String.valueOf(questionAmount));
-                        System.out.println("Counter: " + counter);
-                        System.out.println("Score: " + score);
-                    }
-                });
-            }
-        });
-
+                    });
+                }
+            });
     }
 
     public void gotoResultActivityIfLast(QuestionHandler handler) {
