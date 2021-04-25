@@ -26,7 +26,7 @@ import com.google.android.material.progressindicator.LinearProgressIndicator;
 
 public class HomePageActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     DatabaseHelper db;
-    TextView nameTitle, levelText, expNeededText, menuFullName, menuLevel;
+    TextView nameTitle, levelText, expNeededText, menuFullName, menuLevel, expNeededTextText;
     Button optionsButton, viewQueue;
     Toolbar toolbar;
     LinearProgressIndicator progressBar;
@@ -45,6 +45,9 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
         nameTitle = findViewById(R.id.homePageTitleText);
         optionsButton = findViewById(R.id.playButton);
         viewQueue = findViewById(R.id.viewQueueButton);
+        expNeededTextText = findViewById(R.id.expNeededTextText);
+
+        expNeededTextText.setText("NEED FOR LEVEL: " + (Experience.calculateLevel(Integer.parseInt(db.getExperiencePoints(getCurrentUserId()))) + 1));
 
         nameTitle.setText(db.getFirstAndLastName(getCurrentUserId()));
 

@@ -4,14 +4,19 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import android.app.AlertDialog;
+import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
@@ -26,6 +31,9 @@ import android.widget.TextView;
 import com.example.quizapp.Models.DatabaseHelper;
 import com.example.quizapp.Models.Experience;
 import com.example.quizapp.R;
+
+import static android.app.Notification.DEFAULT_SOUND;
+import static android.app.Notification.DEFAULT_VIBRATE;
 
 public class ResultActivity extends AppCompatActivity {
     DatabaseHelper db;
@@ -78,10 +86,13 @@ public class ResultActivity extends AppCompatActivity {
         });
 
 
-        NotificationChannel channel = new NotificationChannel("My Notification", "My Notification Channel",
-                NotificationManager.IMPORTANCE_DEFAULT);
-        NotificationManager manager = getSystemService(NotificationManager.class);
-        manager.createNotificationChannel(channel);
+        int importance = NotificationManager.IMPORTANCE_HIGH;
+        NotificationChannel channel = new NotificationChannel("1", "My Notification Channel", importance);
+        channel.setDescription("YES");
+        channel.setShowBadge(true);
+        channel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
+        NotificationManager notificationManager = getSystemService(NotificationManager.class);
+        notificationManager.createNotificationChannel(channel);
 
         addNotification();
     }
@@ -113,20 +124,16 @@ public class ResultActivity extends AppCompatActivity {
      * Initializes a notification that tells the user how much exp is needed for next level.
      */
     private void addNotification() {
-        NotificationCompat.Builder builder =
-                new NotificationCompat.Builder(ResultActivity.this, "My Notification");
-        builder.setContentTitle("EXPERIENCE NEEDED FOR NEXT LEVEL:");
-        builder.setContentText(String.valueOf(experienceNeededForNextLvl()));
-        builder.setSmallIcon(R.drawable.ic_launcher_background);
-        builder.setAutoCancel(true);
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, "1")
+                .setSmallIcon(R.drawable.ic_launcher_background)
+                .setContentTitle("ASDSAD")
+                .setContentText("ASDASasdasdasdasdasdD")
+                .setDefaults(DEFAULT_SOUND | DEFAULT_VIBRATE) //Important for heads-up notification
+                .setPriority(Notification.PRIORITY_MAX); //Important for heads-up notification
 
-        Intent notificationIntent = new Intent(this, NotificationView.class);
-        PendingIntent contentIntent = PendingIntent.getActivity(this,0,notificationIntent,
-                PendingIntent.FLAG_UPDATE_CURRENT);
-        builder.setContentIntent(contentIntent);
-
-        NotificationManager manager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-        manager.notify(0, builder.build());
+        Notification buildNotification = mBuilder.build();
+        NotificationManager mNotifyMgr = (NotificationManager) this.getSystemService(NOTIFICATION_SERVICE);
+        mNotifyMgr.notify(001, buildNotification);
     }
 
     /**

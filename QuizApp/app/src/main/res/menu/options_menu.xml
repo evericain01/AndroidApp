@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item android:id="@+id/modifyProfile"
-        android:title="Modify Profile"
+        android:title="Modify Profile/Account"
         android:fontFamily="@font/abel_font"
         app:showAsAction="never"/>
     <item android:id="@+id/logoutOption"
