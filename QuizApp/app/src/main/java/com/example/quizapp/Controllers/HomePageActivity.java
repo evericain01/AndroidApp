@@ -75,7 +75,7 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
         expNeededText = findViewById(R.id.expNeededText);
         progressBar = findViewById(R.id.progressBar);
 
-        // Gets the total experience points of the current user (max 100)
+        // Gets the total experience points of the current user
         int exp = Integer.parseInt(db.getExperiencePoints(getCurrentUserId()));
         System.out.println(exp);
 

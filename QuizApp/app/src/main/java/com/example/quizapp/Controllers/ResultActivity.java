@@ -23,9 +23,12 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.quizapp.Models.DatabaseHelper;
+import com.example.quizapp.Models.Experience;
 import com.example.quizapp.R;
 
 public class ResultActivity extends AppCompatActivity {
+    DatabaseHelper db;
     TextView experienceGained, levelStage, percentageScore, fractionScore;
     Button homePageButton, doAnotherQuizButton;
     Toolbar toolbar;
@@ -37,6 +40,9 @@ public class ResultActivity extends AppCompatActivity {
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        db = new DatabaseHelper(this);
+        updatingExperienceOnDb();
 
         experienceGained = findViewById(R.id.experienceGainedText);
         levelStage = findViewById(R.id.levelStageTitle);
@@ -72,23 +78,45 @@ public class ResultActivity extends AppCompatActivity {
         });
 
 
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel channel = new NotificationChannel("My Notification", "My Notification Channel",
-                    NotificationManager.IMPORTANCE_DEFAULT);
-            NotificationManager manager = getSystemService(NotificationManager.class);
-            manager.createNotificationChannel(channel);
+        NotificationChannel channel = new NotificationChannel("My Notification", "My Notification Channel",
+                NotificationManager.IMPORTANCE_DEFAULT);
+        NotificationManager manager = getSystemService(NotificationManager.class);
+        manager.createNotificationChannel(channel);
 
-        }
         addNotification();
-
     }
 
 
+    /**
+     * Calculates the experience needed for next level.
+     *
+     * @return The experience needed.
+     */
+    private int experienceNeededForNextLvl() {
+        int exp = Integer.parseInt(db.getExperiencePoints(getCurrentUserId()));
+        double expNeeded = Experience.nextLevelXpNeeded(exp);
+
+        return (int) expNeeded;
+    }
+
+
+    /**
+     * Updates the experience gained on the database.
+     */
+    private void updatingExperienceOnDb() {
+        String oldExp = db.getExperiencePoints(getCurrentUserId());
+        int updatedExp = Integer.parseInt(oldExp) + getExperienceGained();
+        db.setExperiencePoints(getCurrentUserId(), String.valueOf(updatedExp));
+    }
+
+    /**
+     * Initializes a notification that tells the user how much exp is needed for next level.
+     */
     private void addNotification() {
         NotificationCompat.Builder builder =
                 new NotificationCompat.Builder(ResultActivity.this, "My Notification");
-        builder.setContentTitle("This is my first example notification");
-        builder.setContentText("Hey, URGENT Message");
+        builder.setContentTitle("EXPERIENCE NEEDED FOR NEXT LEVEL:");
+        builder.setContentText(String.valueOf(experienceNeededForNextLvl()));
         builder.setSmallIcon(R.drawable.ic_launcher_background);
         builder.setAutoCancel(true);
 
@@ -98,8 +126,7 @@ public class ResultActivity extends AppCompatActivity {
         builder.setContentIntent(contentIntent);
 
         NotificationManager manager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-        manager.notify(0,builder.build());
-
+        manager.notify(0, builder.build());
     }
 
     /**
