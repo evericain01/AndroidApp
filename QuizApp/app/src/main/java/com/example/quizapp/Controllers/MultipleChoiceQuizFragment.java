@@ -293,7 +293,7 @@ public class MultipleChoiceQuizFragment extends Fragment {
             Intent resultActivity = new Intent(getActivity(), ResultActivity.class);
             resultActivity.putExtra("USER_ID", getCurrentUserId());
             resultActivity.putExtra("score", score);
-            resultActivity.putExtra("amount", handler.getAmount());
+            resultActivity.putExtra("amount", handler.getAmount() - 1);
             resultActivity.putExtra("experienceGained", totalExperienceGained);
             startActivity(resultActivity);
         }

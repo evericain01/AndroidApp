@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -22,12 +23,66 @@ public class ResultActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
 
-
         experienceGained = findViewById(R.id.experienceGainedText);
-        experienceGained.setText("EXP: +" + String.valueOf(getExperienceGained()));
+        levelStage = findViewById(R.id.levelStageTitle);
+        percentageScore = findViewById(R.id.percentageScoreText);
+        fractionScore = findViewById(R.id.fractionScoreText);
 
+        experienceGained.setText("EXP: +" + String.valueOf(getExperienceGained()));
+        levelStage.setText(determineLevelStage());
+        percentageScore.setText(String.valueOf((int) convertFractionToPercentage()) + "%");
+        fractionScore.setText("(" + getUserScore() +"/" + getUserAmountOfQuestions() + ")");
 
         startAnimation();
+
+        homePageButton = findViewById(R.id.backToHomePageButton);
+        doAnotherQuizButton = findViewById(R.id.doAnotherQuizButton);
+
+        homePageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent goToHomePage = new Intent(ResultActivity.this, HomePageActivity.class);
+                goToHomePage.putExtra("USER_ID", getCurrentUserId());
+                startActivity(goToHomePage);
+            }
+        });
+
+        doAnotherQuizButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent goToOptionsPage = new Intent(ResultActivity.this, OptionsActivity.class);
+                goToOptionsPage.putExtra("USER_ID", getCurrentUserId());
+                startActivity(goToOptionsPage);
+            }
+        });
+
+    }
+
+
+    private double convertFractionToPercentage() {
+        double percentageScore;
+
+        double score = getUserScore();
+        double amount = getUserAmountOfQuestions();
+
+        percentageScore = score / amount * 100;
+
+        return percentageScore;
+    }
+
+
+    private String determineLevelStage() {
+        String levelStage;
+        double score = convertFractionToPercentage();
+        if (score <= 33) {
+            levelStage = "Beginner";
+        } else if (score > 33 && score <= 66) {
+            levelStage = "Intermediate";
+        } else {
+            levelStage = "Advanced";
+        }
+
+        return levelStage;
     }
 
     private void startAnimation() {
@@ -77,9 +132,9 @@ public class ResultActivity extends AppCompatActivity {
     public int getUserScore() {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-        Integer score = 0;
+        int score = 0;
         if (bundle != null) {
-            score = (Integer) bundle.get("score");
+            score = (int) bundle.get("score");
         }
 
         return score;
@@ -93,9 +148,9 @@ public class ResultActivity extends AppCompatActivity {
     public int getUserAmountOfQuestions() {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-        Integer amount = 0;
+        int amount = 0;
         if (bundle != null) {
-            amount = (Integer) bundle.get("amount");
+            amount = (int) bundle.get("amount");
         }
 
         return amount;
