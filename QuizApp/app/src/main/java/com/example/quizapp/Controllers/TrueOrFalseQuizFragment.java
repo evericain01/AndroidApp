@@ -38,7 +38,7 @@ public class TrueOrFalseQuizFragment extends Fragment {
     int totalExperienceGained = 0;
     int score, questionAmount;
 
-    RadioButton truefalse1, truefalse2;
+    RadioButton trueFalse1, trueFalse2;
     RadioGroup radioGroup;
     Button nextButton;
     TextView categoryTitle, difficultyTitle, questionBox, counterText, quitQuiz;
@@ -134,23 +134,23 @@ public class TrueOrFalseQuizFragment extends Fragment {
     public void forLoopHelper(QuestionHandler handler, int selection) {
         questionBox.setText(handler.getQuestions().get(counter));
         radioGroup = getActivity().findViewById(R.id.radioGroup);
-        truefalse1 = getActivity().findViewById(R.id.trueFalseButton1);
-        truefalse2 = getActivity().findViewById(R.id.trueFalseButton2);
+        trueFalse1 = getActivity().findViewById(R.id.trueFalseButton1);
+        trueFalse2 = getActivity().findViewById(R.id.trueFalseButton2);
         nextButton = getActivity().findViewById(R.id.nextQuestionButton);
 
         switch (selection) {
             case 0:
-                truefalse1.setText(handler.getAnswers().get(counter));
+                trueFalse1.setText(handler.getAnswers().get(counter));
                 try {
-                    truefalse2.setText(handler.getIncorrectAnswers().get(counter).getString(0));
+                    trueFalse2.setText(handler.getIncorrectAnswers().get(counter).getString(0));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
                 break;
             case 1:
-                truefalse2.setText(handler.getAnswers().get(counter));
+                trueFalse2.setText(handler.getAnswers().get(counter));
                 try {
-                    truefalse1.setText(handler.getIncorrectAnswers().get(counter).getString(0));
+                    trueFalse1.setText(handler.getIncorrectAnswers().get(counter).getString(0));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -158,14 +158,14 @@ public class TrueOrFalseQuizFragment extends Fragment {
             default:
         }
 
-            truefalse1.setOnClickListener(new View.OnClickListener() {
+        trueFalse1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     nextButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             if (counter < handler.getAmount()) {
-                                if (truefalse1.getText() == handler.getAnswers().get(counter)) {
+                                if (trueFalse1.getText() == handler.getAnswers().get(counter)) {
                                     totalExperienceGained += Experience.calculateExperience(handler.getDifficulty());
                                     correctAnswerSnackBar();
                                     score++;
@@ -184,14 +184,14 @@ public class TrueOrFalseQuizFragment extends Fragment {
                 }
             });
 
-            truefalse2.setOnClickListener(new View.OnClickListener() {
+        trueFalse2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     nextButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             if (counter < handler.getAmount()) {
-                                if (truefalse2.getText() == handler.getAnswers().get(counter)) {
+                                if (trueFalse2.getText() == handler.getAnswers().get(counter)) {
                                     totalExperienceGained += Experience.calculateExperience(handler.getDifficulty());
                                     correctAnswerSnackBar();
                                     score++;
@@ -211,11 +211,17 @@ public class TrueOrFalseQuizFragment extends Fragment {
             });
     }
 
+    /**
+     * Sends the user to the result screen after completing the quiz.
+     *
+     * @param handler The question.
+     */
     public void gotoResultActivityIfLast(QuestionHandler handler) {
         if (counter + 1 == handler.getAmount()) {
             counter--;
             Intent resultActivity = new Intent(getActivity(), ResultActivity.class);
             resultActivity.putExtra("USER_ID", getCurrentUserId());
+            resultActivity.putExtra("category", getCategoryString(handler.getCategory()));
             resultActivity.putExtra("score", score);
             resultActivity.putExtra("amount", handler.getAmount() - 1);
             resultActivity.putExtra("experienceGained", totalExperienceGained);

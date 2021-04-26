@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#065CAE"
+    tools:context=".Controllers.SuggestionsActivity">
+
+    <TextView
+        android:id="@+id/HelpfulLinksText"
+        android:layout_width="320dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="36dp"
+        android:fontFamily="@font/abel_font"
+        android:gravity="center"
+        android:shadowColor="#000000"
+        android:shadowRadius="40"
+        android:text="Helpful Links For:"
+        android:textColor="#70D0FB"
+        android:textSize="39dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/categoryNameText"
+        android:layout_width="343dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="104dp"
+        android:fontFamily="@font/abel_font"
+        android:gravity="center"
+        android:shadowColor="#000000"
+        android:shadowRadius="40"
+        android:text="*Music*"
+        android:textColor="#70D0FB"
+        android:textSize="28dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/suggestionLink1"
+        android:layout_width="333dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="268dp"
+        android:fontFamily="@font/abel_font"
+        android:gravity="center"
+        android:shadowColor="#000000"
+        android:shadowRadius="4"
+        android:text="LINK1"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.512"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/suggestionLink2"
+        android:layout_width="331dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="332dp"
+        android:fontFamily="@font/abel_font"
+        android:gravity="center"
+        android:shadowColor="#000000"
+        android:shadowRadius="4"
+        android:text="LINK2"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/backToHomePageButton"
+        android:layout_width="148dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="460dp"
+        android:fontFamily="@font/abel_font"
+        android:text="Go To Home Page"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

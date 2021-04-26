@@ -288,14 +288,16 @@ public class MultipleChoiceQuizFragment extends Fragment {
     }
 
     /**
+     * Sends the user to the result screen after completing the quiz.
      *
-     * @param handler
+     * @param handler The question.
      */
     public void gotoResultActivityIfLast(QuestionHandler handler) {
         if (counter + 1 == handler.getAmount()) {
             counter--;
             Intent resultActivity = new Intent(getActivity(), ResultActivity.class);
             resultActivity.putExtra("USER_ID", getCurrentUserId());
+            resultActivity.putExtra("category", getCategoryString(handler.getCategory()));
             resultActivity.putExtra("score", score);
             resultActivity.putExtra("amount", handler.getAmount() - 1);
             resultActivity.putExtra("experienceGained", totalExperienceGained);

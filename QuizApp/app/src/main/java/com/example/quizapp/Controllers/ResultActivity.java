@@ -15,6 +15,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
@@ -38,7 +40,7 @@ import static android.app.Notification.DEFAULT_VIBRATE;
 public class ResultActivity extends AppCompatActivity {
     DatabaseHelper db;
     TextView experienceGained, levelStage, percentageScore, fractionScore;
-    Button homePageButton, doAnotherQuizButton;
+    Button homePageButton, doAnotherQuizButton, helpfulLinkButton;
     Toolbar toolbar;
 
     @Override
@@ -57,15 +59,19 @@ public class ResultActivity extends AppCompatActivity {
         percentageScore = findViewById(R.id.percentageScoreText);
         fractionScore = findViewById(R.id.fractionScoreText);
 
-        experienceGained.setText("EXP: +" + String.valueOf(getExperienceGained()));
+        experienceGained.setText("EXP: +" + getExperienceGained());
         levelStage.setText(determineLevelStage());
-        percentageScore.setText(String.valueOf((int) convertFractionToPercentage()) + "%");
+        percentageScore.setText((int) convertFractionToPercentage() + "%");
         fractionScore.setText("(" + getUserScore() +"/" + getUserAmountOfQuestions() + ")");
 
         startAnimation();
 
         homePageButton = findViewById(R.id.backToHomePageButton);
         doAnotherQuizButton = findViewById(R.id.doAnotherQuizButton);
+
+        helpfulLinkButton = findViewById(R.id.helpfulLinkButton);
+        helpfulLinkButton.setPaintFlags(helpfulLinkButton.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
+        helpfulLinkButton.setText("Helpful Links For: " + getCategory());
 
         homePageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,18 +91,44 @@ public class ResultActivity extends AppCompatActivity {
             }
         });
 
+        helpfulLinkButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent helpfulActivity = new Intent(ResultActivity.this, SuggestionsActivity.class);
+                helpfulActivity.putExtra("category", getCategory());
+                helpfulActivity.putExtra("USER_ID", getCurrentUserId());
+                startActivity(helpfulActivity);
+            }
+        });
+
 
         int importance = NotificationManager.IMPORTANCE_HIGH;
-        NotificationChannel channel = new NotificationChannel("1", "My Notification Channel", importance);
+        NotificationChannel channel = new NotificationChannel("channel", "My Notification Channel", importance);
+        channel.setSound(null,null);
         channel.setDescription("YES");
         channel.setShowBadge(true);
         channel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
+
         NotificationManager notificationManager = getSystemService(NotificationManager.class);
         notificationManager.createNotificationChannel(channel);
-
         addNotification();
     }
 
+    /**
+     * Initializes a heads up notification that tells the user how much exp is needed for next level.
+     */
+    private void addNotification() {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "channel")
+                .setSmallIcon(R.drawable.ic_launcher_background)
+                .setContentTitle(experienceNeededForNextLvl() + "EXP NEEDED FOR NEXT LEVEL!!")
+                .setDefaults(Notification.DEFAULT_ALL)
+                .setSound(null)
+                .setPriority(Notification.DEFAULT_LIGHTS);
+
+        Notification buildNotification = builder.build();
+        NotificationManager manager = (NotificationManager) this.getSystemService(NOTIFICATION_SERVICE);
+        manager.notify(001, buildNotification);
+    }
 
     /**
      * Calculates the experience needed for next level.
@@ -118,22 +150,6 @@ public class ResultActivity extends AppCompatActivity {
         String oldExp = db.getExperiencePoints(getCurrentUserId());
         int updatedExp = Integer.parseInt(oldExp) + getExperienceGained();
         db.setExperiencePoints(getCurrentUserId(), String.valueOf(updatedExp));
-    }
-
-    /**
-     * Initializes a notification that tells the user how much exp is needed for next level.
-     */
-    private void addNotification() {
-        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, "1")
-                .setSmallIcon(R.drawable.ic_launcher_background)
-                .setContentTitle("ASDSAD")
-                .setContentText("ASDASasdasdasdasdasdD")
-                .setDefaults(DEFAULT_SOUND | DEFAULT_VIBRATE) //Important for heads-up notification
-                .setPriority(Notification.PRIORITY_MAX); //Important for heads-up notification
-
-        Notification buildNotification = mBuilder.build();
-        NotificationManager mNotifyMgr = (NotificationManager) this.getSystemService(NOTIFICATION_SERVICE);
-        mNotifyMgr.notify(001, buildNotification);
     }
 
     /**
@@ -186,11 +202,11 @@ public class ResultActivity extends AppCompatActivity {
         String levelStage;
         double score = convertFractionToPercentage();
         if (score <= 33) {
-            levelStage = "Beginner";
+            levelStage = "BEGINNER";
         } else if (score > 33 && score <= 66) {
-            levelStage = "Intermediate";
+            levelStage = "INTERMEDIATE";
         } else {
-            levelStage = "Advanced";
+            levelStage = "ADVANCED";
         }
 
         return levelStage;
@@ -212,6 +228,21 @@ public class ResultActivity extends AppCompatActivity {
         return currentUserID;
     }
 
+    /**
+     * Gets the category of the quiz.
+     *
+     * @return The category.
+     */
+    public String getCategory() {
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        String category = "";
+        if (bundle != null) {
+            category = (String) bundle.get("category");
+        }
+
+        return category;
+    }
 
     /**
      * Gets the user's score.
@@ -283,6 +314,11 @@ public class ResultActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.modifyProfile:
+                Intent modifyProfile = new Intent(ResultActivity.this, ModifyProfileActivity.class);
+                modifyProfile.putExtra("USER_ID", getCurrentUserId());
+                startActivity(modifyProfile);
+                return true;
             case R.id.logoutOption:
                 new AlertDialog.Builder(this)
                         .setMessage("Are you sure you want to logout?")

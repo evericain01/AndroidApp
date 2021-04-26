@@ -47,7 +47,7 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
         viewQueue = findViewById(R.id.viewQueueButton);
         expNeededTextText = findViewById(R.id.expNeededTextText);
 
-        expNeededTextText.setText("NEED FOR LEVEL: " + (Experience.calculateLevel(Integer.parseInt(db.getExperiencePoints(getCurrentUserId()))) + 1));
+        expNeededTextText.setText("NEEDED FOR LEVEL: " + (Experience.calculateLevel(Integer.parseInt(db.getExperiencePoints(getCurrentUserId()))) + 1));
 
         nameTitle.setText(db.getFirstAndLastName(getCurrentUserId()));
 

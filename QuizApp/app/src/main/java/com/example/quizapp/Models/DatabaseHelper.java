@@ -66,9 +66,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + "FOREIGN KEY (user_id) REFERENCES " + USER_TABLE + " (user_id) "
             + ");";
 
-
-    private static final String TAG = "HomePageActivity";
-
     /**
      * Constructor that takes in the current context.
      *
