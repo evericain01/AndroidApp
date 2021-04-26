@@ -176,7 +176,7 @@ public class TrueOrFalseQuizFragment extends Fragment {
                                 radioGroup.clearCheck();
                                 counter++;
                             }
-                            counterText.setText(String.valueOf(counter) + "/" + String.valueOf(questionAmount));
+                            counterText.setText(counter + "/" + questionAmount);
                             System.out.println("Counter: " + counter);
                             System.out.println("Score: " + score);
                         }
@@ -202,7 +202,7 @@ public class TrueOrFalseQuizFragment extends Fragment {
                                 radioGroup.clearCheck();
                                 counter++;
                             }
-                            counterText.setText(String.valueOf(counter) + "/" + String.valueOf(questionAmount));
+                            counterText.setText(counter + "/" + questionAmount);
                             System.out.println("Counter: " + counter);
                             System.out.println("Score: " + score);
                         }

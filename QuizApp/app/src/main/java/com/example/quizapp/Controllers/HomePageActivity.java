@@ -205,7 +205,7 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
      * Initializing the options menu.
      *
      * @param menu The desired menu format.
-     * @return true;
+     * @return true.
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -70,7 +70,7 @@ public class ResultActivity extends AppCompatActivity {
         doAnotherQuizButton = findViewById(R.id.doAnotherQuizButton);
 
         helpfulLinkButton = findViewById(R.id.helpfulLinkButton);
-        helpfulLinkButton.setPaintFlags(helpfulLinkButton.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
+        helpfulLinkButton.setPaintFlags(helpfulLinkButton.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         helpfulLinkButton.setText("Helpful Links For: " + getCategory());
 
         homePageButton.setOnClickListener(new View.OnClickListener() {

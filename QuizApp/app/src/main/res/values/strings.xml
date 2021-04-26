@@ -31,7 +31,6 @@
         <item>Cartoons and Animations</item>
     </string-array>
 
-
     <string-array name="difficulties">
         <item>Easy</item>
         <item>Medium</item>
@@ -50,6 +49,81 @@
         <item>40</item>
         <item>50</item>
     </string-array>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="GeneralKnowledgeLink1">
+        <a href="https://testyourself.psychtests.com/testid/3174"> 1 - General Knowledge Helpful Link</a>
+    </string>
+    <string name="GeneralKnowledgeLink2">
+        <a href="https://www.youtube.com/watch?v=8uvW6M7Qo_c&amp;ab_channel=RoehlTransport%2CInc."> 2 - General Knowledge Helpful Link</a>
+    </string>
+    <string name="BooksLink1">
+        <a href="https://www.cambridge-news.co.uk/news/uk-world-news/30-books-literature-quiz-questions-18300713"> 1 - Books Helpful Link</a>
+    </string>
+    <string name="BooksLink2">
+        <a href="https://www.tests.com/practice/Literature-Test"> 2 - Books Helpful Link</a>
+    </string>
+    <string name="FilmsLink1">
+        <a href="https://larryferlazzo.edublogs.org/2014/04/20/the-best-movies-for-ib-theory-of-knowledge-classes-what-are-your-suggestions/"> 1 - Films Helpful Link</a>
+    </string>
+    <string name="FilmsLink2">
+        <a href="https://parade.com/977752/samuelmurrian/movie-trivia/"> 2 - Films Helpful Link</a>
+    </string>
+    <string name="MusicLink1">
+        <a href="https://www.musictheory.net/"> 1 - Music Helpful Link</a>
+    </string>
+    <string name="MusicLink2">
+        <a href="https://www.britannica.com/quiz/fundamentals-of-music-theory"> 2 - Music Helpful Link</a>
+    </string>
+    <string name="MusicalAndTheatersLink1">
+        <a href="https://www.musicaltheatreaudition.net/performance/voice/expandknowledge.html"> 1 - Music and Theaters Helpful Link</a>
+    </string>
+    <string name="MusicalAndTheatersLink2">
+        <a href="https://www.cambridge-news.co.uk/news/uk-world-news/musicals-theatre-broadway-quiz-questions-18423296"> 2 - Music and Theaters Helpful Link</a>
+    </string>
+    <string name="TelevisionLink1">
+        <a href="https://www.researchgate.net/publication/268815045_Television_and_the_mediatization_of_knowledge_Discursive_strategies_in_new_TV_formats"> 1 - Television Helpful Link</a>
+    </string>
+    <string name="TelevisionLink2">
+        <a href="https://en.wikipedia.org/wiki/List_of_documentary_television_channels"> 2 - Television Helpful Link</a>
+    </string>
+    <string name="VideoGamesLink1">
+        <a href="https://icebreakerideas.com/video-game-trivia/"> 1 - Video Games Helpful Link</a>
+    </string>
+    <string name="VideoGamesLink2">
+        <a href="https://www.idtech.com/blog/fun-video-games-facts-to-sound-like-expert"> 2 - Video Games Helpful Link</a>
+    </string>
+    <string name="BoardGamesLink1">
+        <a href="https://blog.cheapism.com/board-game-trivia/#slide=2"> 1 - Board Games Helpful Link</a>
+    </string>
+    <string name="BoardGamesLink2">
+        <a href="https://www.thefactsite.com/tag/board-and-card-games/"> 2 - Board Games Helpful Link</a>
+    </string>
+    <string name="ScienceAndNatureLink1">
+        <a href="https://www.cambridge-news.co.uk/news/uk-world-news/20-science-nature-quiz-questions-18142780"> 1 - Science and Nature Helpful Link</a>
+    </string>
+    <string name="ScienceAndNatureLink2">
+        <a href="https://www.youtube.com/watch?v=VoLZXXQL-YY&amp;ab_channel=5-MinuteCrafts"> 2 - Science and Nature Helpful Link</a>
+    </string>
+    <string name="ComputersLink1">
+        <a href="https://www.youtube.com/watch?v=mybYCf4Mov4&amp;ab_channel=GCFLearnFree.org"> 1 - Computers Helpful Link</a>
+    </string>
+    <string name="ComputersLink2">
+        <a href="https://www.recruitment.guru/general-knowledge/computer-knowledge/"> 2 - Computers Helpful Link</a>
+    </string>
+    <string name="MathLink1">
+        <a href="https://www.khanacademy.org/math/algebra-basics"> 1 - Math Helpful Link</a>
+    </string>
+    <string name="MathLink2">
+        <a href="https://www.youtube.com/watch?v=tz6uy4DdHvc&amp;ab_channel=TheOrganicChemistryTutor"> 2 - Math Helpful Link</a>
+    </string>
+    <string name="MythologyLink1">
+        <a href="https://www.youtube.com/watch?v=HeX6CX5LEj0&amp;ab_channel=CrashCourse"> 1 - Mythology Helpful Link</a>
+    </string>
+    <string name="MythologyLink2">
+        <a href="https://www.theoi.com/articles/6-amazing-greek-mythology-facts-youll-love-reading/"> 2 - Mythology Helpful Link</a>
+    </string>
+
 </resources>

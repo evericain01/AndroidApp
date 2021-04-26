@@ -1,17 +1,10 @@
 package com.example.quizapp.Controllers;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -19,7 +12,7 @@ import android.widget.TextView;
 import com.example.quizapp.R;
 
 public class SuggestionsActivity extends AppCompatActivity {
-    TextView categoryName;
+    TextView categoryName, suggestionLink1, suggestionLink2;
     Button backToHomePageButton;
 
     @Override
@@ -28,11 +21,88 @@ public class SuggestionsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_suggestions);
 
         categoryName = findViewById(R.id.categoryNameText);
-        categoryName.setPaintFlags(categoryName.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
+        suggestionLink1 = findViewById(R.id.suggestionLink1);
+        suggestionLink2 = findViewById(R.id.suggestionLink2);
+
         categoryName.setText(getCategory());
 
-        backToHomePageButton = findViewById(R.id.backToHomePageButton);
+        switch (getCategory()) {
+            case "General Knowledge":
+                suggestionLink1.setText(R.string.GeneralKnowledgeLink1);
+                suggestionLink1.setMovementMethod(LinkMovementMethod.getInstance());
+                suggestionLink2.setText(R.string.GeneralKnowledgeLink2);
+                suggestionLink2.setMovementMethod(LinkMovementMethod.getInstance());
+                break;
+//            case "Books":
+//                category = "Books";
+//                break;
+//            case "Films":
+//                category = "Films";
+//                break;
+//            case "Music":
+//                category = "Music";
+//                break;
+//            case "Musical and Theatres":
+//                category = "Musical and Theatres";
+//                break;
+//            case "Television":
+//                category = "Television";
+//                break;
+//            case "Video Games"
+//                category = "Video Games";
+//                break;
+//            case "Board Games":
+//                category = "Board Games";
+//                break;
+//            case "Science and Nature":
+//                category = "Science and Nature";
+//                break;
+//            case "Computers":
+//                category = "Computers";
+//                break;
+//            case "Math":
+//                category = "Math";
+//                break;
+//            case "Mythology":
+//                category = "Mythology";
+//                break;
+//            case "Sports":
+//                category = "Sports";
+//                break;
+//            case "Geography":
+//                category = "Geography";
+//                break;
+//            case "Politics":
+//                category = "Politics";
+//                break;
+//            case "Art":
+//                category = "Art";
+//                break;
+//            case "Celebrities":
+//                category = "Celebrities";
+//                break;
+//            case "Animals":
+//                category = "Animals";
+//                break;
+//            case "Vehicles":
+//                category = "Vehicles";
+//                break;
+//            case "Comics":
+//                category = "Comics";
+//                break;
+//            case "Gadgets":
+//                category = "Gadgets";
+//                break;
+//            case "Japanese Anime and Manga":
+//                category = "Japanese Anime and Manga";
+//                break;
+//            case "Cartoons and Animations":
+//                category = "Cartoons and Animations";
+//                break;
+            default:
+        }
 
+        backToHomePageButton = findViewById(R.id.backToHomePageButton);
         backToHomePageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,6 +113,7 @@ public class SuggestionsActivity extends AppCompatActivity {
         });
 
     }
+
 
     /**
      * Gets the current user ID.
@@ -76,44 +147,4 @@ public class SuggestionsActivity extends AppCompatActivity {
         return category;
     }
 
-    /**
-     * Initializing the options menu.
-     *
-     * @param menu The desired menu format.
-     * @return true;
-     */
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.options_menu, menu);
-        return true;
-    }
-
-    /**
-     * Navigates to Modify Profile or Logout depending on which option menu item has been click.
-     *
-     * @param item The item in the options menu.
-     * @return True.
-     */
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.logoutOption:
-                new AlertDialog.Builder(this)
-                        .setMessage("Are you sure you want to logout?")
-                        .setCancelable(false)
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                SuggestionsActivity.super.onBackPressed();
-                                Intent logout = new Intent(SuggestionsActivity.this, LoginActivity.class);
-                                startActivity(logout);
-                            }
-                        })
-                        .setNegativeButton("No", null)
-                        .show();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
 }
