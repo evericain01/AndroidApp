@@ -190,22 +190,24 @@ public class MultipleChoiceQuizFragment extends Fragment {
                 nextButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (counter < handler.getAmount()) {
-                            if (radioButton1.getText() == handler.getAnswers().get(counter)) {
-                                totalExperienceGained += Experience.calculateExperience(handler.getDifficulty());
-                                correctAnswerSnackBar();
-                                score++;
-                            } else {
-                                incorrectAnswerSnackBar();
+                        if (radioButton1.isChecked()) {
+                            if (counter < handler.getAmount()) {
+                                if (radioButton1.getText() == handler.getAnswers().get(counter)) {
+                                    totalExperienceGained += Experience.calculateExperience(handler.getDifficulty());
+                                    correctAnswerSnackBar();
+                                    score++;
+                                } else {
+                                    incorrectAnswerSnackBar();
+                                }
+                                gotoResultActivityIfLast(handler);
+                                radioGroup.clearCheck();
+                                counter++;
+                                flag = true;
                             }
-                            gotoResultActivityIfLast(handler);
-                            radioGroup.clearCheck();
-                            counter++;
-                            flag = true;
+                            counterText.setText(counter + "/" + questionAmount);
+                            System.out.println("Counter: " + counter);
+                            System.out.println("Score: " + score);
                         }
-                        counterText.setText(counter + "/" + questionAmount);
-                        System.out.println("Counter: " + counter);
-                        System.out.println("Score: " + score);
                     }
                 });
             }
@@ -217,22 +219,24 @@ public class MultipleChoiceQuizFragment extends Fragment {
                 nextButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (counter < handler.getAmount()) {
-                            if (radioButton2.getText() == handler.getAnswers().get(counter)) {
-                                totalExperienceGained += Experience.calculateExperience(handler.getDifficulty());
-                                correctAnswerSnackBar();
-                                score++;
-                            } else {
-                                incorrectAnswerSnackBar();
+                        if (radioButton2.isChecked()) {
+                            if (counter < handler.getAmount()) {
+                                if (radioButton2.getText() == handler.getAnswers().get(counter)) {
+                                    totalExperienceGained += Experience.calculateExperience(handler.getDifficulty());
+                                    correctAnswerSnackBar();
+                                    score++;
+                                } else {
+                                    incorrectAnswerSnackBar();
+                                }
+                                gotoResultActivityIfLast(handler);
+                                radioGroup.clearCheck();
+                                counter++;
+                                flag = true;
                             }
-                            gotoResultActivityIfLast(handler);
-                            radioGroup.clearCheck();
-                            counter++;
-                            flag = true;
+                            counterText.setText(counter + "/" + questionAmount);
+                            System.out.println("Counter: " + counter);
+                            System.out.println("Score: " + score);
                         }
-                        counterText.setText(counter + "/" + questionAmount);
-                        System.out.println("Counter: " + counter);
-                        System.out.println("Score: " + score);
                     }
                 });
             }
@@ -244,22 +248,24 @@ public class MultipleChoiceQuizFragment extends Fragment {
                 nextButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (counter < handler.getAmount()) {
-                            if (radioButton3.getText() == handler.getAnswers().get(counter)) {
-                                totalExperienceGained += Experience.calculateExperience(handler.getDifficulty());
-                                correctAnswerSnackBar();
-                                score++;
-                            }else {
-                                incorrectAnswerSnackBar();
+                        if (radioButton3.isChecked()) {
+                            if (counter < handler.getAmount()) {
+                                if (radioButton3.getText() == handler.getAnswers().get(counter)) {
+                                    totalExperienceGained += Experience.calculateExperience(handler.getDifficulty());
+                                    correctAnswerSnackBar();
+                                    score++;
+                                } else {
+                                    incorrectAnswerSnackBar();
+                                }
+                                gotoResultActivityIfLast(handler);
+                                radioGroup.clearCheck();
+                                counter++;
+                                flag = true;
                             }
-                            gotoResultActivityIfLast(handler);
-                            radioGroup.clearCheck();
-                            counter++;
-                            flag = true;
+                            counterText.setText(counter + "/" + questionAmount);
+                            System.out.println("Counter: " + counter);
+                            System.out.println("Score: " + score);
                         }
-                        counterText.setText(counter + "/" + questionAmount);
-                        System.out.println("Counter: " + counter);
-                        System.out.println("Score: " + score);
                     }
                 });
             }
@@ -271,22 +277,24 @@ public class MultipleChoiceQuizFragment extends Fragment {
                 nextButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (counter < handler.getAmount()) {
-                            if (radioButton4.getText() == handler.getAnswers().get(counter)) {
-                                totalExperienceGained += Experience.calculateExperience(handler.getDifficulty());
-                                correctAnswerSnackBar();
-                                score++;
-                            } else {
-                                incorrectAnswerSnackBar();
+                        if (radioButton4.isChecked()) {
+                            if (counter < handler.getAmount()) {
+                                if (radioButton4.getText() == handler.getAnswers().get(counter)) {
+                                    totalExperienceGained += Experience.calculateExperience(handler.getDifficulty());
+                                    correctAnswerSnackBar();
+                                    score++;
+                                } else {
+                                    incorrectAnswerSnackBar();
+                                }
+                                gotoResultActivityIfLast(handler);
+                                radioGroup.clearCheck();
+                                counter++;
+                                flag = true;
                             }
-                            gotoResultActivityIfLast(handler);
-                            radioGroup.clearCheck();
-                            counter++;
-                            flag = true;
+                            counterText.setText(counter + "/" + questionAmount);
+                            System.out.println("Counter: " + counter);
+                            System.out.println("Score: " + score);
                         }
-                        counterText.setText(counter + "/" + questionAmount);
-                        System.out.println("Counter: " + counter);
-                        System.out.println("Score: " + score);
                     }
                 });
             }
