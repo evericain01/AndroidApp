@@ -1,5 +1,7 @@
 package com.example.quizapp.Models;
 
+import android.text.Html;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -30,7 +32,7 @@ public class QuestionHandler extends ApiHandler {
      */
     public QuestionHandler(int amount, int category, String difficulty, String type) {
         if (amount >= 50) {
-            amount = 50;
+            this.amount = 50;
         } else {
             this.amount = amount;
         }
@@ -77,7 +79,7 @@ public class QuestionHandler extends ApiHandler {
         this.id = id;
 
         if (amount >= 50) {
-            amount = 50;
+            this.amount = 50;
         } else {
             this.amount = amount;
         }
@@ -126,15 +128,40 @@ public class QuestionHandler extends ApiHandler {
         }
 
         try {
-            questions = getQuestionsArray(originalJsonArr);
-            answers = getCorrectAnswers(originalJsonArr);
-            incorrectAnswers = getIncorrectAnswers(originalJsonArr);
+            questions = htmlDecodeHelper(getQuestionsArray(originalJsonArr));
+            answers = htmlDecodeHelper(getCorrectAnswers(originalJsonArr));
+            incorrectAnswers = htmlDecodeHelperJSON(getIncorrectAnswers(originalJsonArr));
             difficultyArr = getDifficultyArray(originalJsonArr);
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
         return flag;
+    }
+
+    private ArrayList<JSONArray> htmlDecodeHelperJSON(ArrayList<JSONArray> jsonArrayArrayList) throws JSONException {
+        ArrayList<JSONArray> outArrayList = new ArrayList<>();
+        JSONArray array;
+
+        for (int i = 0; i < jsonArrayArrayList.size(); i++) {
+            array = new JSONArray();
+            for (int j = 0; j < jsonArrayArrayList.get(i).length(); j++) {
+                array.put(Html.fromHtml(jsonArrayArrayList.get(i).getString(j), Html.FROM_HTML_MODE_LEGACY).toString());
+            }
+            outArrayList.add(array);
+        }
+
+        return outArrayList;
+    }
+
+    private ArrayList<String> htmlDecodeHelper(ArrayList<String> stringArrayList) {
+        ArrayList<String> outArrayList = new ArrayList<>();
+
+        for (int i = 0; i < stringArrayList.size(); i++) {
+            outArrayList.add(Html.fromHtml(stringArrayList.get(i), Html.FROM_HTML_MODE_LEGACY).toString());
+        }
+
+        return outArrayList;
     }
 
     /**
