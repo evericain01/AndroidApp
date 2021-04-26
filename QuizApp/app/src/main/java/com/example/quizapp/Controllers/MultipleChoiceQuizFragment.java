@@ -34,6 +34,7 @@ public class MultipleChoiceQuizFragment extends Fragment {
     int counter = 1;
     int totalExperienceGained = 0;
     int score, questionAmount;
+    boolean flag = true;
 
     RadioButton radioButton1, radioButton2, radioButton3, radioButton4;
     RadioGroup radioGroup;
@@ -76,7 +77,6 @@ public class MultipleChoiceQuizFragment extends Fragment {
         });
 
         Random rand = new Random();
-        int selection = rand.nextInt(3);
 
         new Thread(new Runnable() {
             @Override
@@ -91,7 +91,9 @@ public class MultipleChoiceQuizFragment extends Fragment {
                     quiz.generateQuestions();
 
                     while (counter < quiz.getAmount()) {
-                        forLoopHelper(quiz, selection);
+                        if (flag) {
+                            forLoopHelper(quiz, rand.nextInt(3));
+                        }
                     }
 
                 } catch (Exception e) {
@@ -136,6 +138,7 @@ public class MultipleChoiceQuizFragment extends Fragment {
         radioButton3 = getActivity().findViewById(R.id.button3);
         radioButton4 = getActivity().findViewById(R.id.button4);
         nextButton = getActivity().findViewById(R.id.nextQuestionButton);
+        flag = false;
 
         switch (selection) {
             case 0:
@@ -198,6 +201,7 @@ public class MultipleChoiceQuizFragment extends Fragment {
                             gotoResultActivityIfLast(handler);
                             radioGroup.clearCheck();
                             counter++;
+                            flag = true;
                         }
                         counterText.setText(counter + "/" + questionAmount);
                         System.out.println("Counter: " + counter);
@@ -224,6 +228,7 @@ public class MultipleChoiceQuizFragment extends Fragment {
                             gotoResultActivityIfLast(handler);
                             radioGroup.clearCheck();
                             counter++;
+                            flag = true;
                         }
                         counterText.setText(counter + "/" + questionAmount);
                         System.out.println("Counter: " + counter);
@@ -250,6 +255,7 @@ public class MultipleChoiceQuizFragment extends Fragment {
                             gotoResultActivityIfLast(handler);
                             radioGroup.clearCheck();
                             counter++;
+                            flag = true;
                         }
                         counterText.setText(counter + "/" + questionAmount);
                         System.out.println("Counter: " + counter);
@@ -276,6 +282,7 @@ public class MultipleChoiceQuizFragment extends Fragment {
                             gotoResultActivityIfLast(handler);
                             radioGroup.clearCheck();
                             counter++;
+                            flag = true;
                         }
                         counterText.setText(counter + "/" + questionAmount);
                         System.out.println("Counter: " + counter);

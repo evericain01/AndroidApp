@@ -43,22 +43,31 @@ public class QuestionHandler extends ApiHandler {
             this.category = category;
         }
 
-        if (difficulty.equals("easy") && !difficulty.equals("medium") && !difficulty.equals("hard")) {
-            this.difficulty = "easy";
-        } else if (!difficulty.equals("easy") && difficulty.equals("medium") && !difficulty.equals("hard")){
-            this.difficulty = "medium";
-        } else if (!difficulty.equals("easy") && !difficulty.equals("medium") && difficulty.equals("hard")) {
-            this.difficulty = "hard";
-        } else {
-            this.difficulty = "";
+        switch(difficulty) {
+            case "easy":
+                this.difficulty = "easy";
+                break;
+            case "medium":
+                this.difficulty = "medium";
+                break;
+            case "hard":
+                this.difficulty = "hard";
+                break;
+            default:
+                this.difficulty = "";
+                break;
         }
 
-        if (type.equals("boolean") && !type.equals("multiple")) {
-            this.type = "boolean";
-        } else if (!type.equals("boolean") && type.equals("multiple")){
-            this.type = "multiple";
-        } else {
-            this.type = "";
+        switch (type) {
+            case "boolean":
+                this.type = "boolean";
+                break;
+            case "multiple":
+                this.type = "multiple";
+                break;
+            default:
+                this.type = "";
+                break;
         }
 
         generateQuestions();
@@ -90,22 +99,31 @@ public class QuestionHandler extends ApiHandler {
             this.category = category;
         }
 
-        if (difficulty.equals("easy") && !difficulty.equals("medium") && !difficulty.equals("hard")) {
-            this.difficulty = "easy";
-        } else if (!difficulty.equals("easy") && difficulty.equals("medium") && !difficulty.equals("hard")){
-            this.difficulty = "medium";
-        } else if (!difficulty.equals("easy") && !difficulty.equals("medium") && difficulty.equals("hard")) {
-            this.difficulty = "hard";
-        } else {
-            this.difficulty = "";
+        switch(difficulty) {
+            case "easy":
+                this.difficulty = "easy";
+                break;
+            case "medium":
+                this.difficulty = "medium";
+                break;
+            case "hard":
+                this.difficulty = "hard";
+                break;
+            default:
+                this.difficulty = "";
+                break;
         }
 
-        if (type.equals("boolean") && !type.equals("multiple")) {
-            this.type = "boolean";
-        } else if (!type.equals("boolean") && type.equals("multiple")){
-            this.type = "multiple";
-        } else {
-            this.type = "";
+        switch (type) {
+            case "boolean":
+                this.type = "boolean";
+                break;
+            case "multiple":
+                this.type = "multiple";
+                break;
+            default:
+                this.type = "";
+                break;
         }
 
         generateQuestions();
@@ -120,11 +138,28 @@ public class QuestionHandler extends ApiHandler {
      */
     public boolean generateQuestions() {
         boolean flag = true;
+        int responseCounter = 0;
         originalJsonArr = generateQuestionsArray(amount, category, difficulty, type);
 
-        if (getResponseCode().equals("4")) {
+        while (getResponseCode().equals("4")) {
             originalJsonArr = generateQuestionsArray(amount, category, difficulty, type);
             flag = false;
+            responseCounter++;
+
+            if (responseCounter > 2) {
+                if (amount == 50) {
+                    this.amount = amount - 10;
+                } else if (amount == 40) {
+                    this.amount = amount - 10;
+                } else if (amount == 30) {
+                    this.amount = amount - 10;
+                } else if (amount == 20) {
+                    this.amount = amount - 10;
+                } else {
+                    this.amount = amount - 1;
+                }
+                originalJsonArr = generateQuestionsArray(amount, category, difficulty, type);
+            }
         }
 
         try {

@@ -95,7 +95,7 @@ public class TrueOrFalseQuizFragment extends Fragment {
                     quiz.generateQuestions();
 
                     while (counter < quiz.getAmount()) {
-                        forLoopHelper(quiz, selection);
+                        forLoopHelper(quiz);
                     }
 
                 } catch (Exception e) {
@@ -131,31 +131,27 @@ public class TrueOrFalseQuizFragment extends Fragment {
         });
     }
 
-    public void forLoopHelper(QuestionHandler handler, int selection) {
+    public void forLoopHelper(QuestionHandler handler) {
         questionBox.setText(handler.getQuestions().get(counter));
         radioGroup = getActivity().findViewById(R.id.radioGroup);
         trueFalse1 = getActivity().findViewById(R.id.trueFalseButton1);
         trueFalse2 = getActivity().findViewById(R.id.trueFalseButton2);
         nextButton = getActivity().findViewById(R.id.nextQuestionButton);
 
-        switch (selection) {
-            case 0:
-                trueFalse1.setText(handler.getAnswers().get(counter));
-                try {
-                    trueFalse2.setText(handler.getIncorrectAnswers().get(counter).getString(0));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                break;
-            case 1:
-                trueFalse2.setText(handler.getAnswers().get(counter));
-                try {
-                    trueFalse1.setText(handler.getIncorrectAnswers().get(counter).getString(0));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                break;
-            default:
+        if (handler.getAnswers().get(counter).equals("True")) {
+            trueFalse1.setText(handler.getAnswers().get(counter));
+            try {
+                trueFalse2.setText(handler.getIncorrectAnswers().get(counter).getString(0));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } else {
+            try {
+                trueFalse1.setText(handler.getIncorrectAnswers().get(counter).getString(0));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            trueFalse2.setText(handler.getAnswers().get(counter));
         }
 
         trueFalse1.setOnClickListener(new View.OnClickListener() {
