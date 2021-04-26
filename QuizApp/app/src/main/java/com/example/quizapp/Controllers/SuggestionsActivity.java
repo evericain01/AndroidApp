@@ -25,82 +25,7 @@ public class SuggestionsActivity extends AppCompatActivity {
         suggestionLink2 = findViewById(R.id.suggestionLink2);
 
         categoryName.setText(getCategory());
-
-        switch (getCategory()) {
-            case "General Knowledge":
-                suggestionLink1.setText(R.string.GeneralKnowledgeLink1);
-                suggestionLink1.setMovementMethod(LinkMovementMethod.getInstance());
-                suggestionLink2.setText(R.string.GeneralKnowledgeLink2);
-                suggestionLink2.setMovementMethod(LinkMovementMethod.getInstance());
-                break;
-//            case "Books":
-//                category = "Books";
-//                break;
-//            case "Films":
-//                category = "Films";
-//                break;
-//            case "Music":
-//                category = "Music";
-//                break;
-//            case "Musical and Theatres":
-//                category = "Musical and Theatres";
-//                break;
-//            case "Television":
-//                category = "Television";
-//                break;
-//            case "Video Games"
-//                category = "Video Games";
-//                break;
-//            case "Board Games":
-//                category = "Board Games";
-//                break;
-//            case "Science and Nature":
-//                category = "Science and Nature";
-//                break;
-//            case "Computers":
-//                category = "Computers";
-//                break;
-//            case "Math":
-//                category = "Math";
-//                break;
-//            case "Mythology":
-//                category = "Mythology";
-//                break;
-//            case "Sports":
-//                category = "Sports";
-//                break;
-//            case "Geography":
-//                category = "Geography";
-//                break;
-//            case "Politics":
-//                category = "Politics";
-//                break;
-//            case "Art":
-//                category = "Art";
-//                break;
-//            case "Celebrities":
-//                category = "Celebrities";
-//                break;
-//            case "Animals":
-//                category = "Animals";
-//                break;
-//            case "Vehicles":
-//                category = "Vehicles";
-//                break;
-//            case "Comics":
-//                category = "Comics";
-//                break;
-//            case "Gadgets":
-//                category = "Gadgets";
-//                break;
-//            case "Japanese Anime and Manga":
-//                category = "Japanese Anime and Manga";
-//                break;
-//            case "Cartoons and Animations":
-//                category = "Cartoons and Animations";
-//                break;
-            default:
-        }
+        getLinkForCategory(getCategory());
 
         backToHomePageButton = findViewById(R.id.backToHomePageButton);
         backToHomePageButton.setOnClickListener(new View.OnClickListener() {
@@ -113,7 +38,6 @@ public class SuggestionsActivity extends AppCompatActivity {
         });
 
     }
-
 
     /**
      * Gets the current user ID.
@@ -147,4 +71,152 @@ public class SuggestionsActivity extends AppCompatActivity {
         return category;
     }
 
+    /**
+     * Gets the helpful links for the given category.
+     *
+     * @param category The category name.
+     */
+    private void getLinkForCategory(String category) {
+        switch (category) {
+            case "General Knowledge":
+                suggestionLink1.setText(R.string.GeneralKnowledgeLink1);
+                suggestionLink1.setMovementMethod(LinkMovementMethod.getInstance());
+                suggestionLink2.setText(R.string.GeneralKnowledgeLink2);
+                suggestionLink2.setMovementMethod(LinkMovementMethod.getInstance());
+                break;
+            case "Books":
+                suggestionLink1.setText(R.string.BooksLink1);
+                suggestionLink1.setMovementMethod(LinkMovementMethod.getInstance());
+                suggestionLink2.setText(R.string.BooksLink2);
+                suggestionLink2.setMovementMethod(LinkMovementMethod.getInstance());
+                break;
+            case "Films":
+                suggestionLink1.setText(R.string.FilmsLink1);
+                suggestionLink1.setMovementMethod(LinkMovementMethod.getInstance());
+                suggestionLink2.setText(R.string.FilmsLink2);
+                suggestionLink2.setMovementMethod(LinkMovementMethod.getInstance());
+                break;
+            case "Music":
+                suggestionLink1.setText(R.string.MusicLink1);
+                suggestionLink1.setMovementMethod(LinkMovementMethod.getInstance());
+                suggestionLink2.setText(R.string.MusicLink2);
+                suggestionLink2.setMovementMethod(LinkMovementMethod.getInstance());
+                break;
+            case "Musical and Theatres":
+                suggestionLink1.setText(R.string.MusicalAndTheatersLink1);
+                suggestionLink1.setMovementMethod(LinkMovementMethod.getInstance());
+                suggestionLink2.setText(R.string.MusicalAndTheatersLink2);
+                suggestionLink2.setMovementMethod(LinkMovementMethod.getInstance());
+                break;
+            case "Television":
+                suggestionLink1.setText(R.string.TelevisionLink1);
+                suggestionLink1.setMovementMethod(LinkMovementMethod.getInstance());
+                suggestionLink2.setText(R.string.TelevisionLink2);
+                suggestionLink2.setMovementMethod(LinkMovementMethod.getInstance());
+                break;
+            case "Video Games":
+                suggestionLink1.setText(R.string.VideoGamesLink1);
+                suggestionLink1.setMovementMethod(LinkMovementMethod.getInstance());
+                suggestionLink2.setText(R.string.VideoGamesLink2);
+                suggestionLink2.setMovementMethod(LinkMovementMethod.getInstance());
+                break;
+            case "Board Games":
+                suggestionLink1.setText(R.string.BoardGamesLink1);
+                suggestionLink1.setMovementMethod(LinkMovementMethod.getInstance());
+                suggestionLink2.setText(R.string.BoardGamesLink2);
+                suggestionLink2.setMovementMethod(LinkMovementMethod.getInstance());
+                break;
+            case "Science and Nature":
+                suggestionLink1.setText(R.string.ScienceAndNatureLink1);
+                suggestionLink1.setMovementMethod(LinkMovementMethod.getInstance());
+                suggestionLink2.setText(R.string.ScienceAndNatureLink2);
+                suggestionLink2.setMovementMethod(LinkMovementMethod.getInstance());
+                break;
+            case "Computers":
+                suggestionLink1.setText(R.string.ComputersLink1);
+                suggestionLink1.setMovementMethod(LinkMovementMethod.getInstance());
+                suggestionLink2.setText(R.string.ComputersLink2);
+                suggestionLink2.setMovementMethod(LinkMovementMethod.getInstance());
+                break;
+            case "Math":
+                suggestionLink1.setText(R.string.MathLink1);
+                suggestionLink1.setMovementMethod(LinkMovementMethod.getInstance());
+                suggestionLink2.setText(R.string.MathLink2);
+                suggestionLink2.setMovementMethod(LinkMovementMethod.getInstance());
+                break;
+            case "Mythology":
+                suggestionLink1.setText(R.string.MythologyLink1);
+                suggestionLink1.setMovementMethod(LinkMovementMethod.getInstance());
+                suggestionLink2.setText(R.string.MythologyLink2);
+                suggestionLink2.setMovementMethod(LinkMovementMethod.getInstance());
+                break;
+            case "Sports":
+                suggestionLink1.setText(R.string.SportsLink1);
+                suggestionLink1.setMovementMethod(LinkMovementMethod.getInstance());
+                suggestionLink2.setText(R.string.SportsLink2);
+                suggestionLink2.setMovementMethod(LinkMovementMethod.getInstance());
+                break;
+            case "Geography":
+                suggestionLink1.setText(R.string.GeographyLink1);
+                suggestionLink1.setMovementMethod(LinkMovementMethod.getInstance());
+                suggestionLink2.setText(R.string.GeographyLink2);
+                suggestionLink2.setMovementMethod(LinkMovementMethod.getInstance());
+                break;
+            case "Politics":
+                suggestionLink1.setText(R.string.PoliticsLink1);
+                suggestionLink1.setMovementMethod(LinkMovementMethod.getInstance());
+                suggestionLink2.setText(R.string.PoliticsLink2);
+                suggestionLink2.setMovementMethod(LinkMovementMethod.getInstance());
+                break;
+            case "Art":
+                suggestionLink1.setText(R.string.ArtLink1);
+                suggestionLink1.setMovementMethod(LinkMovementMethod.getInstance());
+                suggestionLink2.setText(R.string.ArtLink2);
+                suggestionLink2.setMovementMethod(LinkMovementMethod.getInstance());
+                break;
+            case "Celebrities":
+                suggestionLink1.setText(R.string.CelebritiesLink1);
+                suggestionLink1.setMovementMethod(LinkMovementMethod.getInstance());
+                suggestionLink2.setText(R.string.CelebritiesLink2);
+                suggestionLink2.setMovementMethod(LinkMovementMethod.getInstance());
+                break;
+            case "Animals":
+                suggestionLink1.setText(R.string.AnimalsLink1);
+                suggestionLink1.setMovementMethod(LinkMovementMethod.getInstance());
+                suggestionLink2.setText(R.string.AnimalsLink2);
+                suggestionLink2.setMovementMethod(LinkMovementMethod.getInstance());
+                break;
+            case "Vehicles":
+                suggestionLink1.setText(R.string.VehiclesLink1);
+                suggestionLink1.setMovementMethod(LinkMovementMethod.getInstance());
+                suggestionLink2.setText(R.string.VideoGamesLink2);
+                suggestionLink2.setMovementMethod(LinkMovementMethod.getInstance());
+                break;
+            case "Comics":
+                suggestionLink1.setText(R.string.ComicsLink1);
+                suggestionLink1.setMovementMethod(LinkMovementMethod.getInstance());
+                suggestionLink2.setText(R.string.ComicsLink2);
+                suggestionLink2.setMovementMethod(LinkMovementMethod.getInstance());
+                break;
+            case "Gadgets":
+                suggestionLink1.setText(R.string.GadgetsLink1);
+                suggestionLink1.setMovementMethod(LinkMovementMethod.getInstance());
+                suggestionLink2.setText(R.string.GadgetsLink2);
+                suggestionLink2.setMovementMethod(LinkMovementMethod.getInstance());
+                break;
+            case "Japanese Anime and Manga":
+                suggestionLink1.setText(R.string.JapaneseAnimeAndMangaLink1);
+                suggestionLink1.setMovementMethod(LinkMovementMethod.getInstance());
+                suggestionLink2.setText(R.string.JapaneseAnimeAndMangaLink2);
+                suggestionLink2.setMovementMethod(LinkMovementMethod.getInstance());
+                break;
+            case "Cartoons and Animations":
+                suggestionLink1.setText(R.string.CartoonsAndAnimationsLink1);
+                suggestionLink1.setMovementMethod(LinkMovementMethod.getInstance());
+                suggestionLink2.setText(R.string.CartoonsAndAnimationsLink2);
+                suggestionLink2.setMovementMethod(LinkMovementMethod.getInstance());
+                break;
+            default:
+        }
+    }
 }

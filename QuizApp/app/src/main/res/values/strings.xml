@@ -125,5 +125,76 @@
     <string name="MythologyLink2">
         <a href="https://www.theoi.com/articles/6-amazing-greek-mythology-facts-youll-love-reading/"> 2 - Mythology Helpful Link</a>
     </string>
-
+    <string name="SportsLink1">
+        <a href="https://www.challengetrophies.co.uk/blog/top-10-sporting-facts-sports-trivia/"> 1 - Sports Helpful Link</a>
+    </string>
+    <string name="SportsLink2">
+        <a href="https://play.howstuffworks.com/quiz/the-ultimate-general-sports-quiz"> 2 - Sports Helpful Link</a>
+    </string>
+    <string name="GeographyLink1">
+        <a href="https://www.kids-world-travel-guide.com/geography-facts.html"> 1 - Geography Helpful Link</a>
+    </string>
+    <string name="GeographyLink2">
+        <a href="https://www.youtube.com/watch?v=pyj8CuUMYe0&amp;ab_channel=DKBooks"> 2 - Geography Helpful Link</a>
+    </string>
+    <string name="HistoryLink1">
+        <a href="https://www.youtube.com/watch?v=1Q5cPfbmSD8&amp;ab_channel=CrashCourse"> 1 - History Helpful Link</a>
+    </string>
+    <string name="HistoryLink2">
+        <a href="https://parade.com/1099930/marynliles/history-facts/"> 2 - History Helpful Link</a>
+    </string>
+    <string name="PoliticsLink1">
+        <a href="https://www.dummies.com/education/politics-government/politics-for-dummies-cheat-sheet/"> 1 - Politics Helpful Link</a>
+    </string>
+    <string name="PoliticsLink2">
+        <a href="https://www.youtube.com/watch?v=mxgOjH7szdk&amp;ab_channel=PolyMatter"> 2 - Politics Helpful Link</a>
+    </string>
+    <string name="ArtLink1">
+        <a href="https://www.youtube.com/watch?v=iGhaa6QHc0g&amp;ab_channel=TheRichest"> 1 - Art Helpful Link</a>
+    </string>
+    <string name="ArtLink2">
+        <a href="https://www.youtube.com/watch?v=b4ROQX_GpbA&amp;ab_channel=FactsNet"> 2 - Art Helpful Link</a>
+    </string>
+    <string name="CelebritiesLink1">
+        <a href="https://bestlifeonline.com/celebs-not-like-us/"> 1 - Celebrities Helpful Link</a>
+    </string>
+    <string name="CelebritiesLink2">
+        <a href="https://www.factinate.com/people/42-little-known-facts-famous-people/"> 2 - Celebrities Helpful Link</a>
+    </string>
+    <string name="AnimalsLink1">
+        <a href="https://kids.nationalgeographic.com/games/quizzes/article/quiz-whiz-animals"> 1 - Animals Helpful Link</a>
+    </string>
+    <string name="AnimalsLink2">
+        <a href="https://www.mentalfloss.com/article/86578/50-incredible-animal-facts-youll-want-share"> 2 - Animals Helpful Link</a>
+    </string>
+    <string name="VehiclesLink1">
+        <a href="https://www.carfax.ca/resource-centre/articles/10-strange-canadian-car-facts"> 1 - Vehicles Helpful Link</a>
+    </string>
+    <string name="VehiclesLink2">
+        <a href="https://grizly.com/quizzes/car-manufacturer-quiz"> 2 - Vehicles Helpful Link</a>
+    </string>
+    <string name="ComicsLink1">
+        <a href="https://www.funtrivia.com/playquiz/quiz282608205ad88.html"> 1 - Comics Helpful Link</a>
+    </string>
+    <string name="ComicsLink2">
+        <a href="https://www.youtube.com/watch?v=bhuvac0HWJY&amp;ab_channel=NerdSync"> 2 - Comics Helpful Link</a>
+    </string>
+    <string name="GadgetsLink1">
+        <a href="https://www.pocket-lint.com/gadgets/news/147627-surprising-facts-about-tech"> 1 - Gadgets Helpful Link</a>
+    </string>
+    <string name="GadgetsLink2">
+        <a href="https://www.youtube.com/watch?v=upy7NAn9jn4&amp;ab_channel=FinestFacts"> 2 - Gadgets Helpful Link</a>
+    </string>
+    <string name="JapaneseAnimeAndMangaLink1">
+        <a href="https://aminoapps.com/c/anime/page/blog/20-interesting-facts-about-anime-manga/V1t7_u5Yrx7qmd3x13BXD0jNN5aG0Z"> 1 - Japanese Anime and Manga Helpful Link</a>
+    </string>
+    <string name="JapaneseAnimeAndMangaLink2">
+        <a href="https://animeworldthelandofmanga.wordpress.com/2017/05/04/interesting-facts-about-manga-and-anime/"> 2 - Japanese Anime and Manga Helpful Link</a>
+    </string>
+    <string name="CartoonsAndAnimationsLink1">
+        <a href="https://brightside.me/wonder-films/20-cartoon-facts-that-took-us-aback-790660/"> 1 - Cartoons and Animations Helpful Link</a>
+    </string>
+    <string name="CartoonsAndAnimationsLink2">
+        <a href="https://www.zavvi.com/blog/features/26-animation-facts-definitely-didnt-know/"> 2 - Cartoons and Animations Helpful Link</a>
+    </string>
 </resources>
