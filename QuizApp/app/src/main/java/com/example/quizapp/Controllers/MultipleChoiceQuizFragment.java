@@ -121,6 +121,7 @@ public class MultipleChoiceQuizFragment extends Fragment {
                         .setCancelable(false)
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
+                                if(mediaPlayer.isPlaying()) mediaPlayer.stop();
                                 Intent quitQuiz = new Intent(getActivity(), HomePageActivity.class);
                                 quitQuiz.putExtra("USER_ID", getCurrentUserId());
                                 startActivity(quitQuiz);
