@@ -158,7 +158,9 @@ public class QuestionHandler extends ApiHandler {
                 } else {
                     this.amount = amount - 1;
                 }
+
                 originalJsonArr = generateQuestionsArray(amount, category, difficulty, type);
+
             }
         }
 

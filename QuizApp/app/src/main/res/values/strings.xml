@@ -9,7 +9,6 @@
         <item>Books</item>
         <item>Films</item>
         <item>Music</item>
-        <item>Musical and Theatres</item>
         <item>Television</item>
         <item>Video Games</item>
         <item>Board Games</item>
@@ -21,12 +20,10 @@
         <item>Geography</item>
         <item>History</item>
         <item>Politics</item>
-        <item>Art</item>
         <item>Celebrities</item>
         <item>Animals</item>
         <item>Vehicles</item>
         <item>Comics</item>
-        <item>Gadgets</item>
         <item>Japanese Anime and Manga</item>
         <item>Cartoons and Animations</item>
     </string-array>

@@ -16,6 +16,8 @@ public class ApiHandler {
 
     private String token = null;
     private String responseCode;
+    private int[][] questionCategoryAmountArr;
+
 
     public ApiHandler() {
         if (token == null) {
