@@ -80,23 +80,19 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
 
         // Gets the total experience points of the current user
         int exp = Integer.parseInt(db.getExperiencePoints(getCurrentUserId()));
-        System.out.println(exp);
 
         // Calculating level based on experience
         level = Experience.calculateLevel((double) exp);
-        System.out.println("Level: " + level);
 
         // Displaying level text as a string
         levelText.setText("LEVEL: " + String.valueOf(level));
 
         // Gets the experience needed to level up
         double expNeeded = Experience.nextLevelXpNeeded(exp);
-        System.out.println("Exp needed:" + expNeeded);
         expNeededText.setText(String.valueOf((int) expNeeded) + " EXP NEED FOR LEVEL UP");
 
         // Getting progressionRate through level.
         int barProgression = Experience.progressionRate((double) exp);
-        System.out.println("Bar Progression: " + barProgression);
 
         // sets the value of the progress bar (progress bar can only take a max of 100)
         progressBar.setProgress(barProgression, true);

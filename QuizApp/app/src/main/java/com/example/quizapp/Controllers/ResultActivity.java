@@ -17,6 +17,7 @@ import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.media.MediaPlayer;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
@@ -41,7 +42,11 @@ public class ResultActivity extends AppCompatActivity {
     DatabaseHelper db;
     TextView experienceGained, levelStage, percentageScore, fractionScore;
     Button homePageButton, doAnotherQuizButton, helpfulLinkButton;
+    MediaPlayer mediaPlayer;
     Toolbar toolbar;
+
+    private final static int MAX_VOLUME = 100;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +58,13 @@ public class ResultActivity extends AppCompatActivity {
 
         db = new DatabaseHelper(this);
         updatingExperienceOnDb();
+
+        mediaPlayer = MediaPlayer.create(ResultActivity.this, R.raw.h_haven_intro);
+
+        // adjusting the volume.
+        final float volume = (float) (1 - (Math.log(MAX_VOLUME - 400) / Math.log(MAX_VOLUME)));
+        mediaPlayer.setVolume(volume, volume);
+        mediaPlayer.start();
 
         experienceGained = findViewById(R.id.experienceGainedText);
         levelStage = findViewById(R.id.levelStageTitle);
@@ -119,7 +131,7 @@ public class ResultActivity extends AppCompatActivity {
      */
     private void addNotification() {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "channel")
-                .setSmallIcon(R.drawable.ic_launcher_background)
+                .setSmallIcon(R.drawable.noti_icon)
                 .setContentTitle(experienceNeededForNextLvl() + "EXP NEEDED FOR NEXT LEVEL!!")
                 .setDefaults(Notification.DEFAULT_ALL)
                 .setSound(null)

@@ -176,8 +176,6 @@ public class TrueOrFalseQuizFragment extends Fragment {
                                 counter++;
                             }
                             counterText.setText(counter + "/" + questionAmount);
-                            System.out.println("Counter: " + counter);
-                            System.out.println("Score: " + score);
                         } else {
                             Toast.makeText(getActivity(), "Please select an answer.", Toast.LENGTH_SHORT).show();
                         }
@@ -206,8 +204,6 @@ public class TrueOrFalseQuizFragment extends Fragment {
                                 counter++;
                             }
                             counterText.setText(counter + "/" + questionAmount);
-                            System.out.println("Counter: " + counter);
-                            System.out.println("Score: " + score);
                         } else {
                             Toast.makeText(getActivity(), "Please select an answer.", Toast.LENGTH_SHORT).show();
                         }
