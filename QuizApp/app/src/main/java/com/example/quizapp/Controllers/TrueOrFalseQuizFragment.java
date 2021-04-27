@@ -67,6 +67,8 @@ public class TrueOrFalseQuizFragment extends Fragment {
         questionBox = getActivity().findViewById(R.id.questionBox);
         counterText = getActivity().findViewById(R.id.counterText);
 
+        mediaPlayer = MediaPlayer.create(getContext(), R.raw.treasure_grenada_no_copyright);
+
         switchCompat = getActivity().findViewById(R.id.musicSwitch);
         switchCompat.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,7 +76,7 @@ public class TrueOrFalseQuizFragment extends Fragment {
                 if (switchCompat.isChecked()) {
                     startMusic();
                 }else {
-                    pauseMusic();
+                    stopMusic();
                 }
             }
         });
@@ -155,11 +157,12 @@ public class TrueOrFalseQuizFragment extends Fragment {
         }
 
         trueFalse1.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    nextButton.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
+            @Override
+            public void onClick(View view) {
+                nextButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (trueFalse1.isChecked()) {
                             if (counter < handler.getAmount()) {
                                 if (trueFalse1.getText() == handler.getAnswers().get(counter)) {
                                     totalExperienceGained += Experience.calculateExperience(handler.getDifficulty());
@@ -175,17 +178,21 @@ public class TrueOrFalseQuizFragment extends Fragment {
                             counterText.setText(counter + "/" + questionAmount);
                             System.out.println("Counter: " + counter);
                             System.out.println("Score: " + score);
+                        } else {
+                            Toast.makeText(getActivity(), "Please select an answer.", Toast.LENGTH_SHORT).show();
                         }
-                    });
-                }
-            });
+                    }
+                });
+            }
+        });
 
         trueFalse2.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    nextButton.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
+            @Override
+            public void onClick(View view) {
+                nextButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (trueFalse2.isChecked()) {
                             if (counter < handler.getAmount()) {
                                 if (trueFalse2.getText() == handler.getAnswers().get(counter)) {
                                     totalExperienceGained += Experience.calculateExperience(handler.getDifficulty());
@@ -201,10 +208,13 @@ public class TrueOrFalseQuizFragment extends Fragment {
                             counterText.setText(counter + "/" + questionAmount);
                             System.out.println("Counter: " + counter);
                             System.out.println("Score: " + score);
+                        } else {
+                            Toast.makeText(getActivity(), "Please select an answer.", Toast.LENGTH_SHORT).show();
                         }
-                    });
-                }
-            });
+                    }
+                });
+            }
+        });
     }
 
     /**
@@ -214,6 +224,7 @@ public class TrueOrFalseQuizFragment extends Fragment {
      */
     public void gotoResultActivityIfLast(QuestionHandler handler) {
         if (counter + 1 == handler.getAmount()) {
+            if(mediaPlayer.isPlaying()) mediaPlayer.stop();
             counter--;
             Intent resultActivity = new Intent(getActivity(), ResultActivity.class);
             resultActivity.putExtra("USER_ID", getCurrentUserId());
@@ -236,7 +247,6 @@ public class TrueOrFalseQuizFragment extends Fragment {
         snack.setDuration(1500);
         snackView.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.green));
         snack.show();
-
     }
 
     /**
@@ -266,16 +276,15 @@ public class TrueOrFalseQuizFragment extends Fragment {
      * Starts the music.
      */
     public void startMusic() {
-        mediaPlayer = MediaPlayer.create(getContext(), R.raw.treasure_grenada_no_copyright);
         mediaPlayer.start();
         mediaPlayer.setLooping(true);
     }
 
     /**
-     * Pauses the music.
+     * Stops the music.
      */
-    public void pauseMusic() {
-        mediaPlayer.pause();
+    public void stopMusic() {
+        mediaPlayer.stop();
     }
 
     /**

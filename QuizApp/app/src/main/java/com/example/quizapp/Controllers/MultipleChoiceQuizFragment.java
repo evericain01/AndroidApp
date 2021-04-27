@@ -20,6 +20,7 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.quizapp.Models.Experience;
 import com.example.quizapp.Models.QuestionHandler;
@@ -64,6 +65,8 @@ public class MultipleChoiceQuizFragment extends Fragment {
         questionBox = getActivity().findViewById(R.id.questionBox);
         counterText = getActivity().findViewById(R.id.counterText);
 
+        mediaPlayer = MediaPlayer.create(getContext(), R.raw.treasure_grenada_no_copyright);
+
         switchCompat = getActivity().findViewById(R.id.musicSwitch);
         switchCompat.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,7 +74,7 @@ public class MultipleChoiceQuizFragment extends Fragment {
                 if (switchCompat.isChecked()) {
                     startMusic();
                 }else {
-                    pauseMusic();
+                    stopMusic();
                 }
             }
         });
@@ -207,6 +210,8 @@ public class MultipleChoiceQuizFragment extends Fragment {
                             counterText.setText(counter + "/" + questionAmount);
                             System.out.println("Counter: " + counter);
                             System.out.println("Score: " + score);
+                        } else {
+                            Toast.makeText(getActivity(), "Please select an answer.", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -236,6 +241,8 @@ public class MultipleChoiceQuizFragment extends Fragment {
                             counterText.setText(counter + "/" + questionAmount);
                             System.out.println("Counter: " + counter);
                             System.out.println("Score: " + score);
+                        } else {
+                            Toast.makeText(getActivity(), "Please select an answer.", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -265,6 +272,8 @@ public class MultipleChoiceQuizFragment extends Fragment {
                             counterText.setText(counter + "/" + questionAmount);
                             System.out.println("Counter: " + counter);
                             System.out.println("Score: " + score);
+                        } else {
+                            Toast.makeText(getActivity(), "Please select an answer.", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -294,6 +303,8 @@ public class MultipleChoiceQuizFragment extends Fragment {
                             counterText.setText(counter + "/" + questionAmount);
                             System.out.println("Counter: " + counter);
                             System.out.println("Score: " + score);
+                        } else {
+                            Toast.makeText(getActivity(), "Please select an answer.", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -309,6 +320,7 @@ public class MultipleChoiceQuizFragment extends Fragment {
      */
     public void gotoResultActivityIfLast(QuestionHandler handler) {
         if (counter + 1 == handler.getAmount()) {
+            if(mediaPlayer.isPlaying()) mediaPlayer.stop();
             counter--;
             Intent resultActivity = new Intent(getActivity(), ResultActivity.class);
             resultActivity.putExtra("USER_ID", getCurrentUserId());
@@ -318,7 +330,6 @@ public class MultipleChoiceQuizFragment extends Fragment {
             resultActivity.putExtra("experienceGained", totalExperienceGained);
             startActivity(resultActivity);
         }
-
     }
 
     /**
@@ -332,7 +343,6 @@ public class MultipleChoiceQuizFragment extends Fragment {
         snack.setDuration(1500);
         snackView.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.green));
         snack.show();
-
     }
 
     /**
@@ -362,16 +372,15 @@ public class MultipleChoiceQuizFragment extends Fragment {
      * Starts the music.
      */
     public void startMusic() {
-        mediaPlayer = MediaPlayer.create(getContext(), R.raw.treasure_grenada_no_copyright);
         mediaPlayer.start();
         mediaPlayer.setLooping(true);
     }
 
     /**
-     * Pauses the music.
+     * Stops the music.
      */
-    public void pauseMusic() {
-        mediaPlayer.pause();
+    public void stopMusic() {
+        mediaPlayer.stop();
     }
 
     /**
