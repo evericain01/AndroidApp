@@ -1,35 +1,10 @@
-# AndroidApp
+<b>App Name</b>: Knowledge+ (Quiz App) <br /> 
+<b>Team Members</b>: Alex Vasil, Christian David, Ebrahim Vericain <br /> <br />
 
-Bugs:
+This android application is similar to any other quiz application in which someone would find in a mobile app store market. <br /> <br />
+As the user opens the app, it asks them to register and create a profile . Once the user has done those tasks, they will be presented with their starting level (Level 0). The amount of experience point needed to level up will be indicated in the main page of the application, as well as the user’s current level. As for the quiz selection, the application will give the user a choice of various categories (e.g.: sports, arts, etc.). The type of quiz (True/False or Multiple Choice), difficulty level (Easy, Medium, Hard), and the number of questions is all up to the user’s selection as well. <br /> <br />
 
-<strike>Something might be wrong with the Experience logic.</strike> <br /> <br />
+What makes our different than other quiz apps?
+-	A queue system is implemented in the application. The user will be allowed to view, add, delete, play a specific quiz selection which will be added to their “queue” if they want to save that quiz for later. Should the user logout and log back in, their queue is still saved.
 
-Dropping the tables usually dont work. <br />
-If it doesnt work, simply go to your emulator, uninstall the app, and re-run. This wipes the entire database. Which means you have to re-input values into it. <br />
-
-------------------------------------------------------------------------------
-
-Required Implementations:
-
-<strike>1) Have an options Menu.</strike> <br />
-<strike>2) Have a drawer menu.</strike> <br />
-<strike>3) Use an Android library: you are required to make your own Android Library and use it in the application you are implementing.</strike> <br />
-<strike>4) Use an external (that is, existing) SQLite database. For this, you need to create an SQLitedatabase and use it in your app.</strike> <br />
-<strike>5) Incorporate CRUD-based interactions (this is, operations) with the external database. In otherwords, your application should provide the user with features that create, update, delete, and read information about the entities you are storing in the database. Dialog boxes should be implemented and used by the create and read operations.</strike> <br />
-<strike>6) Use at least two fragments.</strike> <br />
-<strike>7) Use multiple Android activities.</strike> <br />
-<strike>8) Your application should pass data between the activities and fragments(two-way-communication).</strike> <br />
-<strike>9) Use custom dialog boxes (that is, DialogFragments and not the built-in AlertDialog.Builder) for data input/gathering.</strike> <br />
-<strike>10) Pass data (embedded in intents) between the activities.</strike> <br />
-<strike>11) Use a RecyclerView that allows to display a list of items with the possibility to change its layout manager at runtime (just like what has been demonstrated in class).</strike> <br />
-<strike>12) Use at least two layout managers (other than linear layout manager).</strike> <br />
-<strike>13) Use your own custom styles: color, dimensions, etc.</strike> <br />
-<strike>14) Use event listeners other than the click listener. Example: touch, swipe, keyboard, etc.</strike> <br />
-**15) Use Android notification: your application should generate notifications with embedded actions of your choice.** <br />
-<strike>16) SQLITE database: your database must contain at least 3 tables.</strike> <br />
-<strike>17) Use the MVC (Model View Controller) pattern: as instructed and demonstrated in class.</strike> <br />
-<strike>18) Shared preferences or raw files to persist any kind of data. For example, caching the responses of API calls, user actions, user profile, etc.</strike> <br />
-**19) Playing sound: using the Android MediaPlayer class.** <br />
-**20) Localization: the user interface (UI) of your application should be available in two different languages. That is, English and any other language of your choice.** <br />
-<strike>21) Networking: your application should consume at least one web service (REST-based API) that provides JSON data of your choice. Bear in mind that your choice of API must be consistent, relevant and somehow related to the context of your application.</strike> <br />
-**22) Document your application in a README.md (Markdown document).** <br />
+-	A suggestion system is another unique implementation we decided to add. Once the user has completed a quiz, a couple of links will be shown to the user. These links are based on the category the user has selected for their quiz. We implemented this system to allow the user to improve their skills on that specific category.
