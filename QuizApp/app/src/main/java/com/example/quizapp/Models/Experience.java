@@ -43,7 +43,7 @@ public class Experience {
      * @param currentExperience The current experience that a user has.
      * @return An integer between 0 and 100 based off of how far into a level a user is.
      */
-    public static int progressionRate(double currentExperience) {
+    public static int progressionRate(int currentExperience) {
         // Get the current level based on the current player experience.
         int currLevel =  calculateLevel(currentExperience);
 
@@ -69,9 +69,9 @@ public class Experience {
      * @param currentExperience The current experience that a user has.
      * @return The experience a user needs to obtain the next level.
      */
-    public static double nextLevelXpNeeded(double currentExperience) {
+    public static double nextLevelXpNeeded(int currentExperience) {
         // Get the current level based on the current player experience.
-        int currLevel =  calculateLevel(currentExperience);
+        int currLevel = calculateLevel(currentExperience);
 
         //Calculates the xp needed for the next level.
         double nextLevelXp = calculateLevelExperience(currLevel + 1);
@@ -96,7 +96,7 @@ public class Experience {
      * @param currentExperience The current experience that a user has.
      * @return The level the user is at.
      */
-    public static int calculateLevel(double currentExperience) {
+    public static int calculateLevel(int currentExperience) {
         return (int)(LEVEL_CONST * Math.sqrt(currentExperience));
     }
 

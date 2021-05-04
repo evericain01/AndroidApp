@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/changeToEnglish"
+        android:title="Display In English"
+        android:fontFamily="@font/abel_font"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/changeToFrench"
+        android:title="Display In French"
+        android:fontFamily="@font/abel_font"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/modifyProfile"
+        android:title="Modify Profile/Account"
+        android:fontFamily="@font/abel_font"
+        app:showAsAction="never"/>
+    <item android:id="@+id/logoutOption"
+        android:fontFamily="@font/abel_font"
+        android:title="Logout"
+        app:showAsAction="never"/>
+</menu>

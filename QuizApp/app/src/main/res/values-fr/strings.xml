@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">" Application De Quiz"</string>
+    <string name="levelText">Niveau:</string>
+    <string name="welcome">Bienvenue,</string>
+    <string name="experience">Expérience</string>
+    <string name="needExpForLevelUp">Nécessaire Pour Niveau:</string>
+    <string name="play">JOUER!</string>
+    <string name="viewQueue">" VOIR LA FILE"</string>
+</resources>

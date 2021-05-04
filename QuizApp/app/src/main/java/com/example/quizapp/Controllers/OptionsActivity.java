@@ -213,7 +213,7 @@ public class OptionsActivity extends AppCompatActivity implements NavigationView
         int exp = Integer.parseInt(db.getExperiencePoints(getCurrentUserId()));
 
         // Calculating level based on experience
-        level = Experience.calculateLevel((double) exp);
+        level = Experience.calculateLevel(exp);
         System.out.println("Level: " + level);
 
         drawer = findViewById(R.id.drawer_layout_options);

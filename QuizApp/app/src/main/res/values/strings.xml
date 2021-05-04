@@ -1,8 +1,20 @@
 <resources>
     <string name="app_name">QuizApp</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
+
+    <string name="levelText">Level:</string>
+
+    <string name="welcome">Welcome,</string>
+
+    <string name="experience">EXP</string>
+
+    <string name="needExpForLevelUp">NEEDED FOR LEVEL: </string>
+
+    <string name="play">PLAY!</string>
+
+    <string name="viewQueue">View Queue</string>
 
     <string-array name="categories">
         <item>General Knowledge</item>
@@ -48,150 +60,150 @@
     </string-array>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
 
-    <string name="GeneralKnowledgeLink1">
+    <string name="GeneralKnowledgeLink1" translatable="false">
         <a href="https://testyourself.psychtests.com/testid/3174"> 1 - General Knowledge Helpful Link</a>
     </string>
-    <string name="GeneralKnowledgeLink2">
+    <string name="GeneralKnowledgeLink2" translatable="false">
         <a href="https://www.youtube.com/watch?v=8uvW6M7Qo_c&amp;ab_channel=RoehlTransport%2CInc."> 2 - General Knowledge Helpful Link</a>
     </string>
-    <string name="BooksLink1">
+    <string name="BooksLink1" translatable="false">
         <a href="https://www.cambridge-news.co.uk/news/uk-world-news/30-books-literature-quiz-questions-18300713"> 1 - Books Helpful Link</a>
     </string>
-    <string name="BooksLink2">
+    <string name="BooksLink2" translatable="false">
         <a href="https://www.tests.com/practice/Literature-Test"> 2 - Books Helpful Link</a>
     </string>
-    <string name="FilmsLink1">
+    <string name="FilmsLink1" translatable="false">
         <a href="https://larryferlazzo.edublogs.org/2014/04/20/the-best-movies-for-ib-theory-of-knowledge-classes-what-are-your-suggestions/"> 1 - Films Helpful Link</a>
     </string>
-    <string name="FilmsLink2">
+    <string name="FilmsLink2" translatable="false">
         <a href="https://parade.com/977752/samuelmurrian/movie-trivia/"> 2 - Films Helpful Link</a>
     </string>
-    <string name="MusicLink1">
+    <string name="MusicLink1" translatable="false">
         <a href="https://www.musictheory.net/"> 1 - Music Helpful Link</a>
     </string>
-    <string name="MusicLink2">
+    <string name="MusicLink2" translatable="false">
         <a href="https://www.britannica.com/quiz/fundamentals-of-music-theory"> 2 - Music Helpful Link</a>
     </string>
-    <string name="MusicalAndTheatersLink1">
+    <string name="MusicalAndTheatersLink1" translatable="false">
         <a href="https://www.musicaltheatreaudition.net/performance/voice/expandknowledge.html"> 1 - Music and Theaters Helpful Link</a>
     </string>
-    <string name="MusicalAndTheatersLink2">
+    <string name="MusicalAndTheatersLink2" translatable="false">
         <a href="https://www.cambridge-news.co.uk/news/uk-world-news/musicals-theatre-broadway-quiz-questions-18423296"> 2 - Music and Theaters Helpful Link</a>
     </string>
-    <string name="TelevisionLink1">
+    <string name="TelevisionLink1" translatable="false">
         <a href="https://www.researchgate.net/publication/268815045_Television_and_the_mediatization_of_knowledge_Discursive_strategies_in_new_TV_formats"> 1 - Television Helpful Link</a>
     </string>
-    <string name="TelevisionLink2">
+    <string name="TelevisionLink2" translatable="false">
         <a href="https://en.wikipedia.org/wiki/List_of_documentary_television_channels"> 2 - Television Helpful Link</a>
     </string>
-    <string name="VideoGamesLink1">
+    <string name="VideoGamesLink1" translatable="false">
         <a href="https://icebreakerideas.com/video-game-trivia/"> 1 - Video Games Helpful Link</a>
     </string>
-    <string name="VideoGamesLink2">
+    <string name="VideoGamesLink2" translatable="false">
         <a href="https://www.idtech.com/blog/fun-video-games-facts-to-sound-like-expert"> 2 - Video Games Helpful Link</a>
     </string>
-    <string name="BoardGamesLink1">
+    <string name="BoardGamesLink1" translatable="false">
         <a href="https://blog.cheapism.com/board-game-trivia/#slide=2"> 1 - Board Games Helpful Link</a>
     </string>
-    <string name="BoardGamesLink2">
+    <string name="BoardGamesLink2" translatable="false">
         <a href="https://www.thefactsite.com/tag/board-and-card-games/"> 2 - Board Games Helpful Link</a>
     </string>
-    <string name="ScienceAndNatureLink1">
+    <string name="ScienceAndNatureLink1" translatable="false">
         <a href="https://www.cambridge-news.co.uk/news/uk-world-news/20-science-nature-quiz-questions-18142780"> 1 - Science and Nature Helpful Link</a>
     </string>
-    <string name="ScienceAndNatureLink2">
+    <string name="ScienceAndNatureLink2" translatable="false">
         <a href="https://www.youtube.com/watch?v=VoLZXXQL-YY&amp;ab_channel=5-MinuteCrafts"> 2 - Science and Nature Helpful Link</a>
     </string>
-    <string name="ComputersLink1">
+    <string name="ComputersLink1" translatable="false">
         <a href="https://www.youtube.com/watch?v=mybYCf4Mov4&amp;ab_channel=GCFLearnFree.org"> 1 - Computers Helpful Link</a>
     </string>
-    <string name="ComputersLink2">
+    <string name="ComputersLink2" translatable="false">
         <a href="https://www.recruitment.guru/general-knowledge/computer-knowledge/"> 2 - Computers Helpful Link</a>
     </string>
-    <string name="MathLink1">
+    <string name="MathLink1" translatable="false">
         <a href="https://www.khanacademy.org/math/algebra-basics"> 1 - Math Helpful Link</a>
     </string>
-    <string name="MathLink2">
+    <string name="MathLink2" translatable="false">
         <a href="https://www.youtube.com/watch?v=tz6uy4DdHvc&amp;ab_channel=TheOrganicChemistryTutor"> 2 - Math Helpful Link</a>
     </string>
-    <string name="MythologyLink1">
+    <string name="MythologyLink1" translatable="false">
         <a href="https://www.youtube.com/watch?v=HeX6CX5LEj0&amp;ab_channel=CrashCourse"> 1 - Mythology Helpful Link</a>
     </string>
-    <string name="MythologyLink2">
+    <string name="MythologyLink2" translatable="false">
         <a href="https://www.theoi.com/articles/6-amazing-greek-mythology-facts-youll-love-reading/"> 2 - Mythology Helpful Link</a>
     </string>
-    <string name="SportsLink1">
+    <string name="SportsLink1" translatable="false">
         <a href="https://www.challengetrophies.co.uk/blog/top-10-sporting-facts-sports-trivia/"> 1 - Sports Helpful Link</a>
     </string>
-    <string name="SportsLink2">
+    <string name="SportsLink2" translatable="false">
         <a href="https://play.howstuffworks.com/quiz/the-ultimate-general-sports-quiz"> 2 - Sports Helpful Link</a>
     </string>
-    <string name="GeographyLink1">
+    <string name="GeographyLink1" translatable="false">
         <a href="https://www.kids-world-travel-guide.com/geography-facts.html"> 1 - Geography Helpful Link</a>
     </string>
-    <string name="GeographyLink2">
+    <string name="GeographyLink2" translatable="false">
         <a href="https://www.youtube.com/watch?v=pyj8CuUMYe0&amp;ab_channel=DKBooks"> 2 - Geography Helpful Link</a>
     </string>
-    <string name="HistoryLink1">
+    <string name="HistoryLink1" translatable="false">
         <a href="https://www.youtube.com/watch?v=1Q5cPfbmSD8&amp;ab_channel=CrashCourse"> 1 - History Helpful Link</a>
     </string>
-    <string name="HistoryLink2">
+    <string name="HistoryLink2" translatable="false">
         <a href="https://parade.com/1099930/marynliles/history-facts/"> 2 - History Helpful Link</a>
     </string>
-    <string name="PoliticsLink1">
+    <string name="PoliticsLink1" translatable="false">
         <a href="https://www.dummies.com/education/politics-government/politics-for-dummies-cheat-sheet/"> 1 - Politics Helpful Link</a>
     </string>
-    <string name="PoliticsLink2">
+    <string name="PoliticsLink2" translatable="false">
         <a href="https://www.youtube.com/watch?v=mxgOjH7szdk&amp;ab_channel=PolyMatter"> 2 - Politics Helpful Link</a>
     </string>
-    <string name="ArtLink1">
+    <string name="ArtLink1" translatable="false">
         <a href="https://www.youtube.com/watch?v=iGhaa6QHc0g&amp;ab_channel=TheRichest"> 1 - Art Helpful Link</a>
     </string>
-    <string name="ArtLink2">
+    <string name="ArtLink2" translatable="false">
         <a href="https://www.youtube.com/watch?v=b4ROQX_GpbA&amp;ab_channel=FactsNet"> 2 - Art Helpful Link</a>
     </string>
-    <string name="CelebritiesLink1">
+    <string name="CelebritiesLink1" translatable="false">
         <a href="https://bestlifeonline.com/celebs-not-like-us/"> 1 - Celebrities Helpful Link</a>
     </string>
-    <string name="CelebritiesLink2">
+    <string name="CelebritiesLink2" translatable="false">
         <a href="https://www.factinate.com/people/42-little-known-facts-famous-people/"> 2 - Celebrities Helpful Link</a>
     </string>
-    <string name="AnimalsLink1">
+    <string name="AnimalsLink1" translatable="false">
         <a href="https://kids.nationalgeographic.com/games/quizzes/article/quiz-whiz-animals"> 1 - Animals Helpful Link</a>
     </string>
-    <string name="AnimalsLink2">
+    <string name="AnimalsLink2" translatable="false">
         <a href="https://www.mentalfloss.com/article/86578/50-incredible-animal-facts-youll-want-share"> 2 - Animals Helpful Link</a>
     </string>
-    <string name="VehiclesLink1">
+    <string name="VehiclesLink1" translatable="false">
         <a href="https://www.carfax.ca/resource-centre/articles/10-strange-canadian-car-facts"> 1 - Vehicles Helpful Link</a>
     </string>
-    <string name="VehiclesLink2">
+    <string name="VehiclesLink2" translatable="false">
         <a href="https://grizly.com/quizzes/car-manufacturer-quiz"> 2 - Vehicles Helpful Link</a>
     </string>
-    <string name="ComicsLink1">
+    <string name="ComicsLink1" translatable="false">
         <a href="https://www.funtrivia.com/playquiz/quiz282608205ad88.html"> 1 - Comics Helpful Link</a>
     </string>
-    <string name="ComicsLink2">
+    <string name="ComicsLink2" translatable="false">
         <a href="https://www.youtube.com/watch?v=bhuvac0HWJY&amp;ab_channel=NerdSync"> 2 - Comics Helpful Link</a>
     </string>
-    <string name="GadgetsLink1">
+    <string name="GadgetsLink1" translatable="false">
         <a href="https://www.pocket-lint.com/gadgets/news/147627-surprising-facts-about-tech"> 1 - Gadgets Helpful Link</a>
     </string>
-    <string name="GadgetsLink2">
+    <string name="GadgetsLink2" translatable="false">
         <a href="https://www.youtube.com/watch?v=upy7NAn9jn4&amp;ab_channel=FinestFacts"> 2 - Gadgets Helpful Link</a>
     </string>
-    <string name="JapaneseAnimeAndMangaLink1">
+    <string name="JapaneseAnimeAndMangaLink1" translatable="false">
         <a href="https://aminoapps.com/c/anime/page/blog/20-interesting-facts-about-anime-manga/V1t7_u5Yrx7qmd3x13BXD0jNN5aG0Z"> 1 - Japanese Anime and Manga Helpful Link</a>
     </string>
-    <string name="JapaneseAnimeAndMangaLink2">
+    <string name="JapaneseAnimeAndMangaLink2" translatable="false">
         <a href="https://animeworldthelandofmanga.wordpress.com/2017/05/04/interesting-facts-about-manga-and-anime/"> 2 - Japanese Anime and Manga Helpful Link</a>
     </string>
-    <string name="CartoonsAndAnimationsLink1">
+    <string name="CartoonsAndAnimationsLink1" translatable="false">
         <a href="https://brightside.me/wonder-films/20-cartoon-facts-that-took-us-aback-790660/"> 1 - Cartoons and Animations Helpful Link</a>
     </string>
-    <string name="CartoonsAndAnimationsLink2">
+    <string name="CartoonsAndAnimationsLink2" translatable="false">
         <a href="https://www.zavvi.com/blog/features/26-animation-facts-definitely-didnt-know/"> 2 - Cartoons and Animations Helpful Link</a>
     </string>
 </resources>

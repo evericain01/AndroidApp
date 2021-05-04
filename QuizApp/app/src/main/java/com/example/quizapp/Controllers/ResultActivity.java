@@ -4,23 +4,18 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Paint;
 import android.media.MediaPlayer;
-import android.media.RingtoneManager;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -35,8 +30,7 @@ import com.example.quizapp.Models.DatabaseHelper;
 import com.example.quizapp.Models.Experience;
 import com.example.quizapp.R;
 
-import static android.app.Notification.DEFAULT_SOUND;
-import static android.app.Notification.DEFAULT_VIBRATE;
+import java.util.Locale;
 
 public class ResultActivity extends AppCompatActivity {
     DatabaseHelper db;
@@ -46,7 +40,6 @@ public class ResultActivity extends AppCompatActivity {
     Toolbar toolbar;
 
     private final static int MAX_VOLUME = 100;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,6 +117,52 @@ public class ResultActivity extends AppCompatActivity {
         NotificationManager notificationManager = getSystemService(NotificationManager.class);
         notificationManager.createNotificationChannel(channel);
         addNotification();
+    }
+
+    /**
+     * Initializing the options menu.
+     *
+     * @param menu The desired menu format.
+     * @return true;
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.options_menu, menu);
+        return true;
+    }
+
+    /**
+     * Navigates to Modify Profile or Logout depending on which option menu item has been click.
+     *
+     * @param item The item in the options menu.
+     * @return True.
+     */
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.modifyProfile:
+                Intent modifyProfile = new Intent(ResultActivity.this, ModifyProfileActivity.class);
+                modifyProfile.putExtra("USER_ID", getCurrentUserId());
+                startActivity(modifyProfile);
+                return true;
+            case R.id.logoutOption:
+                new AlertDialog.Builder(this)
+                        .setMessage("Are you sure you want to logout?")
+                        .setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                ResultActivity.super.onBackPressed();
+                                Intent logout = new Intent(ResultActivity.this, LoginActivity.class);
+                                startActivity(logout);
+                            }
+                        })
+                        .setNegativeButton("No", null)
+                        .show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     /**
@@ -304,49 +343,5 @@ public class ResultActivity extends AppCompatActivity {
         return experienceGained;
     }
 
-    /**
-     * Initializing the options menu.
-     *
-     * @param menu The desired menu format.
-     * @return true;
-     */
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.options_menu, menu);
-        return true;
-    }
 
-    /**
-     * Navigates to Modify Profile or Logout depending on which option menu item has been click.
-     *
-     * @param item The item in the options menu.
-     * @return True.
-     */
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.modifyProfile:
-                Intent modifyProfile = new Intent(ResultActivity.this, ModifyProfileActivity.class);
-                modifyProfile.putExtra("USER_ID", getCurrentUserId());
-                startActivity(modifyProfile);
-                return true;
-            case R.id.logoutOption:
-                new AlertDialog.Builder(this)
-                        .setMessage("Are you sure you want to logout?")
-                        .setCancelable(false)
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                ResultActivity.super.onBackPressed();
-                                Intent logout = new Intent(ResultActivity.this, LoginActivity.class);
-                                startActivity(logout);
-                            }
-                        })
-                        .setNegativeButton("No", null)
-                        .show();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
 }

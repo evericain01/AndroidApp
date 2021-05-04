@@ -7,9 +7,12 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -23,6 +26,8 @@ import com.example.quizapp.Models.Experience;
 import com.example.quizapp.R;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
+
+import java.util.Locale;
 
 public class HomePageActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     DatabaseHelper db;
@@ -41,13 +46,15 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        this.setTitle(getResources().getString(R.string.app_name));
+
         db = new DatabaseHelper(this);
         nameTitle = findViewById(R.id.homePageTitleText);
         optionsButton = findViewById(R.id.playButton);
         viewQueue = findViewById(R.id.viewQueueButton);
         expNeededTextText = findViewById(R.id.expNeededTextText);
 
-        expNeededTextText.setText("NEEDED FOR LEVEL: " + (Experience.calculateLevel(Integer.parseInt(db.getExperiencePoints(getCurrentUserId()))) + 1));
+        expNeededTextText.setText(getResources().getString(R.string.needExpForLevelUp) + (Experience.calculateLevel(Integer.parseInt(db.getExperiencePoints(getCurrentUserId()))) + 1));
 
         nameTitle.setText(db.getFirstAndLastName(getCurrentUserId()));
 
@@ -73,6 +80,75 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
         });
     }
 
+    /**
+     * Initializing the options menu.
+     *
+     * @param menu The desired menu format.
+     * @return true.
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.options_menu_home_page, menu);
+        return true;
+    }
+
+    /**
+     * Navigates to Modify Profile or Logout depending on which option menu item has been click.
+     *
+     * @param item The item in the options menu.
+     * @return True.
+     */
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.changeToEnglish:
+                setLocal(HomePageActivity.this, "en");
+                Intent intent = new Intent(HomePageActivity.this, HomePageActivity.class);
+                intent.putExtra("USER_ID", getCurrentUserId());
+                startActivity(intent);
+                return true;
+            case R.id.changeToFrench:
+                setLocal(HomePageActivity.this, "fr");
+                Intent intent2 = new Intent(HomePageActivity.this, HomePageActivity.class);
+                intent2.putExtra("USER_ID", getCurrentUserId());
+                startActivity(intent2);
+                return true;
+            case R.id.modifyProfile:
+                Intent modifyProfile = new Intent(HomePageActivity.this, ModifyProfileActivity.class);
+                modifyProfile.putExtra("USER_ID", getCurrentUserId());
+                startActivity(modifyProfile);
+                return true;
+            case R.id.logoutOption:
+                new AlertDialog.Builder(this)
+                        .setMessage("Are you sure you want to logout?")
+                        .setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                HomePageActivity.super.onBackPressed();
+                                Intent logout = new Intent(HomePageActivity.this, LoginActivity.class);
+                                startActivity(logout);
+                            }
+                        })
+                        .setNegativeButton("No", null)
+                        .show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+
+    public void setLocal(Activity activity, String langCode) {
+        Locale locale = new Locale(langCode);
+        Locale.setDefault(locale);
+
+        Resources resources = activity.getResources();
+        Configuration configuration = resources.getConfiguration();
+        configuration.setLocale(locale);
+        resources.updateConfiguration(configuration,resources.getDisplayMetrics());
+    }
+
     public void experienceHelper() {
         levelText = findViewById(R.id.levelText);
         expNeededText = findViewById(R.id.expNeededText);
@@ -82,17 +158,17 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
         int exp = Integer.parseInt(db.getExperiencePoints(getCurrentUserId()));
 
         // Calculating level based on experience
-        level = Experience.calculateLevel((double) exp);
+        level = Experience.calculateLevel(exp);
 
         // Displaying level text as a string
-        levelText.setText("LEVEL: " + String.valueOf(level));
+        levelText.setText(getResources().getString(R.string.levelText) + " " + level);
 
         // Gets the experience needed to level up
         double expNeeded = Experience.nextLevelXpNeeded(exp);
-        expNeededText.setText(String.valueOf((int) expNeeded) + " EXP NEED FOR LEVEL UP");
+        expNeededText.setText((int) expNeeded + " " + getResources().getString(R.string.experience));
 
         // Getting progressionRate through level.
-        int barProgression = Experience.progressionRate((double) exp);
+        int barProgression = Experience.progressionRate(exp);
 
         // sets the value of the progress bar (progress bar can only take a max of 100)
         progressBar.setProgress(barProgression, true);
@@ -151,8 +227,7 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
         menuFullName = headerView.findViewById(R.id.menuFullNameText);
         menuFullName.setText(db.getFirstAndLastName(getCurrentUserId()));
         menuLevel = headerView.findViewById(R.id.menuLevelText);
-        menuLevel.setText("Level " + String.valueOf(level));
-        System.out.println("Level: " + level);
+        menuLevel.setText("Level " + level);
     }
 
     /**
@@ -197,49 +272,4 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
         return true;
     }
 
-    /**
-     * Initializing the options menu.
-     *
-     * @param menu The desired menu format.
-     * @return true.
-     */
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.options_menu, menu);
-        return true;
-    }
-
-    /**
-     * Navigates to Modify Profile or Logout depending on which option menu item has been click.
-     *
-     * @param item The item in the options menu.
-     * @return True.
-     */
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.modifyProfile:
-                Intent modifyProfile = new Intent(HomePageActivity.this, ModifyProfileActivity.class);
-                modifyProfile.putExtra("USER_ID", getCurrentUserId());
-                startActivity(modifyProfile);
-                return true;
-            case R.id.logoutOption:
-                new AlertDialog.Builder(this)
-                        .setMessage("Are you sure you want to logout?")
-                        .setCancelable(false)
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                HomePageActivity.super.onBackPressed();
-                                Intent logout = new Intent(HomePageActivity.this, LoginActivity.class);
-                                startActivity(logout);
-                            }
-                        })
-                        .setNegativeButton("No", null)
-                        .show();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
 }
