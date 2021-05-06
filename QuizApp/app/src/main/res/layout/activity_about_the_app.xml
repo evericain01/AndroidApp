@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#065CAE"
+    tools:context=".Controllers.AboutTheAppActivity">
+
+    <TextView
+        android:id="@+id/aboutTheAppTitle"
+        android:layout_width="match_parent"
+        android:layout_height="95dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/abel_font"
+        android:gravity="center"
+        android:shadowColor="#000000"
+        android:shadowRadius="40"
+        android:text="About The App"
+        android:textColor="#70D0FB"
+        android:textSize="50dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/aboutTheAppText"
+        android:layout_width="383dp"
+        android:layout_height="168dp"
+        android:fontFamily="@font/abel_font"
+        android:gravity="center"
+        android:shadowColor="#002383"
+        android:shadowRadius="10"
+        android:text="This is a quiz application which allows users to pick and customize their quiz. A leveling, queue and helpful suggestion system is implemented in this application."
+        android:textColor="#00FFE9"
+        android:textSize="23sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.368" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/continueButton"
+        android:layout_width="157dp"
+        android:layout_height="60dp"
+        android:background="#31DE00"
+        android:fontFamily="@font/abel_font"
+        android:text="Continue"
+        android:textSize="32dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.672" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
