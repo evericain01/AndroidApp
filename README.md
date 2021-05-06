@@ -7,4 +7,7 @@ As the user opens the app, it asks them to register and create a profile . Once 
 What makes our different than other quiz apps?
 -	A queue system is implemented in the application. The user will be allowed to view, add, delete, play a specific quiz selection which will be added to their “queue” if they want to save that quiz for later. Should the user logout and log back in, their queue is still saved.
 
--	A suggestion system is another unique implementation we decided to add. Once the user has completed a quiz, a couple of links will be shown to the user. These links are based on the category the user has selected for their quiz. We implemented this system to allow the user to improve their skills on that specific category.
+-	A suggestion system is another unique implementation we decided to add. Once the user has completed a quiz, a couple of links will be shown to the user. These links are based on the category the user has selected for their quiz. We implemented this system to allow the user to improve their skills on that specific category. <br /> <br /> <br />
+
+
+<ins>NOTE: Quiz categories History, Politics and Celebrities do not generate at the moment.</ins>
